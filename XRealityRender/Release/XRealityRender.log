@@ -1,0 +1,13 @@
+﻿Build started 1/26/2016 8:22:47 PM.
+     1>Project "\\andrew.ad.cmu.edu\users\users4\ymao1\Desktop\XRealityRender\XRealityRender\XRealityRender.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I\\andrew.ad.cmu.edu\users\users4\ymao1\Desktop\XRealityRender\XRealityRender\include /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt src\XRApplication.cpp
+         XRApplication.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"\\andrew.ad.cmu.edu\users\users4\ymao1\Desktop\XRealityRender\Release\XRealityRender.exe" /NOLOGO /LIBPATH:\\andrew.ad.cmu.edu\users\users4\ymao1\Desktop\XRealityRender\XRealityRender\libs opengl32.lib glfw_d.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"\\andrew.ad.cmu.edu\users\users4\ymao1\Desktop\XRealityRender\Release\XRealityRender.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"\\andrew.ad.cmu.edu\users\users4\ymao1\Desktop\XRealityRender\Release\XRealityRender.lib" /MACHINE:X86 /SAFESEH Release\XRApplication.obj
+     1>LINK : fatal error LNK1181: cannot open input file 'glfw_d.lib'
+     1>Done Building Project "\\andrew.ad.cmu.edu\users\users4\ymao1\Desktop\XRealityRender\XRealityRender\XRealityRender.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:00.79

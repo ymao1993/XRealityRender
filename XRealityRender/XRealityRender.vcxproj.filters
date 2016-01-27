@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\XREngine.cpp" />
+    <ClCompile Include="src\XREntity.cpp" />
+    <ClCompile Include="src\RotatingTriangle.cpp" />
+    <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\XRApplication.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\XREngine.h" />
+    <ClInclude Include="src\XREntity.h" />
+    <ClInclude Include="src\RotatingTriangle.h" />
+    <ClInclude Include="src\XRApplication.h" />
+  </ItemGroup>
+</Project>

@@ -1,7 +1,7 @@
 #ifndef ROTATINGTRIANGLE_H
 #define ROTATINGTRIANGLE_H
 
-#include "XREntity.h"
+#include "..\XREntity.h"
 
 class RotatingTriangle :public XREntity
 {

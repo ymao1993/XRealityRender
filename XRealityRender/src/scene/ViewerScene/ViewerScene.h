@@ -1,12 +1,14 @@
-#ifndef XRAPPLICATION_H
-#define XRAPPLICATION_H
+#ifndef VIEWERSCENE_H
+#define VIEWERSCENE_H
 
 #include <GLFW\glfw3.h>
+#include "..\..\imgui\imgui.h"
+#include "..\..\XREntity.h"
 
-#include "XREntity.h"
-#include "RotatingTriangle.h"
+#include "ViewerSceneGUI.h"
+#include "..\..\entity\RotatingTriangle.h"
 
-class XRApplication:public XREntity
+class ViewerScene :public XREntity
 {
 public:
 	virtual bool init();
@@ -15,6 +17,7 @@ public:
 	static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
 private:
 	RotatingTriangle *triangle;
+	ViewerSceneGUI *gui;
 };
 
 

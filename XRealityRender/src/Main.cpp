@@ -1,10 +1,10 @@
+#include "gl3w\gl3w.h"
 #include <GLFW\glfw3.h>
 
 #include <stdlib.h>
 #include <stdio.h>
 
 #include "XREngine.h"
-#include "XRApplication.h"
 
 
 static void error_callback(int error, const char* description)
@@ -29,11 +29,26 @@ int main(void)
 	glfwSwapInterval(1);
 	printf("done\n");
 
+	printf("initialize gl3w...");
+	if (gl3wInit()) {
+		fprintf(stderr, "failed to initialize OpenGL\n");
+		return -1;
+	}
+	if (!gl3wIsSupported(3, 2)) {
+		fprintf(stderr, "OpenGL 3.2 not supported\n");
+		return -1;
+	}
+	printf("done\n");
+
 	//initialize engine
 	printf("initializing engine...");
-	XRApplication application;
-	glfwSetKeyCallback(window, XRApplication::key_callback);
-	XREngine::instance()->init(&application);
+
+	{//initialize window size
+		int width, height;
+		glfwGetFramebufferSize(window, &width, &height);
+		XREngine::instance()->setWindowWH(width, height);
+	}
+	XREngine::instance()->init(window);
 	printf("done\n");
 
 	printf("game starts\n");

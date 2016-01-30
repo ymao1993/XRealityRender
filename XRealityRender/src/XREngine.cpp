@@ -1,6 +1,6 @@
 #include <stddef.h>
-#include "XRApplication.h"
 #include "XREngine.h"
+#include ".\scene\ViewerScene\ViewerScene.h"
 
 XREngine* XREngine::engine = NULL;
 
@@ -19,21 +19,26 @@ XREngine* XREngine::instance()
 
 XREngine::XREngine(){}
 
-bool XREngine::init(XRApplication* app)
+bool XREngine::init(GLFWwindow* window)
 {
-	setAppliction(app);
-	application->init();
+	//set window
+	setGLFWwindow(window);
+
+	//create application
+	scene = new ViewerScene();
+	scene->init();
+
 	return true;
 }
 
 bool XREngine::update()
 {
-	application->update(0);
+	scene->update(0);
 	return true;
 }
 
 bool XREngine::destroy()
 {
-	application->destroy();
+	scene->destroy();
 	return true;
 }

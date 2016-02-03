@@ -25,6 +25,30 @@
     <ClCompile Include="src\entity\RotatingTriangle.cpp">
       <Filter>entity</Filter>
     </ClCompile>
+    <ClCompile Include="src\XRCamera.cpp" />
+    <ClCompile Include="src\XRObject.cpp" />
+    <ClCompile Include="src\object\TestTriangle.cpp">
+      <Filter>object</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XRShaderUtils.cpp" />
+    <ClCompile Include="src\XRDeivice.cpp" />
+    <ClCompile Include="src\XRDebug.cpp" />
+    <ClCompile Include="src\XRWidget.cpp" />
+    <ClCompile Include="src\XRUserInterface.cpp" />
+    <ClCompile Include="src\XRScene.cpp" />
+    <ClCompile Include="src\widget\XRDebugOutputWindow.cpp">
+      <Filter>widget</Filter>
+    </ClCompile>
+    <ClCompile Include="src\imgui\imgui_demo.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\widget\XRStatusWindow.cpp">
+      <Filter>widget</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XRPointCloudUtils.cpp" />
+    <ClCompile Include="src\object\PointCloud.cpp">
+      <Filter>object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\XREngine.h" />
@@ -65,6 +89,30 @@
     <ClInclude Include="src\entity\RotatingTriangle.h">
       <Filter>entity</Filter>
     </ClInclude>
+    <ClInclude Include="src\XRCamera.h" />
+    <ClInclude Include="src\XRObject.h" />
+    <ClInclude Include="src\object\TestTriangle.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XRShaderUtils.h" />
+    <ClInclude Include="src\XRCommon.h" />
+    <ClInclude Include="src\XRDevice.h" />
+    <ClInclude Include="src\XRDebug.h" />
+    <ClInclude Include="src\XRUserInterface.h" />
+    <ClInclude Include="src\XRGLFW.h" />
+    <ClInclude Include="src\XRIMUI.h" />
+    <ClInclude Include="src\XRWidget.h" />
+    <ClInclude Include="src\XRScene.h" />
+    <ClInclude Include="src\widget\XRDebugOutputWindow.h">
+      <Filter>widget</Filter>
+    </ClInclude>
+    <ClInclude Include="src\widget\XRStatusWindow.h">
+      <Filter>widget</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XRPointCloudUtils.h" />
+    <ClInclude Include="src\object\PointCloud.h">
+      <Filter>object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="imgui">
@@ -81,6 +129,12 @@
     </Filter>
     <Filter Include="entity">
       <UniqueIdentifier>{6ee1995e-a078-40e7-91fc-a524838f1387}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="object">
+      <UniqueIdentifier>{cd7c82b7-da9b-4dd1-a31e-06f1f16977ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="widget">
+      <UniqueIdentifier>{30f8b9a2-bed1-421e-8595-4f317af16f3d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -1,5 +1,6 @@
-#include "RotatingTriangle.h"
 #include <GLFW\glfw3.h>
+#include "RotatingTriangle.h"
+
 
 
 bool RotatingTriangle::init()
@@ -7,7 +8,7 @@ bool RotatingTriangle::init()
 	return true;
 }
 
-bool RotatingTriangle::update(float time)
+bool RotatingTriangle::update(double time)
 {
 	float ratio;
 	int width = XREngine::instance()->getWindowW();

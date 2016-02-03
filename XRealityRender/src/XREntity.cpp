@@ -5,7 +5,7 @@ bool XREntity::init()
 	return true;
 }
 
-bool XREntity::update(float time)
+bool XREntity::update(double time)
 {
 	return true;
 }

@@ -2,10 +2,17 @@
 #define XRENGINE_H
 
 #include <vector>
-#include "GLFW\glfw3.h"
+#include "XRGLFW.h"
+#include "XRCommon.h"
 
-class ViewerScene;
+class XRScene;
 
+/**
+ * XREngine
+ * XREngine controls the gaem loop, resource initialization, initial scene creation, etc.
+ *
+ * @Author Yu Mao
+ */
 class XREngine
 {
 public:
@@ -19,7 +26,7 @@ public:
 	inline int getWindowW(){ return windowW; }
 	inline int getWindowH(){ return windowH; }
 	inline GLFWwindow* getWindow(){ return window; }
-	inline void setScene(ViewerScene* scene) { this->scene = scene; }
+	inline void setScene(XRScene* scene) { this->scene = scene; }
 
 private:
 	XREngine();
@@ -29,10 +36,18 @@ private:
 	inline void setGLFWwindow(GLFWwindow* window) { this->window = window; }
 
 	static XREngine* engine;
-	ViewerScene* scene;
+	XRScene* scene;
+
+	//game loop
+	double deltaTime;
+	double secondsPerFrame;
+
+	//windowinfo
 	GLFWwindow* window;
 	int windowW;
 	int windowH;
+
+	void handleKeyEvent();
 };
 
 #endif

@@ -1,28 +1,22 @@
 #ifndef VIEWERSCENEGUI_H
 #define VIEWERSCENEGUI_H
 
-#define GLFW_EXPOSE_NATIVE_WIN32
-#define GLFW_EXPOSE_NATIVE_WGL
+#include "../../XRUserInterface.h"
+#include "../../widget/XRDebugOutputWindow.h"
+#include "../../widget/XRStatusWindow.h"
 
-#include <GLFW\glfw3.h>
-#include <GLFW\glfw3native.h>
-
-#include "..\..\XREntity.h"
-
-#include "..\..\imgui\imgui.h"
-#include "..\..\imgui\imgui_impl_glfw.h"
-
-class ViewerSceneGUI :public XREntity
+class ViewerSceneGUI :public XRUserInterface
 {
 public:
-	virtual bool init();
-	virtual bool update(float time);
-	virtual bool destroy();
-	void enableCallback();
-	void disableCallback();
+	ViewerSceneGUI(XRScene* scene);
+	virtual bool initUI();
+	virtual bool updateUI(double time);
+	virtual bool destroyUI();
+
 private:
-	GLFWwindow* g_window;
-	bool callbackEnabled;
+	XRDebugOutputWindow *debugInfoWindow;
+	XRStatusWindow *statusWindow;
+
 };
 
 #endif

@@ -1,38 +1,53 @@
+#include "..\..\gl3w\gl3w.h"
 #include "ViewerScene.h"
-#include "..\..\entity\RotatingTriangle.h"
-#include "GLFW\glfw3.h"
+#include "ViewerSceneGUI.h"
+#include "../../object/TestTriangle.h"
+#include "../../object/PointCloud.h"
 
 
-bool ViewerScene::init()
+
+bool ViewerScene::initScene()
 {
-	//init gui
-	gui = new ViewerSceneGUI();
-	gui->init();
+	//init camera
+	camera = new XRCamera();
+	camera->init();
 
-	//init game entities
-	triangle = new RotatingTriangle();
-	triangle->init();
-	//...
+	//init game object
+	//testObj = new TestTriangle();
+	testObj = new PointCloud();
+
+	testObj->init();
 
 	return true;
 }
 
-bool ViewerScene::update(float time)
+XRUserInterface* ViewerScene::createUserInterface()
 {
-	//update game logic
-	triangle->update(time);
-	//....
+	return new ViewerSceneGUI(this);
+}
 
+bool ViewerScene::updateScene(double time)
+{
+	//update camera
+	camera->update(time);
 
-	//update gui
-	gui->update(time);
+	//testObj->update(time);
+	testObj->transform = camera->getWorld2Clip();
+	testObj->update(time);
+	testObj->render();
 
 	return true;
 }
 
-bool ViewerScene::destroy()
+bool ViewerScene::destroyScene()
 {
-	delete triangle;
-	delete gui;
+	//destroy camera
+	camera->destroy();
+	delete camera;
+
+	//destroy object
+	testObj->destroy();
+	delete testObj;
+
 	return true;
 }

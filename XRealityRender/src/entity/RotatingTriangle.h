@@ -7,7 +7,7 @@ class RotatingTriangle :public XREntity
 {
 public:
 	virtual bool init();
-	virtual bool update(float time);
+	virtual bool update(double time);
 	virtual bool destroy();
 };
 

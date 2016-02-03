@@ -1,5 +1,5 @@
 #include "gl3w\gl3w.h"
-#include <GLFW\glfw3.h>
+#include "XRGLFW.h"
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -12,14 +12,20 @@ static void error_callback(int error, const char* description)
 	fputs(description, stderr);
 }
 
+static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+		glfwSetWindowShouldClose(window, GL_TRUE);
+}
+
 int main(void)
 {
-	printf("creating context...");
+	XRDebug::log("creating context...");
 	GLFWwindow* window;
 	glfwSetErrorCallback(error_callback);
 	if (!glfwInit())
 		exit(EXIT_FAILURE);
-	window = glfwCreateWindow(800, 600, "XRealityRenderer", NULL, NULL);
+	window = glfwCreateWindow(1024, 768, "XRealityRenderer", NULL, NULL);
 	if (!window)
 	{
 		glfwTerminate();
@@ -27,9 +33,8 @@ int main(void)
 	}
 	glfwMakeContextCurrent(window);
 	glfwSwapInterval(1);
-	printf("done\n");
 
-	printf("initialize gl3w...");
+	XRDebug::log("initialize gl3w...");
 	if (gl3wInit()) {
 		fprintf(stderr, "failed to initialize OpenGL\n");
 		return -1;
@@ -38,10 +43,9 @@ int main(void)
 		fprintf(stderr, "OpenGL 3.2 not supported\n");
 		return -1;
 	}
-	printf("done\n");
 
 	//initialize engine
-	printf("initializing engine...");
+	XRDebug::log("initializing engine...");
 
 	{//initialize window size
 		int width, height;
@@ -49,9 +53,10 @@ int main(void)
 		XREngine::instance()->setWindowWH(width, height);
 	}
 	XREngine::instance()->init(window);
-	printf("done\n");
 
-	printf("game starts\n");
+	XRDebug::log("game starts\n");
+
+	glfwSetKeyCallback(window, XRDevice::callbackGLFW);
 	while (!glfwWindowShouldClose(window))
 	{
 		//TODO: update it by callback?
@@ -61,7 +66,8 @@ int main(void)
 		XREngine::instance()->setWindowWH(width, height);
 
 		//clear buffer
-		glClear(GL_COLOR_BUFFER_BIT);
+		GLfloat defaultBufferColor[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
+		glClearBufferfv(GL_COLOR, 0, defaultBufferColor);
 
 		//update XREngine
 		XREngine::instance()->update();
@@ -71,12 +77,11 @@ int main(void)
 		glfwPollEvents();
 	}
 
-	printf("exiting...");
+	XRDebug::log("exiting...");
 	//destroy engine
 	XREngine::instance()->destroy();
 
 	glfwDestroyWindow(window);
 	glfwTerminate();
-	printf("done\n");
 	exit(EXIT_SUCCESS);
 }

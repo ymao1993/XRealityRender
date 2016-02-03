@@ -1,23 +1,23 @@
 #ifndef VIEWERSCENE_H
 #define VIEWERSCENE_H
 
-#include <GLFW\glfw3.h>
-#include "..\..\imgui\imgui.h"
-#include "..\..\XREntity.h"
+#include "../../XRGLFW.h"
 
-#include "ViewerSceneGUI.h"
-#include "..\..\entity\RotatingTriangle.h"
+#include "../../XRScene.h"
+#include "../../XRObject.h"
+#include "../../XRCamera.h"
 
-class ViewerScene :public XREntity
+class ViewerScene :public XRScene
 {
 public:
-	virtual bool init();
-	virtual bool update(float time);
-	virtual bool destroy();
-	static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
+	virtual bool initScene();
+	virtual bool updateScene(double time);
+	virtual bool destroyScene();
+	virtual XRUserInterface* createUserInterface();
 private:
-	RotatingTriangle *triangle;
-	ViewerSceneGUI *gui;
+	XRUserInterface* gui;
+	XRCamera *camera;
+	XRObject* testObj;
 };
 
 

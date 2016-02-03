@@ -1,29 +1,39 @@
+#include "..\..\gl3w\gl3w.h"
 #include "ViewerSceneGUI.h"
+#include "../../XRCommon.h"
 
-bool ViewerSceneGUI::init()
+ViewerSceneGUI::ViewerSceneGUI(XRScene* scene):
+XRUserInterface(scene){}
+
+bool ViewerSceneGUI::initUI()
 {
-	ImGui_ImplGlfw_Init(XREngine::instance()->getWindow(),true);
+	debugInfoWindow = new XRDebugOutputWindow();
+	debugInfoWindow->init();
+
+	statusWindow = new XRStatusWindow();
+	statusWindow->init();
+
+
 	return true;
 
 }
 
-bool ViewerSceneGUI::update(float time)
+bool ViewerSceneGUI::updateUI(double time)
 {
-	ImGui_ImplGlfw_NewFrame();
+	debugInfoWindow->update(time);
+	statusWindow->update(time);
 
-	ImGuiIO& io = ImGui::GetIO();
-	io.DeltaTime = 1.0f / 60.0f;
-
-	ImGui::Begin("My window");
-	ImGui::Text("Hello, world.");
-	ImGui::End();
-
-	ImGui::Render();
 	return true;
 }
 
-bool ViewerSceneGUI::destroy()
+bool ViewerSceneGUI::destroyUI()
 {
-	ImGui::Shutdown();
+	debugInfoWindow->destroy();
+	delete debugInfoWindow;
+
+	statusWindow->destroy();
+	delete statusWindow;
+
 	return true;
 }
+

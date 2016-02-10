@@ -25,7 +25,7 @@ bool XRCamera::update(double time)
 {
 	//update aspect
 	//change it in the future??
-	aspect = XREngine::instance()->getWindowW() / XREngine::instance()->getWindowW();
+	aspect = XREngine::instance()->getWindowW() / XREngine::instance()->getWindowH();
 
 	updatePosition();
 	updateOrientation();

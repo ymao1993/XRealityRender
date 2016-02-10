@@ -30,7 +30,6 @@
     <ClCompile Include="src\object\TestTriangle.cpp">
       <Filter>object</Filter>
     </ClCompile>
-    <ClCompile Include="src\XRShaderUtils.cpp" />
     <ClCompile Include="src\XRDeivice.cpp" />
     <ClCompile Include="src\XRDebug.cpp" />
     <ClCompile Include="src\XRWidget.cpp" />
@@ -45,9 +44,14 @@
     <ClCompile Include="src\widget\XRStatusWindow.cpp">
       <Filter>widget</Filter>
     </ClCompile>
-    <ClCompile Include="src\XRPointCloudUtils.cpp" />
     <ClCompile Include="src\object\PointCloud.cpp">
       <Filter>object</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\XRShaderUtils.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\XRPointCloudUtils.cpp">
+      <Filter>utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -94,7 +98,6 @@
     <ClInclude Include="src\object\TestTriangle.h">
       <Filter>object</Filter>
     </ClInclude>
-    <ClInclude Include="src\XRShaderUtils.h" />
     <ClInclude Include="src\XRCommon.h" />
     <ClInclude Include="src\XRDevice.h" />
     <ClInclude Include="src\XRDebug.h" />
@@ -109,9 +112,14 @@
     <ClInclude Include="src\widget\XRStatusWindow.h">
       <Filter>widget</Filter>
     </ClInclude>
-    <ClInclude Include="src\XRPointCloudUtils.h" />
     <ClInclude Include="src\object\PointCloud.h">
       <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\XRPointCloudUtils.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\XRShaderUtils.h">
+      <Filter>utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -135,6 +143,9 @@
     </Filter>
     <Filter Include="widget">
       <UniqueIdentifier>{30f8b9a2-bed1-421e-8595-4f317af16f3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utils">
+      <UniqueIdentifier>{98932566-7fd5-40e5-a144-17d9a4422d43}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

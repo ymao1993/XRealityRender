@@ -1,6 +1,6 @@
 #include "..\gl3w\gl3w.h"
 #include "TestTriangle.h"
-#include "../XRShaderUtils.h"
+#include "../utils/XRShaderUtils.h"
 #include <glm/gtc/type_ptr.hpp>
 
 bool TestTriangle::init()

@@ -81,6 +81,8 @@
     <ClCompile Include="src\object\TestTriangle.cpp" />
     <ClCompile Include="src\scene\ViewerScene\ViewerScene.cpp" />
     <ClCompile Include="src\scene\ViewerScene\ViewerSceneGUI.cpp" />
+    <ClCompile Include="src\utils\XRPointCloudUtils.cpp" />
+    <ClCompile Include="src\utils\XRShaderUtils.cpp" />
     <ClCompile Include="src\widget\XRDebugOutputWindow.cpp" />
     <ClCompile Include="src\widget\XRStatusWindow.cpp" />
     <ClCompile Include="src\XRCamera.cpp" />
@@ -89,9 +91,7 @@
     <ClCompile Include="src\XREngine.cpp" />
     <ClCompile Include="src\XREntity.cpp" />
     <ClCompile Include="src\XRObject.cpp" />
-    <ClCompile Include="src\XRPointCloudUtils.cpp" />
     <ClCompile Include="src\XRScene.cpp" />
-    <ClCompile Include="src\XRShaderUtils.cpp" />
     <ClCompile Include="src\XRUserInterface.cpp" />
     <ClCompile Include="src\XRWidget.cpp" />
   </ItemGroup>
@@ -110,6 +110,8 @@
     <ClInclude Include="src\object\TestTriangle.h" />
     <ClInclude Include="src\scene\ViewerScene\ViewerScene.h" />
     <ClInclude Include="src\scene\ViewerScene\ViewerSceneGUI.h" />
+    <ClInclude Include="src\utils\XRPointCloudUtils.h" />
+    <ClInclude Include="src\utils\XRShaderUtils.h" />
     <ClInclude Include="src\widget\XRDebugOutputWindow.h" />
     <ClInclude Include="src\widget\XRStatusWindow.h" />
     <ClInclude Include="src\XRCamera.h" />
@@ -120,9 +122,7 @@
     <ClInclude Include="src\XREntity.h" />
     <ClInclude Include="src\XRGLFW.h" />
     <ClInclude Include="src\XRObject.h" />
-    <ClInclude Include="src\XRPointCloudUtils.h" />
     <ClInclude Include="src\XRScene.h" />
-    <ClInclude Include="src\XRShaderUtils.h" />
     <ClInclude Include="src\XRIMUI.h" />
     <ClInclude Include="src\XRUserInterface.h" />
     <ClInclude Include="src\XRWidget.h" />

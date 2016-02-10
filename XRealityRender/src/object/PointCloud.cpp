@@ -1,8 +1,8 @@
-#include "..\gl3w\gl3w.h"
+#include "../gl3w/gl3w.h"
 #include "PointCloud.h"
-#include "../XRShaderUtils.h"
+#include "../utils/XRShaderUtils.h"
 #include <glm/gtc/type_ptr.hpp>
-#include "../XRPointCloudUtils.h"
+#include "../utils/XRPointCloudUtils.h"
 
 bool PointCloud::init()
 {
@@ -23,7 +23,7 @@ bool PointCloud::init()
 	GLfloat *positions = NULL;
 	pointNum = 0;
 	XRDebug::log("start reading point cloud...");
-	if ((positions = XRPointCloudUtils::readPts("res/model/bunny.pts", pointNum))!=NULL)
+	if ((positions = XRPointCloudUtils::readPts("res/model/room.pts", pointNum))!=NULL)
 	{
 		XRDebug::log("reading complete.");
 	}

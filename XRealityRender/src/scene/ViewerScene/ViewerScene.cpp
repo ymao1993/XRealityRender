@@ -39,6 +39,15 @@ bool ViewerScene::updateScene(double time)
 	return true;
 }
 
+void ViewerScene::reload()
+{
+	testObj->destroy();
+	delete testObj;
+
+	testObj = new TestTriangle();
+	testObj->init();
+}
+
 bool ViewerScene::destroyScene()
 {
 	//destroy camera

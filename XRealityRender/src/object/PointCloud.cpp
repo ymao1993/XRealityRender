@@ -23,7 +23,7 @@ bool PointCloud::init()
 	GLfloat *positions = NULL;
 	pointNum = 0;
 	XRDebug::log("start reading point cloud...");
-	if ((positions = XRPointCloudUtils::readPts("res/model/room.pts", pointNum))!=NULL)
+	if ((positions = XRPointCloudUtils::readPts("res/model/bunny.pts", pointNum))!=NULL)
 	{
 		XRDebug::log("reading complete.");
 	}

@@ -1,6 +1,6 @@
 #include "gl3w\gl3w.h"
 #include "XRGLFW.h"
-
+#include "tinyobjloader\tiny_obj_loader.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -56,7 +56,7 @@ int main(void)
 
 	XRDebug::log("game starts\n");
 
-	glfwSetKeyCallback(window, XRDevice::callbackGLFW);
+	//glfwSetKeyCallback(window, XRDevice::callbackGLFW);
 	while (!glfwWindowShouldClose(window))
 	{
 		//TODO: update it by callback?

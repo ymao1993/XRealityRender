@@ -4,6 +4,8 @@
 #include "../../XRUserInterface.h"
 #include "../../widget/XRDebugOutputWindow.h"
 #include "../../widget/XRStatusWindow.h"
+#include "../../widget/XRConsoleWindow.h"
+#include "../../widget/XRConfigWindow.h"
 
 class ViewerSceneGUI :public XRUserInterface
 {
@@ -16,6 +18,8 @@ public:
 private:
 	XRDebugOutputWindow *debugInfoWindow;
 	XRStatusWindow *statusWindow;
+	XRConsoleWindow *consoleWindow;
+	XRConfigWindow *configWindow;
 
 };
 

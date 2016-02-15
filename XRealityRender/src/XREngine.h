@@ -27,6 +27,7 @@ public:
 	inline int getWindowH(){ return windowH; }
 	inline GLFWwindow* getWindow(){ return window; }
 	inline void setScene(XRScene* scene) { this->scene = scene; }
+	inline XRScene* getScene(){return this->scene; }
 
 private:
 	XREngine();

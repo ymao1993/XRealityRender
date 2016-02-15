@@ -37,7 +37,7 @@ namespace XRPointCloudUtils
 				}
 
 				//std::cout << tokens.size() << std::endl;
-				if (tokens.size() > 6) {
+				if (tokens.size() >= 6) {
 					(*positions)[vertexCount * 4 + 0] = std::stof(tokens[0]);
 					(*positions)[vertexCount * 4 + 1] = std::stof(tokens[1]);
 					(*positions)[vertexCount * 4 + 2] = std::stof(tokens[2]);

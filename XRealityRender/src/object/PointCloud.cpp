@@ -24,7 +24,7 @@ bool PointCloud::init()
 	GLfloat *normals = NULL;
 	pointNum = 0;
 	XRDebug::log("start reading point cloud...");
-	XRPointCloudUtils::readPts("res/model/bunny2.ply", pointNum, &positions, &normals);
+	XRPointCloudUtils::readPts("res/model/room.ply", pointNum, &positions, &normals);
 	XRDebug::log("reading complete.");
 	printf("%d points loaded", pointNum);
 

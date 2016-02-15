@@ -83,6 +83,8 @@
     <ClCompile Include="src\scene\ViewerScene\ViewerSceneGUI.cpp" />
     <ClCompile Include="src\utils\XRPointCloudUtils.cpp" />
     <ClCompile Include="src\utils\XRShaderUtils.cpp" />
+    <ClCompile Include="src\widget\XRConfigWindow.cpp" />
+    <ClCompile Include="src\widget\XRConsoleWindow.cpp" />
     <ClCompile Include="src\widget\XRDebugOutputWindow.cpp" />
     <ClCompile Include="src\widget\XRStatusWindow.cpp" />
     <ClCompile Include="src\XRCamera.cpp" />
@@ -96,6 +98,7 @@
     <ClCompile Include="src\XRWidget.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\tinyobjloader\tiny_obj_loader.h" />
     <ClInclude Include="src\entity\RotatingTriangle.h" />
     <ClInclude Include="src\gl3w\gl3w.h" />
     <ClInclude Include="src\gl3w\glcorearb.h" />
@@ -112,6 +115,8 @@
     <ClInclude Include="src\scene\ViewerScene\ViewerSceneGUI.h" />
     <ClInclude Include="src\utils\XRPointCloudUtils.h" />
     <ClInclude Include="src\utils\XRShaderUtils.h" />
+    <ClInclude Include="src\widget\XRConfigWindow.h" />
+    <ClInclude Include="src\widget\XRConsoleWindow.h" />
     <ClInclude Include="src\widget\XRDebugOutputWindow.h" />
     <ClInclude Include="src\widget\XRStatusWindow.h" />
     <ClInclude Include="src\XRCamera.h" />

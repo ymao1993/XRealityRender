@@ -53,6 +53,12 @@
     <ClCompile Include="src\utils\XRPointCloudUtils.cpp">
       <Filter>utils</Filter>
     </ClCompile>
+    <ClCompile Include="src\widget\XRConsoleWindow.cpp">
+      <Filter>widget</Filter>
+    </ClCompile>
+    <ClCompile Include="src\widget\XRConfigWindow.cpp">
+      <Filter>widget</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\XREngine.h" />
@@ -121,6 +127,15 @@
     <ClInclude Include="src\utils\XRShaderUtils.h">
       <Filter>utils</Filter>
     </ClInclude>
+    <ClInclude Include="src\widget\XRConfigWindow.h">
+      <Filter>widget</Filter>
+    </ClInclude>
+    <ClInclude Include="src\widget\XRConsoleWindow.h">
+      <Filter>widget</Filter>
+    </ClInclude>
+    <ClInclude Include="include\tinyobjloader\tiny_obj_loader.h">
+      <Filter>tinyobjloader</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="imgui">
@@ -146,6 +161,9 @@
     </Filter>
     <Filter Include="utils">
       <UniqueIdentifier>{98932566-7fd5-40e5-a144-17d9a4422d43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tinyobjloader">
+      <UniqueIdentifier>{8b99ea2b-8dea-4125-89ed-9023db21e2e0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

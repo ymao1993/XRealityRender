@@ -11,8 +11,7 @@ namespace XRPointCloudUtils
 		float r, g, b, alpha;
 	};
 
-	bool readPts(std::vector<PointCloudPoint>& result, const char* filePath);
-	GLfloat* readPts(const char* filePath, int &vertexCount);
+	void readPts(const char* filePath, int &vertexCount, float** positions, float** normals);
 	bool writeToFile(std::vector<PointCloudPoint> pointCloud);
 
 }

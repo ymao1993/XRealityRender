@@ -15,8 +15,8 @@ bool ViewerScene::initScene()
 	//init game object
 	//testObj = new TestTriangle();
 	testObj = new PointCloud();
-
 	testObj->init();
+	testObj->setCamera(camera);
 
 	return true;
 }
@@ -32,20 +32,10 @@ bool ViewerScene::updateScene(double time)
 	camera->update(time);
 
 	//testObj->update(time);
-	testObj->transform = camera->getWorld2Clip();
 	testObj->update(time);
 	testObj->render();
 
 	return true;
-}
-
-void ViewerScene::reload()
-{
-	testObj->destroy();
-	delete testObj;
-
-	testObj = new TestTriangle();
-	testObj->init();
 }
 
 bool ViewerScene::destroyScene()

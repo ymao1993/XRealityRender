@@ -2,6 +2,7 @@
 #define XROBJECT_H
 
 #include "XREntity.h"
+#include "XRCamera.h"
 #include "glm\glm.hpp"
 
 /**
@@ -18,9 +19,10 @@ public:
 	virtual bool update(double time) = 0;
 	virtual bool destroy(){ return true; }
 	virtual bool render(){ return true; }
+	inline void setCamera(XRCamera *camera){ this->camera = camera; }
 public:
 	glm::vec3 position;
-	glm::mat4 transform;
+	XRCamera *camera;
 	GLuint vao;
 	GLuint program;
 };

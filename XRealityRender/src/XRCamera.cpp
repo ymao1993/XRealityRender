@@ -1,17 +1,19 @@
 #include "XRCamera.h"
+#include "XRSoundManager.h"
 #include <glm\gtc\matrix_transform.hpp>
 #include <glm\gtx\rotate_vector.hpp>
-
+#include "XREngine.h"
+#include "utils\misc.h"
 
 bool XRCamera::init()
 {
 	//TODO: make these variables configurable!
-	aspect = XREngine::instance()->getWindowW() / XREngine::instance()->getWindowW();
+	aspect = (float)XREngine::instance()->getWindowW() / XREngine::instance()->getWindowH();
 	zNear = 0.01f;
 	zFar = 100.f;
 	fovy = 45.f;
-	speed = 0.03f;
-	rotateMaxSpeed = 0.01f;
+	speed = 0.06f;
+	rotateMaxSpeed = 0.02f;
 
 	//initialize position& orientation of the camera
 	position = glm::vec3(0, 0, 10);
@@ -25,10 +27,14 @@ bool XRCamera::update(double time)
 {
 	//update aspect
 	//change it in the future??
-	aspect = XREngine::instance()->getWindowW() / XREngine::instance()->getWindowH();
+	aspect = (float)XREngine::instance()->getWindowW() / XREngine::instance()->getWindowH();
 
 	updatePosition();
 	updateOrientation();
+
+	// update listener attribute
+	XRSoundManager::setListenerPosition(glmToFmod(position), { 0, 0, 0 }, glmToFmod(front), glmToFmod(up));
+	
 	return true;
 }
 
@@ -71,7 +77,7 @@ glm::mat4 XRCamera::getWorld2View()
 
 glm::mat4 XRCamera::getPersProj()
 {
-	return glm::perspective(fovy, aspect, zNear, zFar);
+	return glm::perspective(glm::radians(fovy), aspect, zNear, zFar);
 }
 
 void XRCamera::updateOrientation()
@@ -83,4 +89,6 @@ void XRCamera::updateOrientation()
 
 	front = glm::rotateX(front, offset.y);
 	front = glm::rotateY(front, offset.x);
+	up = glm::rotateX(up, offset.y);
+	up = glm::rotateY(up, offset.x);
 }

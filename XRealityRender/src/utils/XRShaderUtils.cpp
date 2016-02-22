@@ -23,7 +23,7 @@
 
 #define _CRT_SECURE_NO_WARNINGS 1
 
-#include "XRShaderUtils.h"
+#include "..\gl3w\gl3w.h"
 #include <cstdio>
 
 

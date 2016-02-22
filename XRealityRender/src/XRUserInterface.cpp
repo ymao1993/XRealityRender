@@ -1,12 +1,12 @@
 #include "XRUserInterface.h"
-
 #include "XRIMUI.h"
+#include "XREngine.h"
 
 bool XRUserInterface::init()
 {
 	//init IMGUI
 	ImGui_ImplGlfw_Init(XREngine::instance()->getWindow(), true);
-	
+
 	//init ui element
 	initUI();
 	

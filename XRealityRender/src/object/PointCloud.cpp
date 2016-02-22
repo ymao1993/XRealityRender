@@ -5,17 +5,20 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/transform.hpp>
 #include "../utils/XRPointCloudUtils.h"
+#include "../XRCommon.h"
 
 
-bool PointCloud::init()
+bool PointCloud::initObject()
 {
 #pragma region build shaders
-	//load shaders
-	GLuint shaders[2];
-	shaders[0] = XRShaderUtils::loadShader("res/shader/PhongLighting(GS)/phongLighting(gs).vs.glsl", GL_VERTEX_SHADER);
-	shaders[1] = XRShaderUtils::loadShader("res/shader/PhongLighting(GS)/phongLighting(gs).fs.glsl", GL_FRAGMENT_SHADER);
-	//link program
-	program = XRShaderUtils::linkShaderProgram(shaders, 2, true);
+	{
+		//load shaders
+		GLuint shaders[2];
+		shaders[0] = XRShaderUtils::loadShader("res/shader/PhongLighting(GS)/phongLighting(gs).vs.glsl", GL_VERTEX_SHADER);
+		shaders[1] = XRShaderUtils::loadShader("res/shader/PhongLighting(GS)/phongLighting(gs).fs.glsl", GL_FRAGMENT_SHADER);
+		//link program
+		program = XRShaderUtils::linkShaderProgram(shaders, 2, true);
+	}
 
 #pragma endregion
 
@@ -28,15 +31,6 @@ bool PointCloud::init()
 	XRDebug::log("reading complete.");
 	printf("%d points loaded", pointNum);
 
-	//const GLfloat positions[12] = { -1.0, 0.0, 0.0, 1.0,
-	//	1, 0.0, 0.0, 1.0,
-	//	0.0, 2, 0.0, 1.0 };
-	//const GLfloat normals[9] = { 0.0, 0.0, 1.0,
-	//	0.0, 0.0, 1.0,
-	//	0.0, 0.0, 1.0, };
-	//pointNum = 3; 
-
-
 	//create and initialize vao
 	glGenVertexArrays(1, &vao);
 	glBindVertexArray(vao);
@@ -45,33 +39,69 @@ bool PointCloud::init()
 	enum{ VPOS, VNORMAL };
 
 #pragma region setup position attribute
-	//create and initialize position vbo_pos
-	GLuint vbo_pos;
-	glGenBuffers(1, &vbo_pos);
-	glBindBuffer(GL_ARRAY_BUFFER, vbo_pos);
-	glBufferStorage(GL_ARRAY_BUFFER, sizeof(GLfloat)* 4 * pointNum, positions, GL_MAP_WRITE_BIT);
+	{
+		//create and initialize position vbo_pos
+		GLuint vbo_pos;
+		glGenBuffers(1, &vbo_pos);
+		glBindBuffer(GL_ARRAY_BUFFER, vbo_pos);
+		glBufferStorage(GL_ARRAY_BUFFER, sizeof(GLfloat)* 3 * pointNum, positions, GL_MAP_WRITE_BIT);
 
-	//binding vertex attribute with vertex buffer object
-	glVertexAttribBinding(VPOS, 0);
-	glBindVertexBuffer(0, vbo_pos, 0, sizeof(GLfloat)* 4);
-	glVertexAttribFormat(VPOS, 4, GL_FLOAT, GL_FALSE, 0);
-	glEnableVertexAttribArray(VPOS);
+		//binding vertex attribute with vertex buffer object
+		glVertexAttribBinding(VPOS, 0);
+		glBindVertexBuffer(0, vbo_pos, 0, sizeof(GLfloat)* 3);
+		glVertexAttribFormat(VPOS, 3, GL_FLOAT, GL_FALSE, 0);
+		glEnableVertexAttribArray(VPOS);
+	}
 
 #pragma endregion
 
 #pragma region setup normal attribute
-	//create and initialize normals vbo
-	GLuint vbo_normal;
-	glGenBuffers(1, &vbo_normal);
-	glBindBuffer(GL_ARRAY_BUFFER, vbo_normal);
-	glBufferStorage(GL_ARRAY_BUFFER, sizeof(GLfloat)* 3 * pointNum, normals, GL_MAP_WRITE_BIT);
+	{
+		//create and initialize normals vbo
+		GLuint vbo_normal;
+		glGenBuffers(1, &vbo_normal);
+		glBindBuffer(GL_ARRAY_BUFFER, vbo_normal);
+		glBufferStorage(GL_ARRAY_BUFFER, sizeof(GLfloat)* 3 * pointNum, normals, GL_MAP_WRITE_BIT);
 
-	//binding vertex attribute with vertex buffer object
-	glVertexAttribBinding(VNORMAL, 1);
-	glBindVertexBuffer(1, vbo_normal, 0, sizeof(GLfloat)* 3);
-	glVertexAttribFormat(VNORMAL, 3, GL_FLOAT, GL_FALSE, 0);
-	glEnableVertexAttribArray(VNORMAL);
+		//binding vertex attribute with vertex buffer object
+		glVertexAttribBinding(VNORMAL, 1);
+		glBindVertexBuffer(1, vbo_normal, 0, sizeof(GLfloat)* 3);
+		glVertexAttribFormat(VNORMAL, 3, GL_FLOAT, GL_FALSE, 0);
+		glEnableVertexAttribArray(VNORMAL);
+	}
 
+#pragma endregion
+
+#pragma region setup material uniform block
+	{
+		//initialize material 
+		float spower = 33;
+		glm::vec3 ambient(0.2, 0.2, 0.2);
+		glm::vec3 diffuse(0.4, 0.4, 0.4);
+		glm::vec3 specular(0.8, 0.8, 0.8);
+		material = Material(ambient, diffuse, specular, spower);
+
+		//create, bind and initialize material ubo (bind to binding position 0 of the uniform buffer bindings)
+		glGenBuffers(1, &uboMaterial);
+		glBindBufferBase(GL_UNIFORM_BUFFER, 0, uboMaterial);
+		glBufferStorage(GL_UNIFORM_BUFFER, sizeof(material), &material, GL_MAP_WRITE_BIT);
+	}
+#pragma endregion
+
+#pragma region setup light uniform block
+	{
+		//initialize material 
+		glm::vec3 pos = glm::vec3(0, 0, 100);
+		glm::vec3 ambient(1, 1, 1);
+		glm::vec3 diffuse(1, 1, 1);
+		glm::vec3 specular(1, 1, 1);
+		light = PointLight(pos, ambient, diffuse, specular);
+
+		//create, bind and initialize material ubo (bind to binding position 1 of the uniform buffer bindings)
+		glGenBuffers(1, &uboLight);
+		glBindBufferBase(GL_UNIFORM_BUFFER, 1, uboLight);
+		glBufferStorage(GL_UNIFORM_BUFFER, sizeof(light), &light, GL_MAP_WRITE_BIT);
+	}
 #pragma endregion
 
 	//by now everything is recorded in the vao
@@ -83,12 +113,13 @@ bool PointCloud::init()
 	return true;
 }
 
-bool PointCloud::update(double time)
+bool PointCloud::updateObject(double time)
 {
+	render();
 	return true;
 }
 
-bool PointCloud::destroy()
+bool PointCloud::destroyObject()
 {
 	return true;
 }
@@ -105,12 +136,16 @@ bool PointCloud::render()
 	camera->getWorld2View();
 
 	//add some rotation for fun
-	rotation = glm::rotate(rotation, 0.02f, glm::vec3(0, 1, 0));
+	rotation = glm::rotate(rotation, 0.005f, glm::vec3(0, 1, 0));
 
-	glUniformMatrix4fv(0, 1, GL_FALSE, glm::value_ptr(camera->getWorld2View()*rotation));
-	glUniformMatrix4fv(1, 1, GL_FALSE, glm::value_ptr(camera->getPersProj()));
+	//update uniforms
+	glBindBufferBase(GL_UNIFORM_BUFFER, 0, uboMaterial);
+	glBindBufferBase(GL_UNIFORM_BUFFER, 1, uboLight);
+	glUniformMatrix4fv(0, 1, GL_FALSE, glm::value_ptr(rotation));
+	glUniformMatrix4fv(1, 1, GL_FALSE, glm::value_ptr(camera->getWorld2View()));
+	glUniformMatrix4fv(2, 1, GL_FALSE, glm::value_ptr(camera->getPersProj()));
+	
 	glPointSize(2);
-
 	glDrawArrays(GL_POINTS, 0, pointNum);
 
 	//unbind vao/shader program

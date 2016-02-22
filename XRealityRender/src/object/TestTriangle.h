@@ -7,15 +7,19 @@ class TestTriangle :public XRObject
 {
 public:
 	/*extended from XREntity*/
-	virtual bool init();
-	virtual bool update(double time);
-	virtual bool destroy();
+	virtual bool initObject();
+	virtual bool updateObject(double time);
+	virtual bool destroyObject();
 
 	/*extended from XRObject*/
 	virtual bool render();
+
+private:
+
+	glm::vec3 position;
+	GLuint vao;
+	GLuint program;
 };
-
-
 
 
 #endif

@@ -1,8 +1,6 @@
 #ifndef XRENTITY_H
 #define XRENTITY_H
 
-#include "XREngine.h"
-
 /**
  * XREntity
  * XREntity is an game entity in a general sense. It can be GameObject, UI, effects, etc.

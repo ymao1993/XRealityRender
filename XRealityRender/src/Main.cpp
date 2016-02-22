@@ -5,6 +5,7 @@
 #include <stdio.h>
 
 #include "XREngine.h"
+#include "XRSoundManager.h"
 
 
 static void error_callback(int error, const char* description)
@@ -44,6 +45,11 @@ int main(void)
 		return -1;
 	}
 
+	//inittialize soundManager
+	if (XRSoundManager::init() != true) {
+		XRDebug::log("initialize sound manager failed\n");
+	}
+
 	//initialize engine
 	XRDebug::log("initializing engine...");
 
@@ -56,7 +62,9 @@ int main(void)
 
 	XRDebug::log("game starts\n");
 
-	//glfwSetKeyCallback(window, XRDevice::callbackGLFW);
+	glEnable(GL_DEPTH_TEST);
+
+	glfwSetKeyCallback(window, XRDevice::callbackGLFW);
 	while (!glfwWindowShouldClose(window))
 	{
 		//TODO: update it by callback?
@@ -68,6 +76,7 @@ int main(void)
 		//clear buffer
 		GLfloat defaultBufferColor[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
 		glClearBufferfv(GL_COLOR, 0, defaultBufferColor);
+		glClear(GL_DEPTH_BUFFER_BIT);
 
 		//update XREngine
 		XREngine::instance()->update();
@@ -83,5 +92,6 @@ int main(void)
 
 	glfwDestroyWindow(window);
 	glfwTerminate();
+	XRSoundManager::destroy();
 	exit(EXIT_SUCCESS);
 }

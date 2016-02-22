@@ -5,6 +5,15 @@
 #include "XRCamera.h"
 #include "glm\glm.hpp"
 
+#include "XRTransform.h"
+#include "XRMaterial.h"
+#include "XREffect.h"
+#include "XRMesh.h"
+
+#include "XRComponentType.h";
+
+#include <map>
+
 /**
 * XRObject
 * XRObject is a visible object in the scene
@@ -13,18 +22,44 @@
 */
 class XRObject:public XREntity 
 {
-public:
+
+	//XRScene is friend to XRObject because it manages object
+	friend class XRScene;
+
+private:
 	/*extended from XREntity*/
-	virtual bool init(){ return true; }
-	virtual bool update(double time) = 0;
-	virtual bool destroy(){ return true; }
-	virtual bool render(){ return true; }
-	inline void setCamera(XRCamera *camera){ this->camera = camera; }
+	virtual bool init() final;
+	virtual bool update(double time) final;
+	virtual bool destroy() final;
+
 public:
-	glm::vec3 position;
+	virtual bool initObject() = 0;
+	virtual bool updateObject(double time) = 0;
+	virtual bool destroyObject() = 0;
+
+	inline void setCamera(XRCamera *camera){ this->camera = camera; }
+
+public:
+
+	/*camera*/
 	XRCamera *camera;
-	GLuint vao;
-	GLuint program;
+
+	/*transform info*/
+	XRTransform transform;
+
+	/*component management*/
+	XRComponent* getComponent(XRComponentType type);
+	void addComponent(XRComponent* component);
+	void deleteComponent(XRComponent* component);
+	void deleteComponent(XRComponentType type);
+	void deleteAllComponents();
+
+private:
+
+	/*components*/
+	std::map<XRComponentType, XRComponent*> components;
+
+
 };
 
 #endif

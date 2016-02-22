@@ -59,6 +59,19 @@
     <ClCompile Include="src\widget\XRConfigWindow.cpp">
       <Filter>widget</Filter>
     </ClCompile>
+    <ClCompile Include="src\object\Kitchen.cpp">
+      <Filter>object</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\XRObjLoader.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XREffect.cpp" />
+    <ClCompile Include="src\effect\EffectPhongLightingGS.cpp">
+      <Filter>effect</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XRMesh.cpp" />
+    <ClCompile Include="src\XRSound.cpp" />
+    <ClCompile Include="src\XRSoundManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\XREngine.h" />
@@ -136,6 +149,30 @@
     <ClInclude Include="include\tinyobjloader\tiny_obj_loader.h">
       <Filter>tinyobjloader</Filter>
     </ClInclude>
+    <ClInclude Include="src\shader\PhongLightingGS.h">
+      <Filter>shader</Filter>
+    </ClInclude>
+    <ClInclude Include="src\object\Kitchen.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\XRObjLoader.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XRMaterial.h" />
+    <ClInclude Include="src\XREffect.h" />
+    <ClInclude Include="src\XRComponent.h" />
+    <ClInclude Include="src\XRTransform.h" />
+    <ClInclude Include="src\effect\EffectPhongLightingGS.h">
+      <Filter>effect</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XRMesh.h" />
+    <ClInclude Include="src\XRLight.h" />
+    <ClInclude Include="src\XRComponentType.h" />
+    <ClInclude Include="src\XRSound.h" />
+    <ClInclude Include="src\XRSoundManager.h" />
+    <ClInclude Include="src\utils\misc.h">
+      <Filter>utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="imgui">
@@ -164,6 +201,15 @@
     </Filter>
     <Filter Include="tinyobjloader">
       <UniqueIdentifier>{8b99ea2b-8dea-4125-89ed-9023db21e2e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shader">
+      <UniqueIdentifier>{306ac7f8-abbc-43a7-8ed9-d460a5956adf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="effect">
+      <UniqueIdentifier>{aae214d1-6c83-4a34-bae8-2b4413584ee2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mesh">
+      <UniqueIdentifier>{8f6948b1-e109-4179-8e2e-3fff86a4891f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -19,7 +19,6 @@ public:
 private:
 	XRUserInterface* gui;
 	XRCamera *camera;
-	XRObject* testObj;
 };
 
 

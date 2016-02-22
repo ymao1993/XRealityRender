@@ -17,5 +17,5 @@ vec4 colors[] = vec4[3](vec4(1,0,0,1), vec4(0,1,0,1), vec4(0,0,1,1));
 void main(void)                             
 {								  
 	gl_Position = transform * pos;
-	vs_out.color = vec4(0,0,0,1);
+	vs_out.color = colors[gl_VertexID%3];
 }

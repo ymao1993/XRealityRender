@@ -1,6 +1,6 @@
 #include <GLFW\glfw3.h>
 #include "RotatingTriangle.h"
-
+#include "../XREngine.h"
 
 
 bool RotatingTriangle::init()

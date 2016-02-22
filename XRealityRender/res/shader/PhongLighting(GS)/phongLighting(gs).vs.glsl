@@ -1,25 +1,27 @@
 #version 430 core
 
 //vertex attributes (both are defined in model space)
-layout(location = 0) in vec4 pos;    
+layout(location = 0) in vec3 pos;    
 layout(location = 1) in vec3 normal;
 
 //transformation matrices
-layout (location = 0) uniform mat4 w2v_matrix;
-layout (location = 1) uniform mat4 proj_matrix;
+layout (location = 0) uniform mat4 m2w_matrix;
+layout (location = 1) uniform mat4 w2v_matrix;
+layout (location = 2) uniform mat4 proj_matrix;
 
-//material&light attributes
-//Note:
-// ambient:  material_ambient * light_ambient;
-// diffuse:  material_diffuse * light_diffuse;
-// specular: material_specular * light_specular;
-   
-layout (location = 2) uniform vec3  ambient 			= vec3(0.0,0.0,0.0);
-layout (location = 3) uniform vec3  diffuse 			= vec3(0.0,0.0,0.0);
-layout (location = 4) uniform vec3  specular 			= vec3(1.0,1.0,1.0);
-layout (location = 5) uniform float specular_power 		= 2;				//a default traditional values for specular power
-layout (location = 6) uniform vec4  light_pos 			= vec4(0,1,1,1); 	//defined in world space
+layout(std140, binding = 0) uniform Material{
+	vec3  ambient;
+	vec3  diffuse;
+	vec3  specular;
+	float spower;
+}material;
 
+layout(std140, binding = 1) uniform PointLight{
+	vec3  pos;
+	vec3  ambient;
+	vec3  diffuse;
+	vec3  specular;
+}pointLight;
 
 //output to fragment shader
 out VS_OUT
@@ -29,11 +31,19 @@ out VS_OUT
 
 void main(void)                             
 {
-	//compute L, N, P vectors in view space
-	vec4 P = w2v_matrix * pos;
-	vec3 N = (w2v_matrix * vec4(normal, 0)).xyz;
-	vec3 L = (w2v_matrix * light_pos - P).xyz;
-	vec3 E = -P.xyz;
+	vec3  ambient = pointLight.ambient * material.ambient;
+	vec3  diffuse = pointLight.diffuse * material.diffuse;
+	vec3  specular = pointLight.specular * material.specular;
+	float specular_power = material.spower;
+	vec3  light_pos = pointLight.pos;
+
+	//Comput L, N, P, E in view space
+	mat4 m2v_matrix = w2v_matrix * m2w_matrix;
+	vec4 Pw = m2w_matrix * vec4(pos, 1); Pw.xyz /= Pw.w; Pw.w = 1;
+	vec4 P  = w2v_matrix * Pw; P.xyz /= P.w; P.w = 1;
+	vec3 N  = (m2v_matrix * vec4(normal, 0)).xyz;
+	vec3 L  = (w2v_matrix * vec4(light_pos - Pw.xyz,0)).xyz;
+	vec3 E  = -P.xyz;
 	
 	N = normalize(N);
 	L = normalize(L);

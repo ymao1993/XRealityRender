@@ -3,6 +3,10 @@
 
 #include "XREntity.h"
 #include "XRUserInterface.h"
+#include "XRLight.h"
+#include "XRObject.h"
+
+#include <list>
 
 /**
 * XRScene
@@ -11,7 +15,7 @@
 *
 * @Author Yu Mao
 */
-class XRScene:public XREntity
+class XRScene: public XREntity
 {
 public:
 	virtual bool init() final;
@@ -19,10 +23,21 @@ public:
 	virtual bool destroy() final;
 
 private:
-	virtual XRUserInterface* createUserInterface() = 0;
-	virtual bool initScene() = 0;
-	virtual bool updateScene(double time) = 0;
-	virtual bool destroyScene() = 0;
+	virtual XRUserInterface* createUserInterface() { return NULL; };
+	virtual bool initScene() { return true; }
+	virtual bool updateScene(double time) { return true; }
+	virtual bool destroyScene() { return true; }
+
+public:
+	void addObject(XRObject* object);
+	void deleteObject(XRObject* object);
+	void deleteAllObjects();
+
+private:
+	std::list<XRObject*> objects;
+
+public:
+	XRPointLight *light;
 
 private:
 	XRUserInterface* ui;

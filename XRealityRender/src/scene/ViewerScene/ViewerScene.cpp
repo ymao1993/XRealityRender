@@ -1,8 +1,11 @@
-#include "..\..\gl3w\gl3w.h"
+﻿#include "..\..\gl3w\gl3w.h"
+#include <gl\GL.h>
 #include "ViewerScene.h"
 #include "ViewerSceneGUI.h"
 #include "../../object/TestTriangle.h"
 #include "../../object/PointCloud.h"
+#include "../../object/Kitchen.h"
+#include "../../XRLight.h"
 
 
 
@@ -12,11 +15,25 @@ bool ViewerScene::initScene()
 	camera = new XRCamera();
 	camera->init();
 
+	//init light
+	light = new XRPointLight();
+	light->ambient = glm::vec3(1.0, 1.0, 1.0);
+	light->diffuse = glm::vec3(1.0, 1.0, 1.0);
+	light->specular = glm::vec3(1.0, 1.0, 1.0);
+	light->position = glm::vec3(0, 0, 100);
+
 	//init game object
-	//testObj = new TestTriangle();
-	testObj = new PointCloud();
-	testObj->init();
-	testObj->setCamera(camera);
+	{
+		XRObject* testObj = new Kitchen();
+		testObj->setCamera(camera);
+		addObject(testObj);
+	}
+
+	//{
+	//	XRObject* testObj = new PointCloud();
+	//	testObj->setCamera(camera);
+	//	addObject(testObj);
+	//}
 
 	return true;
 }
@@ -31,20 +48,15 @@ bool ViewerScene::updateScene(double time)
 	//update camera
 	camera->update(time);
 
-	//testObj->update(time);
-	testObj->update(time);
-	testObj->render();
-
 	return true;
 }
 
 void ViewerScene::reload()
 {
-	testObj->destroy();
-	delete testObj;
+	deleteAllObjects();
 
-	testObj = new TestTriangle();
-	testObj->init();
+	XRObject* testObj = new TestTriangle();
+	addObject(testObj);
 }
 
 bool ViewerScene::destroyScene()
@@ -53,9 +65,8 @@ bool ViewerScene::destroyScene()
 	camera->destroy();
 	delete camera;
 
-	//destroy object
-	testObj->destroy();
-	delete testObj;
+	//delete light
+	delete(light);
 
 	return true;
 }

@@ -19,6 +19,7 @@ public:
 private:
 	XRUserInterface* gui;
 	XRCamera *camera;
+
 };
 
 

@@ -1,7 +1,7 @@
 #ifndef XREFFECT_H
 #define XREFFECT_H
 
-#include "gl3w\glcorearb.h"
+#include "gl3w\gl3w.h"
 #include "XRComponent.h"
 #include "XRComponentType.h"
 

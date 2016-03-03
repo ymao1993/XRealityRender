@@ -5,6 +5,7 @@
 #include "XRGLFW.h"
 #include "XRCommon.h"
 
+class XROVRCamera;
 class XRScene;
 
 /**
@@ -47,6 +48,9 @@ private:
 	GLFWwindow* window;
 	int windowW;
 	int windowH;
+
+	//Oculus Camera
+	XROVRCamera* ovrCamera;
 
 	void handleKeyEvent();
 };

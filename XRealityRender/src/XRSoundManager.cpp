@@ -64,7 +64,7 @@ namespace XRSoundManager
 	{
 		if (trackManager.find(filePath) == trackManager.end()) {
 			FmodErrorCheck(lowLevelSystem->createSound(filePath, FMOD_3D|FMOD_LOOP_NORMAL, 0, sound));
-			trackManager.insert({ filePath, *sound });
+			trackManager.insert(std::make_pair(filePath, *sound ));
 		}
 		else
 			*sound = trackManager.find(filePath)->second;

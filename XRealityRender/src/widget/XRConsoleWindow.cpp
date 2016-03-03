@@ -1,3 +1,4 @@
+#include "../gl3w/gl3w.h"
 #include "XRConsoleWindow.h"
 #include "../XREngine.h"
 #include "../scene/ViewerScene/ViewerScene.h"

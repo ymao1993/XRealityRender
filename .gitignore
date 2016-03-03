@@ -1,6 +1,0 @@
-#OS junk files
-*.DS_Store
-
-#Build Folder
-Debug/
-Release/

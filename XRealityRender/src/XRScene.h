@@ -6,6 +6,8 @@
 #include "XRLight.h"
 #include "XRObject.h"
 
+class XROVRCamera;
+
 #include <list>
 
 /**
@@ -41,6 +43,13 @@ public:
 
 private:
 	XRUserInterface* ui;
+
+public:
+	void setOVRCamera(XROVRCamera *ovrCamera);
+	XROVRCamera* getOVRCamera();
+
+private:
+	XROVRCamera *ovrCamera;
 };
 
 

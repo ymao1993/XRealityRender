@@ -1,0 +1,4 @@
+﻿  OculusWrapper.cpp
+c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\crtdbg.h(302): warning C4005: '_malloca': macro redefinition
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\malloc.h(120): note: see previous definition of '_malloca'
+  XRealityRender.vcxproj -> C:\Users\cheyuanl\Downloads\XRealityRender-masterOVR\XRealityRender-master\Debug\XRealityRender.exe

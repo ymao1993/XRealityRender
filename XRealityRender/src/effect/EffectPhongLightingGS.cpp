@@ -1,15 +1,17 @@
 #include "../gl3w/gl3w.h"
+#include "../XREngine.h"
+#include "../XROVRCamera.h"
 #include "../utils/XRShaderUtils.h"
 #include "EffectPhongLightingGS.h"
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/transform.hpp>
-
-#include "../XREngine.h"
 #include "../XRObject.h"
 #include "../XRLight.h"
 #include "../XRScene.h"
+
+
 
 
 #define XR_ASSIGN_GLM(NAME) \
@@ -189,9 +191,19 @@ bool EffectPhongLightingGS::updateEffect(double time)
 	//update uniforms
 	glBindBufferBase(GL_UNIFORM_BUFFER, 0, uboMaterial);
 	glBindBufferBase(GL_UNIFORM_BUFFER, 1, uboLight);
-	glUniformMatrix4fv(0, 1, GL_FALSE, glm::value_ptr(object->model2World));
-	glUniformMatrix4fv(1, 1, GL_FALSE, glm::value_ptr(object->camera->getWorld2View()));
-	glUniformMatrix4fv(2, 1, GL_FALSE, glm::value_ptr(object->camera->getPersProj()));
+	glUniformMatrix4fv(0, 1, GL_FALSE, glm::value_ptr(glm::mat4()));
+
+	XROVRCamera* ovrcamera = object->scene->getOVRCamera();
+	if (ovrcamera!=NULL)
+	{
+		glUniformMatrix4fv(1, 1, GL_FALSE, glm::value_ptr(ovrcamera->getWorld2View()));
+		glUniformMatrix4fv(2, 1, GL_FALSE, glm::value_ptr(ovrcamera->getPersProj()));
+	}
+	else
+	{
+		glUniformMatrix4fv(1, 1, GL_FALSE, glm::value_ptr(object->camera->getWorld2View()));
+		glUniformMatrix4fv(2, 1, GL_FALSE, glm::value_ptr(object->camera->getPersProj()));
+	}
 
 	//draw
 	XRMesh* mesh = (XRMesh*)object->getComponent(XR_COMPONENT_MESH);

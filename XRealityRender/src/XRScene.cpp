@@ -53,6 +53,7 @@ void XRScene::addObject(XRObject* object)
 	if (object)
 	{
 		objects.push_back(object);
+		object->scene = this;
 	}
 }
 
@@ -74,4 +75,14 @@ void XRScene::deleteAllObjects()
 		delete *iter;
 	}
 	objects.clear();
+}
+
+void XRScene::setOVRCamera(XROVRCamera *ovrCamera)
+{
+	this->ovrCamera = ovrCamera;
+}
+
+XROVRCamera* XRScene::getOVRCamera()
+{
+	return this->ovrCamera;
 }

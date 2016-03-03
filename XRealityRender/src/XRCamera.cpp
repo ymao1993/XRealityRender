@@ -33,7 +33,12 @@ bool XRCamera::update(double time)
 	updateOrientation();
 
 	// update listener attribute
-	XRSoundManager::setListenerPosition(glmToFmod(position), { 0, 0, 0 }, glmToFmod(front), glmToFmod(up));
+	FMOD_VECTOR velocity;
+	velocity.x = 0;
+	velocity.y = 0;
+	velocity.z = 0;
+
+	//XRSoundManager::setListenerPosition(glmToFmod(position), velocity, glmToFmod(front), glmToFmod(up));     //fix later (null window->invalid mouse position->nan front.up)
 	
 	return true;
 }

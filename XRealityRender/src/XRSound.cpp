@@ -1,3 +1,4 @@
+#include "gl3w\gl3w.h"
 #include <map>
 #include "XRSound.h"
 #include "XRSoundManager.h"
@@ -17,7 +18,7 @@ void XRSound::loadSound(char *soundName, char *filePath)
 {
 	FMOD::Sound *sound;
 	XRSoundManager::createSound(filePath, &sound);
-	soundClips.insert({soundName, sound});
+	soundClips.insert(std::make_pair(soundName, sound));
 }
 
 void XRSound::playSound(char *soundName)

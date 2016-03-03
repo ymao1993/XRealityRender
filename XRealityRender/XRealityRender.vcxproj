@@ -38,19 +38,26 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental />
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>\\andrew.ad.cmu.edu\users\users4\ymao1\Desktop\XRealityRender-master\XRealityRender-master\XRealityRender\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Reality Computing\Downloads\ovr_sdk_win_0.8.0.0\OculusSDK\Samples\OculusRoomTiny_Advanced\Common;C:\Users\Reality Computing\Downloads\ovr_sdk_win_0.8.0.0\OculusSDK\LibOVR\Include;C:\Users\Reality Computing\Downloads\ovr_sdk_win_0.8.0.0\OculusSDK\LibOVRKernel\Src;C:\Users\Reality Computing\Downloads\XRealityRender-masterOVR_Stash-2016-03-02\XRealityRender-masterOVR_Stash\XRealityRender-master\XRealityRender\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <AdditionalOptions>
+      </AdditionalOptions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>\\andrew.ad.cmu.edu\users\users4\ymao1\Desktop\XRealityRender-master\XRealityRender-master\XRealityRender\libs</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glfw3_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\Reality Computing\Downloads\ovr_sdk_win_0.8.0.0\OculusSDK\LibOVRKernel\Obj\LibOVRKernel\Windows\Win32\Debug\VS2015;C:\Users\Reality Computing\Downloads\ovr_sdk_win_0.8.0.0\OculusSDK\LibOVRKernel\Lib\Windows\Win32\Debug\VS2015;C:\Users\Reality Computing\Downloads\ovr_sdk_win_0.8.0.0\OculusSDK\LibOVR\Lib\Windows\Win32\Debug\VS2015;C:\Users\Reality Computing\Downloads\XRealityRender-master\XRealityRender-master\XRealityRender\libs\FMOD;C:\Users\Reality Computing\Downloads\XRealityRender-masterOVR_Stash-2016-03-02\XRealityRender-masterOVR_Stash\XRealityRender-master\XRealityRender\libs;C:\Users\Reality Computing\Downloads\XRealityRender-masterOVR_Stash-2016-03-02\XRealityRender-masterOVR_Stash\XRealityRender-master\XRealityRender\libs\FMOD</AdditionalLibraryDirectories>
+      <AdditionalDependencies>LibOVRKernel.lib;LibOVR.lib;opengl32.lib;glfw3dll.lib;glfw3_d.lib;fmodstudioL_vc.lib;fmodL_vc.lib;ovrfmod.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>/NODEFAULTLIB:msvcrtd.lib %(AdditionalOptions)</AdditionalOptions>
+      <PerUserRedirection>true</PerUserRedirection>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -60,15 +67,19 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>./include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\cheyuanl\Downloads\ovr_sdk_win_0.8.0.0\OculusSDK\Samples\OculusRoomTiny_Advanced\Common;C:\Users\cheyuanl\Downloads\ovr_sdk_win_0.8.0.0\OculusSDK\LibOVR\Include;C:\Users\cheyuanl\Downloads\ovr_sdk_win_0.8.0.0\OculusSDK\LibOVRKernel\Src;C:\Users\cheyuanl\Downloads\XRealityRender-master\XRealityRender-master\XRealityRender\include;\\andrew.ad.cmu.edu\users\users4\ymao1\Desktop\XRealityRender-master\XRealityRender-master\XRealityRender\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalOptions>
+      </AdditionalOptions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;fmodstudioL_vc.lib;fmodL_vc.lib;ovrfmod.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>./libs/FMOD;./libs</AdditionalLibraryDirectories>
+      <AdditionalDependencies>LibOVRKernel.lib;LibOVR.lib;opengl32.lib;glfw3.lib;fmodstudioL_vc.lib;fmodL_vc.lib;ovrfmod.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\cheyuanl\Downloads\ovr_sdk_win_0.8.0.0\OculusSDK\LibOVRKernel\Obj\LibOVRKernel\Windows\Win32\Release\VS2015;C:\Users\cheyuanl\Downloads\ovr_sdk_win_0.8.0.0\OculusSDK\LibOVRKernel\Lib\Windows\Win32\Release\VS2015;C:\Users\cheyuanl\Downloads\ovr_sdk_win_0.8.0.0\OculusSDK\LibOVR\Lib\Windows\Win32\Release\VS2015;C:\Users\cheyuanl\Downloads\XRealityRender-master\XRealityRender-master\XRealityRender\libs\FMOD;C:\Users\cheyuanl\Downloads\XRealityRender-master\XRealityRender-master\XRealityRender\libs;\\andrew.ad.cmu.edu\users\users4\ymao1\Desktop\XRealityRender-master\XRealityRender-master\XRealityRender\libs\FMOD;\\andrew.ad.cmu.edu\users\users4\ymao1\Desktop\XRealityRender-master\XRealityRender-master\XRealityRender\libs</AdditionalLibraryDirectories>
+      <AdditionalOptions>/NODEFAULTLIB:msvcrt.lib %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -80,6 +91,7 @@
     <ClCompile Include="src\imgui\imgui_draw.cpp" />
     <ClCompile Include="src\imgui\imgui_impl_glfw.cpp" />
     <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\OculusWrapper.cpp" />
     <ClCompile Include="src\XRMesh.cpp" />
     <ClCompile Include="src\object\Kitchen.cpp" />
     <ClCompile Include="src\object\PointCloud.cpp" />
@@ -100,6 +112,7 @@
     <ClCompile Include="src\XREngine.cpp" />
     <ClCompile Include="src\XREntity.cpp" />
     <ClCompile Include="src\XRObject.cpp" />
+    <ClCompile Include="src\XROVRCamera.cpp" />
     <ClCompile Include="src\XRScene.cpp" />
     <ClCompile Include="src\XRSound.cpp" />
     <ClCompile Include="src\XRSoundManager.cpp" />
@@ -122,6 +135,8 @@
     <ClInclude Include="src\object\Kitchen.h" />
     <ClInclude Include="src\object\PointCloud.h" />
     <ClInclude Include="src\object\TestTriangle.h" />
+    <ClInclude Include="src\OculusGL3WGlue.h" />
+    <ClInclude Include="src\OculusWrapper.h" />
     <ClInclude Include="src\scene\ViewerScene\ViewerScene.h" />
     <ClInclude Include="src\scene\ViewerScene\ViewerSceneGUI.h" />
     <ClInclude Include="src\shader\PhongLightingGS.h" />
@@ -147,6 +162,7 @@
     <ClInclude Include="src\XRMaterial.h" />
     <ClInclude Include="src\XRMesh.h" />
     <ClInclude Include="src\XRObject.h" />
+    <ClInclude Include="src\XROVRCamera.h" />
     <ClInclude Include="src\XRScene.h" />
     <ClInclude Include="src\XRIMUI.h" />
     <ClInclude Include="src\XRSound.h" />

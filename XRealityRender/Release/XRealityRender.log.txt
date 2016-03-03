@@ -1,0 +1,8 @@
+﻿  EffectPhongLightingGS.cpp
+  RotatingTriangle.cpp
+  imgui.cpp
+  imgui_demo.cpp
+  imgui_draw.cpp
+  imgui_impl_glfw.cpp
+  Main.cpp
+  OculusWrapper.cpp

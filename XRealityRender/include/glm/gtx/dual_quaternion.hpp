@@ -295,16 +295,6 @@ namespace glm
 #endif
 
 	/// @}
-
-	// -- Is type --
-
-	template <typename T, precision P>
-	struct type<T, P, tdualquat>
-	{
-		static bool const is_vec = false;
-		static bool const is_mat = false;
-		static bool const is_quat = true;
-	};
 } //namespace glm
 
 #include "dual_quaternion.inl"

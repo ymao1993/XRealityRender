@@ -10,7 +10,8 @@
 #include "XREffect.h"
 #include "XRMesh.h"
 
-#include "XRComponentType.h";
+#include "XRComponentType.h"
+#include "XRScene.h"
 
 #include <map>
 
@@ -33,13 +34,14 @@ private:
 	virtual bool destroy() final;
 
 public:
+	XRScene* scene;
+
+public:
 	virtual bool initObject() = 0;
 	virtual bool updateObject(double time) = 0;
 	virtual bool destroyObject() = 0;
 
 	inline void setCamera(XRCamera *camera){ this->camera = camera; }
-
-	glm::mat4 model2World;
 
 public:
 

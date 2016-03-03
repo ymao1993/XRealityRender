@@ -1,5 +1,4 @@
 ﻿#include "..\..\gl3w\gl3w.h"
-#include <gl\GL.h>
 #include "ViewerScene.h"
 #include "ViewerSceneGUI.h"
 #include "../../object/TestTriangle.h"
@@ -28,11 +27,12 @@ bool ViewerScene::initScene()
 		testObj->setCamera(camera);
 		addObject(testObj);
 	}
-	{
-		XRObject* testObj = new PointCloud();
-		testObj->setCamera(camera);
-		addObject(testObj);
-	}
+
+	//{
+	//	XRObject* testObj = new PointCloud();
+	//	testObj->setCamera(camera);
+	//	addObject(testObj);
+	//}
 
 	return true;
 }

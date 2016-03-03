@@ -6,8 +6,7 @@
 
 static inline FMOD_VECTOR glmToFmod(glm::vec3 glmVector)
 {
-	FMOD_VECTOR fmodVector;
-	fmodVector = { glmVector[0], glmVector[1], glmVector[2] };
+	FMOD_VECTOR fmodVector = { glmVector[0], glmVector[1], glmVector[2] };
 	return fmodVector;
 }
 

@@ -38,15 +38,15 @@
 ///////////////////////////////////////////////////////////////////////////////////
 // Version
 
-#define GLM_VERSION					98
+#define GLM_VERSION					97
 #define GLM_VERSION_MAJOR			0
 #define GLM_VERSION_MINOR			9
-#define GLM_VERSION_PATCH			8
-#define GLM_VERSION_REVISION		0
+#define GLM_VERSION_PATCH			7
+#define GLM_VERSION_REVISION		3
 
 #if(defined(GLM_MESSAGES) && !defined(GLM_MESSAGE_VERSION_DISPLAYED))
 #	define GLM_MESSAGE_VERSION_DISPLAYED
-#	pragma message ("GLM: version 0.9.8.0")
+#	pragma message ("GLM: version 0.9.7.3")
 #endif//GLM_MESSAGE
 
 ///////////////////////////////////////////////////////////////////////////////////
@@ -313,11 +313,7 @@
 #		define GLM_COMPILER (GLM_COMPILER_GCC52)
 #	elif (__GNUC__ == 5) && (__GNUC_MINOR__ >= 3)
 #		define GLM_COMPILER (GLM_COMPILER_GCC53)
-<<<<<<< HEAD
-#	elif (__GNUC__ == 6) && (__GNUC_MINOR__ >= 0)
-=======
 #	elif (__GNUC__ >= 6)
->>>>>>> 0.9.7
 #		define GLM_COMPILER (GLM_COMPILER_GCC60)
 #	else
 #		define GLM_COMPILER (GLM_COMPILER_GCC)
@@ -663,10 +659,11 @@
 #		define GLM_HAS_CXX11_STL 0
 #	endif
 #else
-#	define GLM_HAS_CXX11_STL ((GLM_LANG & GLM_LANG_CXX0X_FLAG) && \
-		((GLM_COMPILER & GLM_COMPILER_GCC) && (GLM_COMPILER >= GLM_COMPILER_GCC48)) || \
-		((GLM_COMPILER & GLM_COMPILER_VC) && (GLM_COMPILER >= GLM_COMPILER_VC2013)) || \
-		((GLM_PLATFORM != GLM_PLATFORM_WINDOWS) && (GLM_COMPILER & GLM_COMPILER_INTEL) && (GLM_COMPILER >= GLM_COMPILER_INTEL15)))
+//#define GLM_HAS_CXX11_STL ((GLM_LANG & GLM_LANG_CXX0X_FLAG) && \
+//		((GLM_COMPILER & GLM_COMPILER_GCC) && (GLM_COMPILER >= GLM_COMPILER_GCC48)) || \
+//		((GLM_COMPILER & GLM_COMPILER_VC) && (GLM_COMPILER >= GLM_COMPILER_VC2013)) || \
+//		((GLM_COMPILER & GLM_COMPILER_INTEL) && (GLM_COMPILER >= GLM_COMPILER_INTEL15)))
+#define GLM_HAS_CXX11_STL (0)
 #endif
 
 // N1720
@@ -807,7 +804,7 @@
 #	define GLM_HAS_BITSCAN_WINDOWS 0
 #else
 #	define GLM_HAS_BITSCAN_WINDOWS ((GLM_PLATFORM & GLM_PLATFORM_WINDOWS) && (\
-		(GLM_COMPILER & (GLM_COMPILER_VC | GLM_COMPILER_LLVM | GLM_COMPILER_INTEL))))
+		(GLM_COMPILER & (GLM_COMPILER_VC | GLM_COMPILER_INTEL))))
 #endif
 
 // OpenMP

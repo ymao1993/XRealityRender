@@ -1,7 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <LocalDebuggerEnvironment>PATH=.\libs\FMOD;$(PATH)
+    <LocalDebuggerEnvironment>PATH=\\andrew.ad.cmu.edu\users\users4\ymao1\Desktop\XRealityRender-master\XRealityRender-master\XRealityRender\libs\FMOD;C:\Users\cheyuanl\Downloads\XRealityRender-master\XRealityRender-master\XRealityRender\libs\FMOD;$(PATH)
+$(LocalDebuggerEnvironment)</LocalDebuggerEnvironment>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LocalDebuggerEnvironment>PATH=C:\Users\Reality Computing\Downloads\XRealityRender-masterOVR_Stash-2016-03-02\XRealityRender-masterOVR_Stash\XRealityRender-master\XRealityRender\libs;C:\Users\Reality Computing\Downloads\XRealityRender-masterOVR_Stash-2016-03-02\XRealityRender-masterOVR_Stash\XRealityRender-master\XRealityRender\libs\FMOD;$(PATH)
 $(LocalDebuggerEnvironment)</LocalDebuggerEnvironment>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>

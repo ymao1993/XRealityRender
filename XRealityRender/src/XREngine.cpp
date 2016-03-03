@@ -1,6 +1,7 @@
 #include "gl3w\gl3w.h"
-#include <stddef.h>
 #include "XREngine.h"
+#include "XROVRCamera.h"
+#include <stddef.h>
 #include ".\scene\ViewerScene\ViewerScene.h"
 #include <time.h>
 
@@ -39,24 +40,31 @@ bool XREngine::init(GLFWwindow* window)
 	scene = new ViewerScene();
 	scene->init();
 
+	ovrCamera = new XROVRCamera();
+	ovrCamera->init();
+	ovrCamera->setScene(scene);
+	scene->setOVRCamera(ovrCamera);
+
 	return true;
 }
 
 bool XREngine::update()
 {
-	double begin = glfwGetTime();
+	//double begin = glfwGetTime();
 
 	//update device status
-	XRDevice::update(deltaTime);
+	XRDevice::update(0);
 
 	//handle key event
-	handleKeyEvent();
+	//handleKeyEvent();
 
 	//update scene
-	scene->update(deltaTime);  //TODO: sort of strange, maybe create a new class named gameMode to manage the scene?
+	//scene->update(deltaTime);  //TODO: sort of strange, maybe create a new class named gameMode to manage the scene?
+
+	ovrCamera->update(0);
 
 	//maintain fps
-	while ((deltaTime = glfwGetTime() - begin) < secondsPerFrame);
+	//while ((deltaTime = glfwGetTime() - begin) < secondsPerFrame);
 
 	return true;
 }
@@ -72,6 +80,11 @@ void XREngine::handleKeyEvent()
 
 bool XREngine::destroy()
 {
+	ovrCamera->destroy();
+	delete ovrCamera;
+
 	scene->destroy();
+	delete scene;
+
 	return true;
 }

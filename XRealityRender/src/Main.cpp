@@ -26,7 +26,7 @@ int main(void)
 	glfwSetErrorCallback(error_callback);
 	if (!glfwInit())
 		exit(EXIT_FAILURE);
-	window = glfwCreateWindow(1024, 768, "XRealityRenderer", NULL, NULL);
+	window = glfwCreateWindow(2650, 2050, "XRealityRenderer", NULL, NULL);
 	if (!window)
 	{
 		glfwTerminate();

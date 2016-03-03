@@ -39,6 +39,8 @@ public:
 
 	inline void setCamera(XRCamera *camera){ this->camera = camera; }
 
+	glm::mat4 model2World;
+
 public:
 
 	/*camera*/

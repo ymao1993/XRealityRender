@@ -189,7 +189,7 @@ bool EffectPhongLightingGS::updateEffect(double time)
 	//update uniforms
 	glBindBufferBase(GL_UNIFORM_BUFFER, 0, uboMaterial);
 	glBindBufferBase(GL_UNIFORM_BUFFER, 1, uboLight);
-	glUniformMatrix4fv(0, 1, GL_FALSE, glm::value_ptr(glm::mat4()));
+	glUniformMatrix4fv(0, 1, GL_FALSE, glm::value_ptr(object->model2World));
 	glUniformMatrix4fv(1, 1, GL_FALSE, glm::value_ptr(object->camera->getWorld2View()));
 	glUniformMatrix4fv(2, 1, GL_FALSE, glm::value_ptr(object->camera->getPersProj()));
 

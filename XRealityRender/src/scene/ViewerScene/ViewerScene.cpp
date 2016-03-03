@@ -28,12 +28,11 @@ bool ViewerScene::initScene()
 		testObj->setCamera(camera);
 		addObject(testObj);
 	}
-
-	//{
-	//	XRObject* testObj = new PointCloud();
-	//	testObj->setCamera(camera);
-	//	addObject(testObj);
-	//}
+	{
+		XRObject* testObj = new PointCloud();
+		testObj->setCamera(camera);
+		addObject(testObj);
+	}
 
 	return true;
 }

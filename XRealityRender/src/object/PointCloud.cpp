@@ -136,7 +136,7 @@ bool PointCloud::render()
 	camera->getWorld2View();
 
 	//add some rotation for fun
-	rotation = glm::rotate(rotation, 0.005f, glm::vec3(0, 1, 0));
+	rotation = glm::rotate(glm::radians(270.f), glm::vec3(1, 0, 0));
 
 	//update uniforms
 	glBindBufferBase(GL_UNIFORM_BUFFER, 0, uboMaterial);
@@ -145,7 +145,7 @@ bool PointCloud::render()
 	glUniformMatrix4fv(1, 1, GL_FALSE, glm::value_ptr(camera->getWorld2View()));
 	glUniformMatrix4fv(2, 1, GL_FALSE, glm::value_ptr(camera->getPersProj()));
 	
-	glPointSize(2);
+	glPointSize(5);
 	glDrawArrays(GL_POINTS, 0, pointNum);
 
 	//unbind vao/shader program

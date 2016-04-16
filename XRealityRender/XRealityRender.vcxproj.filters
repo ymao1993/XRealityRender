@@ -10,9 +10,6 @@
     <ClCompile Include="src\imgui\imgui_draw.cpp">
       <Filter>imgui</Filter>
     </ClCompile>
-    <ClCompile Include="src\gl3w\gl3w.c">
-      <Filter>gl3w</Filter>
-    </ClCompile>
     <ClCompile Include="src\imgui\imgui_impl_glfw.cpp">
       <Filter>imgui</Filter>
     </ClCompile>
@@ -72,6 +69,21 @@
     <ClCompile Include="src\XRMesh.cpp" />
     <ClCompile Include="src\XRSound.cpp" />
     <ClCompile Include="src\XRSoundManager.cpp" />
+    <ClCompile Include="src\gl3w\gl3w.c">
+      <Filter>gl3w</Filter>
+    </ClCompile>
+    <ClCompile Include="src\object\BoxFluid.cpp">
+      <Filter>object</Filter>
+    </ClCompile>
+    <ClCompile Include="src\simulation\SPHfluid\SPHSimulator.cpp">
+      <Filter>simulation\SPHfluid</Filter>
+    </ClCompile>
+    <ClCompile Include="src\simulation\SPHfluid\MarchCube.cpp">
+      <Filter>simulation\SPHfluid</Filter>
+    </ClCompile>
+    <ClCompile Include="src\simulation\SPHfluid\SpatialGrid.cpp">
+      <Filter>simulation\SPHfluid</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\XREngine.h" />
@@ -93,12 +105,6 @@
     </ClInclude>
     <ClInclude Include="src\imgui\stb_truetype.h">
       <Filter>imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="src\gl3w\gl3w.h">
-      <Filter>gl3w</Filter>
-    </ClInclude>
-    <ClInclude Include="src\gl3w\glcorearb.h">
-      <Filter>gl3w</Filter>
     </ClInclude>
     <ClInclude Include="src\imgui\imgui_impl_glfw.h">
       <Filter>imgui</Filter>
@@ -173,13 +179,34 @@
     <ClInclude Include="src\utils\misc.h">
       <Filter>utils</Filter>
     </ClInclude>
+    <ClInclude Include="src\gl3w\gl3w.h">
+      <Filter>gl3w</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gl3w\glcorearb.h">
+      <Filter>gl3w</Filter>
+    </ClInclude>
+    <ClInclude Include="src\object\BoxFluid.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="src\simulation\SPHfluid\SPHCommon.h">
+      <Filter>simulation\SPHfluid</Filter>
+    </ClInclude>
+    <ClInclude Include="src\simulation\SPHfluid\SPHMath.h">
+      <Filter>simulation\SPHfluid</Filter>
+    </ClInclude>
+    <ClInclude Include="src\simulation\SPHfluid\SPHSimulator.h">
+      <Filter>simulation\SPHfluid</Filter>
+    </ClInclude>
+    <ClInclude Include="src\simulation\SPHfluid\MarchCube.h">
+      <Filter>simulation\SPHfluid</Filter>
+    </ClInclude>
+    <ClInclude Include="src\simulation\SPHfluid\SpatialGrid.h">
+      <Filter>simulation\SPHfluid</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="imgui">
       <UniqueIdentifier>{0a3cc416-6b7f-4e7d-9866-2d2a2117375b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="gl3w">
-      <UniqueIdentifier>{fd814a90-ea64-444d-8c76-66564ec290ee}</UniqueIdentifier>
     </Filter>
     <Filter Include="scene">
       <UniqueIdentifier>{94824fcf-9fe1-4c26-8428-a94355a8f04c}</UniqueIdentifier>
@@ -210,6 +237,15 @@
     </Filter>
     <Filter Include="mesh">
       <UniqueIdentifier>{8f6948b1-e109-4179-8e2e-3fff86a4891f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gl3w">
+      <UniqueIdentifier>{1e54abfb-e48f-4e30-92b6-8405a4270e33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="simulation">
+      <UniqueIdentifier>{47c6cd69-cc8d-4823-9c91-d745a39b3a68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="simulation\SPHfluid">
+      <UniqueIdentifier>{97a39fc8-4aa0-4c97-8c32-5edeced60263}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

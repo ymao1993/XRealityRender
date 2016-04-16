@@ -18,13 +18,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -44,13 +44,13 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>\\andrew.ad.cmu.edu\users\users4\ymao1\Desktop\XRealityRender-master\XRealityRender-master\XRealityRender\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>\\andrew.ad.cmu.edu\users\users4\ymao1\Desktop\XRealityRender-master\XRealityRender-master\XRealityRender\libs</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glfw3_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>./libs/FMOD;./libs</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glfw3_d.lib;fmodstudioL_vc.lib;fmodL_vc.lib;ovrfmod.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -80,6 +80,10 @@
     <ClCompile Include="src\imgui\imgui_draw.cpp" />
     <ClCompile Include="src\imgui\imgui_impl_glfw.cpp" />
     <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\object\BoxFluid.cpp" />
+    <ClCompile Include="src\simulation\SPHfluid\MarchCube.cpp" />
+    <ClCompile Include="src\simulation\SPHfluid\SpatialGrid.cpp" />
+    <ClCompile Include="src\simulation\SPHfluid\SPHSimulator.cpp" />
     <ClCompile Include="src\XRMesh.cpp" />
     <ClCompile Include="src\object\Kitchen.cpp" />
     <ClCompile Include="src\object\PointCloud.cpp" />
@@ -119,12 +123,18 @@
     <ClInclude Include="src\imgui\stb_rect_pack.h" />
     <ClInclude Include="src\imgui\stb_textedit.h" />
     <ClInclude Include="src\imgui\stb_truetype.h" />
+    <ClInclude Include="src\object\BoxFluid.h" />
     <ClInclude Include="src\object\Kitchen.h" />
     <ClInclude Include="src\object\PointCloud.h" />
     <ClInclude Include="src\object\TestTriangle.h" />
     <ClInclude Include="src\scene\ViewerScene\ViewerScene.h" />
     <ClInclude Include="src\scene\ViewerScene\ViewerSceneGUI.h" />
     <ClInclude Include="src\shader\PhongLightingGS.h" />
+    <ClInclude Include="src\simulation\SPHfluid\MarchCube.h" />
+    <ClInclude Include="src\simulation\SPHfluid\SpatialGrid.h" />
+    <ClInclude Include="src\simulation\SPHfluid\SPHCommon.h" />
+    <ClInclude Include="src\simulation\SPHfluid\SPHMath.h" />
+    <ClInclude Include="src\simulation\SPHfluid\SPHSimulator.h" />
     <ClInclude Include="src\utils\misc.h" />
     <ClInclude Include="src\utils\XRObjLoader.h" />
     <ClInclude Include="src\utils\XRPointCloudUtils.h" />

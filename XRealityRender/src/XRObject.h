@@ -10,7 +10,7 @@
 #include "XREffect.h"
 #include "XRMesh.h"
 
-#include "XRComponentType.h";
+#include "XRComponentType.h"
 
 #include <map>
 

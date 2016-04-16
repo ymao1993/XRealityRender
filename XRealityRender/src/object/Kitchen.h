@@ -12,9 +12,6 @@ public:
 	virtual bool updateObject(double time);
 	virtual bool destroyObject();
 
-	/*extended from XRObject*/
-	virtual bool render();
-
 private:
 	int pointNum;
 	PointLight light;

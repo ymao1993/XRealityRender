@@ -59,8 +59,3 @@ bool Kitchen::destroyObject()
 {
 	return true;
 }
-
-bool Kitchen::render()
-{
-	return true;
-}

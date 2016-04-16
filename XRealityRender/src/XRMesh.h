@@ -20,6 +20,7 @@ class XRMesh: public XRComponent
 public:
 
 	XRMesh() :XRComponent(XR_COMPONENT_MESH){}
+	XRMesh(float* positions, float* normals, int vertexNum):positions(positions), normals(normals), vertexNum(vertexNum),XRComponent(XR_COMPONENT_MESH){}
 
 	bool loadMesh(const char* filePath);
 

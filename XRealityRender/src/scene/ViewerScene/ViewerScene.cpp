@@ -5,6 +5,7 @@
 #include "../../object/TestTriangle.h"
 #include "../../object/PointCloud.h"
 #include "../../object/Kitchen.h"
+#include "../../object/BoxFluid.h"
 #include "../../XRLight.h"
 
 
@@ -19,17 +20,12 @@ bool ViewerScene::initScene()
 	light = new XRPointLight();
 	light->ambient = glm::vec3(1.0, 1.0, 1.0);
 	light->diffuse = glm::vec3(1.0, 1.0, 1.0);
-	light->specular = glm::vec3(1.0, 1.0, 1.0);
-	light->position = glm::vec3(0, 0, 100);
+	light->specular = glm::vec3(0.0, 0.0, 0.0);
+	light->position = glm::vec3(0, 100, 0);
 
 	//init game object
 	{
-		XRObject* testObj = new Kitchen();
-		testObj->setCamera(camera);
-		addObject(testObj);
-	}
-	{
-		XRObject* testObj = new PointCloud();
+		XRObject* testObj = new BoxFluid();
 		testObj->setCamera(camera);
 		addObject(testObj);
 	}

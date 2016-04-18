@@ -40,18 +40,6 @@ namespace XRSoundManager
 
 		FmodErrorCheck(system->initialize(1000, FMOD_STUDIO_INIT_NORMAL, FMOD_INIT_NORMAL | FMOD_INIT_3D_RIGHTHANDED, NULL));
 
-		// init oculus
-		printf("sampleRate: %d, bufferSize: %d\n", sampleRate, bufferSize);
-		printf("OSP_FMOD initialized return: %d\n", OSP_FMOD_Initialize(sampleRate, bufferSize));
-		printf("OSP_FMOD setroom parameters return: %d\n", OSP_FMOD_SetSimpleBoxRoomParameters(5.0f, 2.1f, 3.7f, 0.75f, 0.65f, 0.55f, 1.f, 0.65f, 0.65f));
-
-		// load Oculus Audio plugin
-		unsigned int osp_handle;
-		FmodErrorCheck(lowLevelSystem->loadPlugin("ovrfmod.dll", &osp_handle));
-
-		// load Oculus Audio plugin to DSP unit
-		FmodErrorCheck(lowLevelSystem->createDSPByPlugin(osp_handle, &osp_dsp));
-
 		// set distance units
 		const float DISTANCEFACTOR = 1.0f;          // Units per meter.  I.e feet would = 3.28.  centimeters would = 100.
 		lowLevelSystem->set3DSettings(1.0f, DISTANCEFACTOR, 1.0f);

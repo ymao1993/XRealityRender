@@ -28,8 +28,8 @@ public:
 	void reconstruct(const std::vector<SPHSim::SPHParticle> &particles,
 		 		 std::vector<SPHSim::Vertex> &vertices, std::vector<int> &indices);
 
-	MarchCube(double bx, double by, double bz, double lx, double ly, double lz, double h)
-	: SpatialGrid(bx, by, bz, lx, ly, lz, h)
+	MarchCube(double bx, double by, double bz, double lx, double ly, double lz, double h, double r)
+	: SpatialGrid(bx, by, bz, lx, ly, lz, h, r)
 	{
 		
 	};

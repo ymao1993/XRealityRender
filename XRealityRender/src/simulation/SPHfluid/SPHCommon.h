@@ -4,19 +4,23 @@
 #include <vector>
 #include "SPHMath.h"
 
-#define RADIUS 			(1.f)
 #define KERNEL_H 		(1.1f)
-#define CUBE_H  		(0.5f)
-#define RESET_DENSITY   (1.2f) 
 #define K 				(1e3)
+#define RESET_DENSITY   (1.2f) 
 #define G 				(9.8f)
 #define MIU				(0.1f)
 #define BOUNDARYDAMPING (0.6)
 #define DAMPING 		(0.1f)
 #define TENSION_COEF	(1.f)
+
+#define RADIUS 			(1.f)
+#define CUBE_H  		(0.5f)
 #define BOX_WIDTH		(40)
 #define BOX_HEIGHT		(40)
 #define BOX_DEPTH 		(40)
+#define BOX_BASE_X		(0)
+#define BOX_BASE_Y 		(0)
+#define BOX_BASE_Z 		(0)
 	
 namespace SPHSim
 {

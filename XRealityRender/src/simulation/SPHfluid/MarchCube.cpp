@@ -70,9 +70,10 @@ static const uint64_t mcCubeTable[256] = {
 	143955266ULL, 2385ULL, 18433ULL, 0ULL,
 };
 
-static inline bool compareDistance(const SPHSim::vec3 &particlePosition, const SPHSim::vec3 &gridPosition)
+static inline bool compareDistance(const SPHSim::vec3 &particlePosition, 
+					const SPHSim::vec3 &gridPosition, const double radius)
 {
-	return (particlePosition - gridPosition).norm() < RADIUS;
+	return (particlePosition - gridPosition).norm() < radius;
 }
 
 void MarchCube::computeNormal(int va_idx, int vb_idx, int vc_idx, 
@@ -122,7 +123,7 @@ void MarchCube::computeGrid(const std::vector<SPHSim::SPHParticle> &particles, c
 	grid[thisGridIndex].flag = false; 
 
 
-	int dh = ceil(RADIUS / grid_h);
+	int dh = ceil(radius / grid_h);
 
 	for (int dz = -dh; dz <= dh; dz++)
 	{
@@ -144,7 +145,7 @@ void MarchCube::computeGrid(const std::vector<SPHSim::SPHParticle> &particles, c
 				
 				for (int i : grid[neighborGridIndex].particleIndices)
 				{
-					if (compareDistance(particles[i].position, grid[thisGridIndex].position))
+					if (compareDistance(particles[i].position, grid[thisGridIndex].position, radius))
 					{
 						grid[thisGridIndex].flag = true;
 						// std::cout << "thisGrid Position : \t" << SpatialGrid::indexToPosition(thisGridIndex) << std::endl;

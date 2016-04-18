@@ -25,6 +25,8 @@ protected:
 	const double len_z;
 
 	const double grid_h;
+	const double radius;
+
 	const int dim_x;
 	const int dim_y;
 	const int dim_z;
@@ -44,7 +46,7 @@ protected:
 
 public:
 	SpatialGrid(double base_x, double base_y, double base_z,
-				double length_x, double length_y, double length_z, double h);
+				double length_x, double length_y, double length_z, double h, double r);
 	~SpatialGrid();
 	
 	void addParticle(const SPHSim::SPHParticle &p, int i);

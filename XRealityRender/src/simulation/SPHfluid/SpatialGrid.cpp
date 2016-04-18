@@ -13,10 +13,10 @@ static inline bool compareDistance(const SPHSim::SPHParticle &p1, const SPHSim::
 }
 
 
-// setup the boundary by extending RADIUS on the both end automatically
-SpatialGrid::SpatialGrid(double bx, double by, double bz, double lx, double ly, double lz, double h)
-: base_x(bx - 2 * RADIUS), base_y(by - 2 * RADIUS), base_z(bz - 2 * RADIUS),
-len_x(lx + 4 * RADIUS), len_y(ly + 4 * RADIUS), len_z(lz + 4 * RADIUS), grid_h(h),
+// setup the boundary by extending radius on the both end automatically
+SpatialGrid::SpatialGrid(double bx, double by, double bz, double lx, double ly, double lz, double h, double r)
+: base_x(bx - 2*r), base_y(by - 2*r), base_z(bz - 2*r), 
+  len_x(lx + 4*r), len_y(ly + 4*r), len_z(lz + 4*r), grid_h(h), radius(r),
   dim_x(ceil(len_x / grid_h)), dim_y(ceil(len_y / grid_h)), dim_z(ceil(len_z / grid_h)),
   dim_xy(dim_x * dim_y),
   arraySize(dim_x * dim_y * dim_z),

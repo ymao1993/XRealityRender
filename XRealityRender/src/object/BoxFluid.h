@@ -18,7 +18,7 @@ private:
 	PointLight light;
 	GLuint uboLight;
 
-	SPHSim::SPHSimulator simulator;
+	SPHSim::SPHSimulator *simulator;
 
 };
 

@@ -1,6 +1,5 @@
-#include "..\..\gl3w\gl3w.h"
-#include "ViewerSceneGUI.h"
 #include "../../XRCommon.h"
+#include "ViewerSceneGUI.h"
 
 ViewerSceneGUI::ViewerSceneGUI(XRScene* scene):
 XRUserInterface(scene){}
@@ -16,8 +15,9 @@ bool ViewerSceneGUI::initUI()
 	consoleWindow = new XRConsoleWindow();
 	consoleWindow->init();
 
-	configWindow = new XRConfigWindow();
-	configWindow->init();
+	sceneWindow = new XRSceneWindow();
+	sceneWindow->setScene(scene);
+	sceneWindow->init();
 	
 	return true;
 
@@ -28,7 +28,7 @@ bool ViewerSceneGUI::updateUI(double time)
 	debugInfoWindow->update(time);
 	statusWindow->update(time);
 	consoleWindow->update(time);
-	configWindow->update(time);
+	sceneWindow->update(time);
 
 	return true;
 }
@@ -44,8 +44,8 @@ bool ViewerSceneGUI::destroyUI()
 	consoleWindow->destroy();
 	delete consoleWindow;
 
-	configWindow->destroy();
-	delete configWindow;
+	sceneWindow->destroy();
+	delete sceneWindow;
 
 	return true;
 }

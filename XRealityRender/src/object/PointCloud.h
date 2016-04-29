@@ -7,6 +7,9 @@
 class PointCloud :public XRObject
 {
 public:
+
+	PointCloud() :XRObject("PointCloud"){}
+
 	/*extended from XREntity*/
 	virtual bool initObject();
 	virtual bool updateObject(double time);

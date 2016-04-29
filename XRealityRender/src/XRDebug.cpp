@@ -1,6 +1,8 @@
 #include "XRDebug.h"
 #include <vector>
 
+#include <Windows.h>
+
 namespace XRDebug{
 
 	struct XRLog
@@ -31,7 +33,6 @@ namespace XRDebug{
 	{
 		switch (level)
 		{
-		case XRDEBUG_LOGLEVEL_ALL:		return "[All]";		break;
 		case XRDEBUG_LOGLEVEL_INFO:		return "[Info]";	break;
 		case XRDEBUG_LOGLEVEL_WARNNING:	return "[Warning]"; break;
 		case XRDEBUG_LOGLEVEL_ERROR:	return "[Error]";	break;
@@ -39,12 +40,47 @@ namespace XRDebug{
 		}
 	}
 
+	static void Vlog(const char* format, va_list argList, int lev = XRDEBUG_LOGLEVEL_INFO)
+	{
+		const unsigned int MAX_CHARS = 1023;
+		static char buffer[MAX_CHARS + 1];
+		int charsWritten = vsnprintf(buffer, MAX_CHARS, format, argList);
+		buffer[MAX_CHARS] = '\0';
+		log(buffer, lev);
+		return;
+	}
 
 	void log(std::string text, int level)
 	{
 		logs[level].push_back(XRLog(text, level));
 	}
 
+	void logI(const char* format, ...)
+	{
+		va_list argList;
+		va_start(argList, format);
+		Vlog(format, argList, XRDEBUG_LOGLEVEL_INFO);
+		va_end(argList);
+		return;
+	}
+	
+	void logW(const char* format, ...)
+	{
+		va_list argList;
+		va_start(argList, format);
+		Vlog(format, argList, XRDEBUG_LOGLEVEL_WARNNING);
+		va_end(argList);
+		return;
+	}
+
+	void logE(const char* format, ...)
+	{
+		va_list argList;
+		va_start(argList, format);
+		Vlog(format, argList, XRDEBUG_LOGLEVEL_ERROR);
+		va_end(argList);
+		return;
+	}
 	void logClear(int level)
 	{
 		if (!logLevelCheck(level)) return;
@@ -57,19 +93,9 @@ namespace XRDebug{
 		if (!logLevelCheck(level)) return std::string();
 
 		std::string result = "";
-		if (level == XRDEBUG_LOGLEVEL_ALL)
+		for each (XRLog log in logs[level])
 		{
-			for (int i = XRDEBUG_LOGLEVEL_ALL + 1; i < XRDEBUG_LOGLEVEL_NUM; i++)
-			{
-				result += logs2Str(i);
-			}
-		}
-		else
-		{
-			for each (XRLog log in logs[level])
-			{
-				result += level2Str(log.level) + log.text + "\n";
-			}
+			result += level2Str(log.level) + log.text + "\n";
 		}
 		return result;
 	}

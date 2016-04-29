@@ -123,7 +123,7 @@ void MarchCube::computeGrid(const std::vector<SPHSim::SPHParticle> &particles, c
 	grid[thisGridIndex].flag = false; 
 
 
-	int dh = ceil(radius / grid_h);
+	int dh = int(ceil(radius / grid_h));
 
 	for (int dz = -dh; dz <= dh; dz++)
 	{

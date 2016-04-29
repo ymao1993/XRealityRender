@@ -1,9 +1,6 @@
-#include "../gl3w/gl3w.h"
+#include "../XRCommon.h"
 #include "PointCloud.h"
 #include "../utils/XRShaderUtils.h"
-#include <glm/gtc/type_ptr.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtx/transform.hpp>
 #include "../utils/XRPointCloudUtils.h"
 #include "../XRCommon.h"
 

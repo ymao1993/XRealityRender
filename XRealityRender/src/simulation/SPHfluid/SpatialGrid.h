@@ -41,7 +41,7 @@ protected:
 		const double py = p.position.y;
 		const double pz = p.position.z;
 
-		return floor((px-base_x)/grid_h) + floor((py-base_y)/grid_h) * dim_x + floor((pz-base_z)/grid_h) * dim_x * dim_y;
+		return (int)(floor((px-base_x)/grid_h) + floor((py-base_y)/grid_h) * dim_x + floor((pz-base_z)/grid_h) * dim_x * dim_y);
 	}
 
 public:

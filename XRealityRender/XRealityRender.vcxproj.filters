@@ -19,14 +19,8 @@
     <ClCompile Include="src\scene\ViewerScene\ViewerScene.cpp">
       <Filter>scene\ViewerScene</Filter>
     </ClCompile>
-    <ClCompile Include="src\entity\RotatingTriangle.cpp">
-      <Filter>entity</Filter>
-    </ClCompile>
     <ClCompile Include="src\XRCamera.cpp" />
     <ClCompile Include="src\XRObject.cpp" />
-    <ClCompile Include="src\object\TestTriangle.cpp">
-      <Filter>object</Filter>
-    </ClCompile>
     <ClCompile Include="src\XRDeivice.cpp" />
     <ClCompile Include="src\XRDebug.cpp" />
     <ClCompile Include="src\XRWidget.cpp" />
@@ -84,6 +78,17 @@
     <ClCompile Include="src\simulation\SPHfluid\SpatialGrid.cpp">
       <Filter>simulation\SPHfluid</Filter>
     </ClCompile>
+    <ClCompile Include="src\XRTexture.cpp" />
+    <ClCompile Include="src\object\bunny.cpp">
+      <Filter>object</Filter>
+    </ClCompile>
+    <ClCompile Include="src\effect\EffectTextureMapping.cpp">
+      <Filter>effect</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XRBrush.cpp" />
+    <ClCompile Include="src\widget\XRSceneWindow.cpp">
+      <Filter>widget</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\XREngine.h" />
@@ -115,14 +120,8 @@
     <ClInclude Include="src\scene\ViewerScene\ViewerSceneGUI.h">
       <Filter>scene\ViewerScene</Filter>
     </ClInclude>
-    <ClInclude Include="src\entity\RotatingTriangle.h">
-      <Filter>entity</Filter>
-    </ClInclude>
     <ClInclude Include="src\XRCamera.h" />
     <ClInclude Include="src\XRObject.h" />
-    <ClInclude Include="src\object\TestTriangle.h">
-      <Filter>object</Filter>
-    </ClInclude>
     <ClInclude Include="src\XRCommon.h" />
     <ClInclude Include="src\XRDevice.h" />
     <ClInclude Include="src\XRDebug.h" />
@@ -203,6 +202,17 @@
     <ClInclude Include="src\simulation\SPHfluid\SpatialGrid.h">
       <Filter>simulation\SPHfluid</Filter>
     </ClInclude>
+    <ClInclude Include="src\XRTexture.h" />
+    <ClInclude Include="src\object\bunny.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="src\effect\EffectTextureMapping.h">
+      <Filter>effect</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XRBrush.h" />
+    <ClInclude Include="src\widget\XRSceneWindow.h">
+      <Filter>widget</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="imgui">
@@ -213,9 +223,6 @@
     </Filter>
     <Filter Include="scene\ViewerScene">
       <UniqueIdentifier>{bccf866f-7597-4615-b7f4-abb949f19b0d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="entity">
-      <UniqueIdentifier>{6ee1995e-a078-40e7-91fc-a524838f1387}</UniqueIdentifier>
     </Filter>
     <Filter Include="object">
       <UniqueIdentifier>{cd7c82b7-da9b-4dd1-a31e-06f1f16977ff}</UniqueIdentifier>
@@ -234,9 +241,6 @@
     </Filter>
     <Filter Include="effect">
       <UniqueIdentifier>{aae214d1-6c83-4a34-bae8-2b4413584ee2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="mesh">
-      <UniqueIdentifier>{8f6948b1-e109-4179-8e2e-3fff86a4891f}</UniqueIdentifier>
     </Filter>
     <Filter Include="gl3w">
       <UniqueIdentifier>{1e54abfb-e48f-4e30-92b6-8405a4270e33}</UniqueIdentifier>

@@ -9,10 +9,13 @@
 #include "XRMaterial.h"
 #include "XREffect.h"
 #include "XRMesh.h"
+#include "XRTexture.h"
 
 #include "XRComponentType.h"
 
 #include <map>
+
+#include <string>
 
 /**
 * XRObject
@@ -25,6 +28,11 @@ class XRObject:public XREntity
 
 	//XRScene is friend to XRObject because it manages object
 	friend class XRScene;
+	friend class XRSceneWindow;
+
+public:
+	std::string name;
+	XRObject(std::string name) :name(name){}
 
 private:
 	/*extended from XREntity*/

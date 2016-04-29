@@ -5,28 +5,17 @@
 
 namespace XRDevice
 {
+	/*Window*/
+	GLFWwindow* window = NULL;
+
 	/*Key*/
-
-	static bool keyStates[KEY_NUM] = { false };
-
-	void callbackGLFW(GLFWwindow* window, int key, int scancode, int action, int mods)
-	{
-		if (action == GLFW_RELEASE)
-		{
-			keyStates[key] = false;
-		}
-		else if (action == GLFW_PRESS)
-		{
-			keyStates[key] = true;
-		}
-	}
+	static int keyStates[KEY_NUM] = { 0 };
 
 	bool isKeyPressed(int key)
 	{
 		if (key >= KEY_NUM) return false;
 		return XRDevice::keyStates[key];
 	}
-
 
 	/*Mouse*/
 
@@ -69,9 +58,19 @@ namespace XRDevice
 		curCursorSpeed = curCursorOffset / deltaTime;
 	}
 
-	//initialize device module
-	void init()
+	static void updateKeyInfo()
 	{
+		for (int i = 0; i < KEY_NUM; i++)
+		{
+			keyStates[i] = glfwGetKey(window, i);
+		}
+	}
+
+	//initialize device module
+	void init(GLFWwindow* window)
+	{
+		XRDevice::window = window;
+
 		glfwSetCursorPos(XREngine::instance()->getWindow(),
 						 XREngine::instance()->getWindowW()/2,
 						 XREngine::instance()->getWindowH()/2);
@@ -85,6 +84,7 @@ namespace XRDevice
 	void update(double deltaTime)
 	{
 		updateCursorInfo(deltaTime);
+		updateKeyInfo();
 	}
 
 };

@@ -1,3 +1,4 @@
+#include "../XRCommon.h"
 #include "XRConsoleWindow.h"
 #include "../XREngine.h"
 #include "../scene/ViewerScene/ViewerScene.h"
@@ -83,15 +84,6 @@ void  XRConsoleWindow::execCommand(char *command_line)
 	{
 		for (int i = History.Size >= 10 ? History.Size - 10 : 0; i < History.Size; i++)
 			addLog("%3d: %s\n", i, History[i]);
-	}
-	else if (Stricmp(strtok_s(command_line, " ", &next_token), "reload") == 0)
-	{
-		addLog("loading... %s\n", next_token);
-		addLog("deleting old object\n");
-		XRScene* scene = XREngine::instance()->getScene();
-		((ViewerScene *)scene)->reload();
-		
-
 	}
 	else
 	{

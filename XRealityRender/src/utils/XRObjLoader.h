@@ -3,7 +3,7 @@
 
 namespace XRObjLoader
 {
-	bool loadObj(const char* filePath, int &vnum, int &fnum, float** vp, float** vn);
+	bool loadObj(const char* filePath, int &vnum, int &fnum, float** vp, float** vn, float** vtx);
 }
 
 #endif

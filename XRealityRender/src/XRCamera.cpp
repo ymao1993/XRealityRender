@@ -1,7 +1,6 @@
+#include "XRCommon.h"
 #include "XRCamera.h"
 #include "XRSoundManager.h"
-#include <glm\gtc\matrix_transform.hpp>
-#include <glm\gtx\rotate_vector.hpp>
 #include "XREngine.h"
 #include "utils\misc.h"
 

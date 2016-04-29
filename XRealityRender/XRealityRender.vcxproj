@@ -50,7 +50,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>./libs/FMOD;./libs</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glfw3_d.lib;fmodstudio_vc.lib;fmod_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;SOIL.lib;glfw3_d.lib;fmodstudio_vc.lib;fmod_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -67,13 +67,13 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;fmodstudioL_vc.lib;fmodL_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;SOIL.lib;glfw3.lib;fmodstudioL_vc.lib;fmodL_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>./libs/FMOD;./libs</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\effect\EffectPhongLightingGS.cpp" />
-    <ClCompile Include="src\entity\RotatingTriangle.cpp" />
+    <ClCompile Include="src\effect\EffectTextureMapping.cpp" />
     <ClCompile Include="src\gl3w\gl3w.c" />
     <ClCompile Include="src\imgui\imgui.cpp" />
     <ClCompile Include="src\imgui\imgui_demo.cpp" />
@@ -81,13 +81,15 @@
     <ClCompile Include="src\imgui\imgui_impl_glfw.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\object\BoxFluid.cpp" />
+    <ClCompile Include="src\object\bunny.cpp" />
     <ClCompile Include="src\simulation\SPHfluid\MarchCube.cpp" />
     <ClCompile Include="src\simulation\SPHfluid\SpatialGrid.cpp" />
     <ClCompile Include="src\simulation\SPHfluid\SPHSimulator.cpp" />
+    <ClCompile Include="src\widget\XRSceneWindow.cpp" />
+    <ClCompile Include="src\XRBrush.cpp" />
     <ClCompile Include="src\XRMesh.cpp" />
     <ClCompile Include="src\object\Kitchen.cpp" />
     <ClCompile Include="src\object\PointCloud.cpp" />
-    <ClCompile Include="src\object\TestTriangle.cpp" />
     <ClCompile Include="src\scene\ViewerScene\ViewerScene.cpp" />
     <ClCompile Include="src\scene\ViewerScene\ViewerSceneGUI.cpp" />
     <ClCompile Include="src\utils\XRObjLoader.cpp" />
@@ -107,13 +109,14 @@
     <ClCompile Include="src\XRScene.cpp" />
     <ClCompile Include="src\XRSound.cpp" />
     <ClCompile Include="src\XRSoundManager.cpp" />
+    <ClCompile Include="src\XRTexture.cpp" />
     <ClCompile Include="src\XRUserInterface.cpp" />
     <ClCompile Include="src\XRWidget.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\tinyobjloader\tiny_obj_loader.h" />
     <ClInclude Include="src\effect\EffectPhongLightingGS.h" />
-    <ClInclude Include="src\entity\RotatingTriangle.h" />
+    <ClInclude Include="src\effect\EffectTextureMapping.h" />
     <ClInclude Include="src\gl3w\gl3w.h" />
     <ClInclude Include="src\gl3w\glcorearb.h" />
     <ClInclude Include="src\imgui\imconfig.h" />
@@ -124,9 +127,9 @@
     <ClInclude Include="src\imgui\stb_textedit.h" />
     <ClInclude Include="src\imgui\stb_truetype.h" />
     <ClInclude Include="src\object\BoxFluid.h" />
+    <ClInclude Include="src\object\bunny.h" />
     <ClInclude Include="src\object\Kitchen.h" />
     <ClInclude Include="src\object\PointCloud.h" />
-    <ClInclude Include="src\object\TestTriangle.h" />
     <ClInclude Include="src\scene\ViewerScene\ViewerScene.h" />
     <ClInclude Include="src\scene\ViewerScene\ViewerSceneGUI.h" />
     <ClInclude Include="src\shader\PhongLightingGS.h" />
@@ -142,7 +145,9 @@
     <ClInclude Include="src\widget\XRConfigWindow.h" />
     <ClInclude Include="src\widget\XRConsoleWindow.h" />
     <ClInclude Include="src\widget\XRDebugOutputWindow.h" />
+    <ClInclude Include="src\widget\XRSceneWindow.h" />
     <ClInclude Include="src\widget\XRStatusWindow.h" />
+    <ClInclude Include="src\XRBrush.h" />
     <ClInclude Include="src\XRCamera.h" />
     <ClInclude Include="src\XRCommon.h" />
     <ClInclude Include="src\XRComponent.h" />
@@ -161,6 +166,7 @@
     <ClInclude Include="src\XRIMUI.h" />
     <ClInclude Include="src\XRSound.h" />
     <ClInclude Include="src\XRSoundManager.h" />
+    <ClInclude Include="src\XRTexture.h" />
     <ClInclude Include="src\XRTransform.h" />
     <ClInclude Include="src\XRUserInterface.h" />
     <ClInclude Include="src\XRWidget.h" />

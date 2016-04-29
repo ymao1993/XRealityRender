@@ -8,7 +8,7 @@ bool XRMesh::loadMesh(const char* filePath)
 	vertexNum = 0;
 	int faceNum;
 	XRDebug::log("start loading mesh...");
-	bool result = XRObjLoader::loadObj(filePath, vertexNum, faceNum, &positions, &normals);
+	bool result = XRObjLoader::loadObj(filePath, vertexNum, faceNum, &positions, &normals, &txcoords);
 	if (result)
 	{
 		XRDebug::log("reading complete.");

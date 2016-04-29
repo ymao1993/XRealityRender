@@ -7,6 +7,9 @@
 class Kitchen :public XRObject
 {
 public:
+
+	Kitchen() :XRObject("Kitchen"){}
+
 	/*extended from XREntity*/
 	virtual bool initObject();
 	virtual bool updateObject(double time);
@@ -14,8 +17,6 @@ public:
 
 private:
 	int pointNum;
-	PointLight light;
-	GLuint uboLight;
 
 };
 

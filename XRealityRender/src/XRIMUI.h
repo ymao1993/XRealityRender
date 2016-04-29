@@ -1,6 +1,7 @@
-
-#define GLFW_EXPOSE_NATIVE_WIN32
-#define GLFW_EXPOSE_NATIVE_WGL
+#ifndef XRIMUI_H
+#define XRIMUI_H
 
 #include "imgui\imgui.h"
 #include "imgui\imgui_impl_glfw.h"
+
+#endif

@@ -1,3 +1,4 @@
+#include "XRCommon.h"
 #include "XRUserInterface.h"
 #include "XRIMUI.h"
 #include "XREngine.h"

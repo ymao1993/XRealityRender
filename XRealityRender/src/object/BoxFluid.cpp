@@ -1,9 +1,6 @@
-#include "../gl3w/gl3w.h"
+#include "../XRCommon.h"
 #include "BoxFluid.h"
 #include "../utils/XRShaderUtils.h"
-#include <glm/gtc/type_ptr.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtx/transform.hpp>
 
 #include "../XRSound.h"
 #include "../effect/EffectPhongLightingGS.h"
@@ -76,7 +73,7 @@ bool BoxFluid::updateObject(double time)
 		simulator->setup();
 	}
 	//update simulator
-	simulator->update(1.0/60.0);
+	simulator->update(1.f/60.f);
 	//update mesh
 	{
 		XRMesh * mesh = (XRMesh*) this->getComponent(XRComponentType::XR_COMPONENT_MESH);

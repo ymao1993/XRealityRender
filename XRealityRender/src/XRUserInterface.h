@@ -30,7 +30,7 @@ private:
 	virtual bool updateUI(double time) = 0;
 	virtual bool destroyUI() = 0;
 
-private:
+protected:
 	XRScene *scene;
 };
 

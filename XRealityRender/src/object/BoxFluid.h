@@ -8,6 +8,9 @@
 class BoxFluid :public XRObject
 {
 public:
+
+	BoxFluid() :XRObject("Box Fluid"){}
+
 	/*extended from XREntity*/
 	virtual bool initObject();
 	virtual bool updateObject(double time);

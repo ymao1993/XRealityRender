@@ -5,8 +5,11 @@
 #include "XRUserInterface.h"
 #include "XRLight.h"
 #include "XRObject.h"
+#include "XRBrush.h"
 
 #include <list>
+
+class XRSceneWindow;
 
 /**
 * XRScene
@@ -18,6 +21,7 @@
 class XRScene: public XREntity
 {
 public:
+	XRScene():brush(this){}
 	virtual bool init() final;
 	virtual bool update(double time) final;
 	virtual bool destroy() final;
@@ -34,13 +38,19 @@ public:
 	void deleteAllObjects();
 
 private:
-	std::list<XRObject*> objects;
+	friend XRSceneWindow;
+	std::vector<XRObject*> objects;
 
 public:
 	XRPointLight *light;
+	XRCamera *camera;
 
-private:
-	XRUserInterface* ui;
+public:
+	XRBrush brush;
+
+
+protected:
+	XRUserInterface* gui;
 };
 
 

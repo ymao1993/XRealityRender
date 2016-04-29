@@ -1,11 +1,6 @@
-#include "../gl3w/gl3w.h"
+#include "../XRCommon.h"
 #include "../utils/XRShaderUtils.h"
 #include "EffectPhongLightingGS.h"
-#include <glm/glm.hpp>
-#include <glm/gtc/type_ptr.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtx/transform.hpp>
-
 #include "../XREngine.h"
 #include "../XRObject.h"
 #include "../XRLight.h"

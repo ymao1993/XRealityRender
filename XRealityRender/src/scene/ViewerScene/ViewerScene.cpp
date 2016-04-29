@@ -1,21 +1,17 @@
-﻿#include "..\..\gl3w\gl3w.h"
-#include <gl\GL.h>
+﻿#include "../../XRCommon.h"
 #include "ViewerScene.h"
 #include "ViewerSceneGUI.h"
-#include "../../object/TestTriangle.h"
+#include "../../XRLight.h"
+
 #include "../../object/PointCloud.h"
 #include "../../object/Kitchen.h"
 #include "../../object/BoxFluid.h"
-#include "../../XRLight.h"
+#include "../../object/bunny.h"
 
 
 
 bool ViewerScene::initScene()
 {
-	//init camera
-	camera = new XRCamera();
-	camera->init();
-
 	//init light
 	light = new XRPointLight();
 	light->ambient = glm::vec3(1.0, 1.0, 1.0);
@@ -25,7 +21,7 @@ bool ViewerScene::initScene()
 
 	//init game object
 	{
-		XRObject* testObj = new BoxFluid();
+		XRObject* testObj = new Bunny();
 		testObj->setCamera(camera);
 		addObject(testObj);
 	}
@@ -40,18 +36,20 @@ XRUserInterface* ViewerScene::createUserInterface()
 
 bool ViewerScene::updateScene(double time)
 {
-	//update camera
-	camera->update(time);
+	brush.drawBox(vec3(0, 0, 0), 5, 5, 5);
+	brush.drawBox(vec3(0, 0, 0), 4, 6, 7);
+	brush.drawBox(vec3(0, 0, 0), 1, 3, 2);
+
+	brush.drawTriangle(vec3(10, 1, 0), vec3(0, 11, 0), vec3(-10, 1, 0));
+
+	brush.drawLine(vec3(0, 0, 0), vec3(0, 1, 0));
+	brush.drawLine(vec3(0, 1, 0), vec3(1, 0, 0));
+
+	//static double offset = 0;
+	//brush.drawLine(vec3(offset, 0, 0), vec3(offset + time, 0, 0), false);
+	//offset += time;
 
 	return true;
-}
-
-void ViewerScene::reload()
-{
-	deleteAllObjects();
-
-	XRObject* testObj = new TestTriangle();
-	addObject(testObj);
 }
 
 bool ViewerScene::destroyScene()

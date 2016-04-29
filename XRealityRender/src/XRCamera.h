@@ -1,8 +1,8 @@
 #ifndef XRCAMERA_H
 #define XRCAMERA_H
 
+#include "XRCommon.h"
 #include "XREntity.h"
-#include <glm\glm.hpp>
 
 
 /**

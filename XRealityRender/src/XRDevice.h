@@ -15,11 +15,10 @@
  */
 namespace XRDevice
 {
-	void init();
+	void init(GLFWwindow* window);
 	void update(double deltaTime);
 
 	//key
-	void callbackGLFW(GLFWwindow* window, int key, int scancode, int action, int mods);
 	bool isKeyPressed(int key);
 
 	//mouse

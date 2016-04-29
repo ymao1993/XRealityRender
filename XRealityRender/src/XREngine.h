@@ -1,9 +1,9 @@
 #ifndef XRENGINE_H
 #define XRENGINE_H
 
-#include <vector>
-#include "XRGLFW.h"
 #include "XRCommon.h"
+#include "XRGLFW.h"
+#include <vector>
 
 class XRScene;
 

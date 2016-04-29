@@ -1,8 +1,6 @@
-#include "gl3w\gl3w.h"
+#include "XRCommon.h"
 #include "XRGLFW.h"
 #include "tinyobjloader\tiny_obj_loader.h"
-#include <stdlib.h>
-#include <stdio.h>
 
 #include "XREngine.h"
 #include "XRSoundManager.h"
@@ -26,7 +24,7 @@ int main(void)
 	glfwSetErrorCallback(error_callback);
 	if (!glfwInit())
 		exit(EXIT_FAILURE);
-	window = glfwCreateWindow(2650, 2050, "XRealityRenderer", NULL, NULL);
+	window = glfwCreateWindow(1000, 800, "XRealityRenderer", NULL, NULL);
 	if (!window)
 	{
 		glfwTerminate();
@@ -64,7 +62,6 @@ int main(void)
 
 	glEnable(GL_DEPTH_TEST);
 
-	glfwSetKeyCallback(window, XRDevice::callbackGLFW);
 	while (!glfwWindowShouldClose(window))
 	{
 		//TODO: update it by callback?

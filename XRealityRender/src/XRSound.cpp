@@ -1,11 +1,8 @@
+#include "XRCommon.h"
 #include <map>
 #include "XRSound.h"
 #include "XRSoundManager.h"
-#include "XRDebug.h"
-#include "XRDevice.h"
 #include "XRObject.h"
-#include "glm\glm.hpp"
-#include <glm/gtc/type_ptr.hpp>
 #include "utils\misc.h"
 
 bool XRSound::init()

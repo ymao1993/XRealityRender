@@ -1,9 +1,7 @@
-#include "gl3w\gl3w.h"
-#include <stddef.h>
 #include "XREngine.h"
+#include <stddef.h>
 #include ".\scene\ViewerScene\ViewerScene.h"
 #include <time.h>
-
 #include <Windows.h>
 
 
@@ -33,7 +31,7 @@ bool XREngine::init(GLFWwindow* window)
 	setGLFWwindow(window);
 
 	//initialize device status
-	XRDevice::init();
+	XRDevice::init(window);
 
 	//create application
 	scene = new ViewerScene();

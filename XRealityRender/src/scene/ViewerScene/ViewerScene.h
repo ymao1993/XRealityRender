@@ -14,11 +14,6 @@ public:
 	virtual bool updateScene(double time);
 	virtual bool destroyScene();
 	virtual XRUserInterface* createUserInterface();
-	void reload();
-
-private:
-	XRUserInterface* gui;
-	XRCamera *camera;
 };
 
 

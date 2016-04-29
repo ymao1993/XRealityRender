@@ -14,8 +14,8 @@
 
 namespace SPHSim
 {
-	const float PI = 3.1415926;
-	const float EPSILON = 0.001;
+	const float PI = 3.1415926f;
+	const float EPSILON = 0.001f;
 
 	struct vec3 {
 	  // components

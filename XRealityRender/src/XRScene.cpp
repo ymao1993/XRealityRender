@@ -4,14 +4,18 @@
 
 bool XRScene::init()
 {
+	//init camera
+	camera = new XRCamera();
+	camera->init();
+
 	//init ui
-	ui = createUserInterface();
-	ui->init();
+	gui = createUserInterface();
+	gui->init();
 
 	//init scene
 	initScene();
 
-	for (std::list<XRObject*>::iterator iter = objects.begin(); iter != objects.end(); iter++)
+	for (std::vector<XRObject*>::iterator iter = objects.begin(); iter != objects.end(); iter++)
 	{
 		(*iter)->init();
 	}
@@ -21,14 +25,21 @@ bool XRScene::init()
 
 bool XRScene::update(double deltaTime)
 {
+	brush.Iclear();
+
+	//update camera
+	camera->update(deltaTime);
+
 	updateScene(deltaTime);
 
-	for (std::list<XRObject*>::iterator iter = objects.begin(); iter != objects.end(); iter++)
+	for (std::vector<XRObject*>::iterator iter = objects.begin(); iter != objects.end(); iter++)
 	{
 		(*iter)->update(deltaTime);
 	}
 
-	ui->update(deltaTime);
+	brush.render();
+
+	gui->update(deltaTime);
 
 	return true;
 }
@@ -36,10 +47,10 @@ bool XRScene::update(double deltaTime)
 bool XRScene::destroy()
 {
 	destroyScene();
-	ui->destroy();
-	delete ui;
+	gui->destroy();
+	delete gui;
 
-	for (std::list<XRObject*>::iterator iter = objects.begin(); iter != objects.end(); iter++)
+	for (std::vector<XRObject*>::iterator iter = objects.begin(); iter != objects.end(); iter++)
 	{
 		(*iter)->destroy();
 	}
@@ -68,7 +79,7 @@ void XRScene::deleteObject(XRObject* object)
 
 void XRScene::deleteAllObjects()
 {
-	for (std::list<XRObject*>::iterator iter = objects.begin(); iter != objects.end(); iter++)
+	for (std::vector<XRObject*>::iterator iter = objects.begin(); iter != objects.end(); iter++)
 	{
 		(*iter)->destroy();
 		delete *iter;

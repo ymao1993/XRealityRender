@@ -1,24 +1,22 @@
-#ifndef TESTTRIANGLE_H
-#define TESTTRIANGLE_H
+#ifndef BUNNY_H
+#define BUNNY_H
 
 #include "../XRObject.h"
+#include "../shader/PhongLightingGS.h"
 
-class TestTriangle :public XRObject
+class Bunny :public XRObject
 {
 public:
+
+	Bunny() :XRObject("Bunny"){}
+
 	/*extended from XREntity*/
 	virtual bool initObject();
 	virtual bool updateObject(double time);
 	virtual bool destroyObject();
 
-	/*extended from XRObject*/
-	virtual bool render();
-
 private:
-
-	glm::vec3 position;
-	GLuint vao;
-	GLuint program;
+	int pointNum;
 };
 
 

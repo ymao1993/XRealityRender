@@ -4,6 +4,7 @@
 class XRObject;
 
 #include "XREntity.h"
+#include <string>
 
 enum XRComponentType;
 
@@ -16,6 +17,8 @@ public:
 	virtual bool init() = 0;
 	virtual bool update(double time) = 0;
 	virtual bool destroy() = 0;
+
+	virtual std::string getDescription() { return "no description."; }
 
 protected:
 	XRObject *object;  //the object containing this component

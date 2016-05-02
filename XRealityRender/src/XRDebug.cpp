@@ -53,6 +53,7 @@ namespace XRDebug{
 	void log(std::string text, int level)
 	{
 		logs[level].push_back(XRLog(text, level));
+		logs[XRDEBUG_LOGLEVEL_ALL].push_back(XRLog(text, level));
 	}
 
 	void logI(const char* format, ...)

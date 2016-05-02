@@ -1,5 +1,6 @@
 #include "../XRCommon.h"
 #include "EffectTextureMapping.h"
+#include "../XRShaderManager.h"
 #include "../utils/XRShaderUtils.h"
 #include "../XREngine.h"
 #include "../XRObject.h"
@@ -17,16 +18,7 @@ enum{ VPOS, VTXCOORDS };
 
 bool EffectTextureMapping::initEffect()
 {
-
-#pragma region build shaders
-	{
-		//load shaders
-		GLuint shaders[2];
-		shaders[0] = XRShaderUtils::loadShader("res/shader/TextureMapping/TextureMapping.vs.glsl", GL_VERTEX_SHADER);
-		shaders[1] = XRShaderUtils::loadShader("res/shader/TextureMapping/TextureMapping.fs.glsl", GL_FRAGMENT_SHADER);
-		//link program
-		program = XRShaderUtils::linkShaderProgram(shaders, 2, true);
-	}
+	program = XRShaderManger::getShaderProgram(XRShaderManger::XR_SHADER_PROGRAM_TEXTURE_MAPPING);
 
 #pragma endregion
 
@@ -68,6 +60,20 @@ bool EffectTextureMapping::initEffect()
 
 #pragma endregion
 
+
+#pragma region setup indices element array
+	{
+		XRMesh* mesh = (XRMesh*)object->getComponent(XR_COMPONENT_MESH);
+		if (mesh->getType() == XRMESH_TRIANGLE_SOUP_INDEXED)
+		{
+			glGenBuffers(1, &vbo_idx);
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vbo_idx);
+			glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int) * mesh->faceNum * 3, mesh->indices, GL_STREAM_DRAW);
+		}
+	}
+
+#pragma endregion
+
 	//by now everything is recorded in the vao
 	//so we will unbind the buffer
 	//and unbind the vao
@@ -97,7 +103,15 @@ bool EffectTextureMapping::updateEffect(double time)
 
 	//draw
 	XRMesh* mesh = (XRMesh*)object->getComponent(XR_COMPONENT_MESH);
-	glDrawArrays(GL_TRIANGLES, 0, mesh->vertexNum);
+
+	if (mesh->getType() == XRMESH_TRIANGLE_SOUP)
+	{
+		glDrawArrays(GL_TRIANGLES, 0, mesh->vertexNum);
+	}
+	else // mesh->getType() == XRMESH_TRIANGLE_SOUP_INDEXED
+	{
+		glDrawElements(GL_TRIANGLES, mesh->faceNum * 3, GL_UNSIGNED_INT, 0);
+	}
 
 	//unbind vao/shader program
 	glBindSampler(0, 0);
@@ -113,6 +127,7 @@ bool EffectTextureMapping::destroyEffect()
 	glDeleteBuffers(1, &vao);
 	glDeleteBuffers(1, &vbo_pos);
 	glDeleteBuffers(1, &vbo_txcoords);
+	glDeleteBuffers(1, &vbo_idx);
 
 	return true;
 }

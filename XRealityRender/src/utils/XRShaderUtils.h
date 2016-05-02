@@ -30,6 +30,7 @@ namespace XRShaderUtils
 		GLuint linkShaderProgram(const GLuint * shaders,
 			int shader_count,
 			bool delete_shaders,
+			bool binary = false,
 #ifdef _DEBUG
 			bool check_errors = true);
 #else

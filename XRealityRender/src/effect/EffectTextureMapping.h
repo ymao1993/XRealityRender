@@ -13,6 +13,7 @@ public:
 
 private:
 	GLuint vbo_pos;
+	GLuint vbo_idx;
 	GLuint vbo_txcoords;
 };
 

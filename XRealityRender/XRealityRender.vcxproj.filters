@@ -89,6 +89,25 @@
     <ClCompile Include="src\widget\XRSceneWindow.cpp">
       <Filter>widget</Filter>
     </ClCompile>
+    <ClCompile Include="src\XRShaderManager.cpp" />
+    <ClCompile Include="src\widget\XRShaderInspector.cpp">
+      <Filter>widget</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\XRBinaryIO.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\effect\EffectTextureMappingInstanced.cpp">
+      <Filter>effect</Filter>
+    </ClCompile>
+    <ClCompile Include="src\geometry\HeightField.cpp">
+      <Filter>geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="src\geometry\AABBox.cpp">
+      <Filter>geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mesh\MeshKDTree.cpp">
+      <Filter>mesh</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\XREngine.h" />
@@ -213,6 +232,26 @@
     <ClInclude Include="src\widget\XRSceneWindow.h">
       <Filter>widget</Filter>
     </ClInclude>
+    <ClInclude Include="src\XRShaderManager.h" />
+    <ClInclude Include="src\XRShaderDescriptor.h" />
+    <ClInclude Include="src\widget\XRShaderInspector.h">
+      <Filter>widget</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\XRBinaryIO.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\effect\EffectTextureMappingInstanced.h">
+      <Filter>effect</Filter>
+    </ClInclude>
+    <ClInclude Include="src\geometry\HeightField.h">
+      <Filter>geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="src\geometry\AABBox.h">
+      <Filter>geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mesh\MeshKDTree.h">
+      <Filter>mesh</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="imgui">
@@ -250,6 +289,12 @@
     </Filter>
     <Filter Include="simulation\SPHfluid">
       <UniqueIdentifier>{97a39fc8-4aa0-4c97-8c32-5edeced60263}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="geometry">
+      <UniqueIdentifier>{e6fc292f-07f1-4415-9237-320ada9779ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mesh">
+      <UniqueIdentifier>{6fdbbeaf-5be2-4996-a560-1f5b6c30dd12}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

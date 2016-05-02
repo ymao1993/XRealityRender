@@ -18,6 +18,9 @@ bool ViewerSceneGUI::initUI()
 	sceneWindow = new XRSceneWindow();
 	sceneWindow->setScene(scene);
 	sceneWindow->init();
+
+	shaderInspector = new XRShaderInspector();
+	shaderInspector->init();
 	
 	return true;
 
@@ -29,6 +32,7 @@ bool ViewerSceneGUI::updateUI(double time)
 	statusWindow->update(time);
 	consoleWindow->update(time);
 	sceneWindow->update(time);
+	shaderInspector->update(time);
 
 	return true;
 }
@@ -46,6 +50,9 @@ bool ViewerSceneGUI::destroyUI()
 
 	sceneWindow->destroy();
 	delete sceneWindow;
+
+	shaderInspector->destroy();
+	delete shaderInspector;
 
 	return true;
 }

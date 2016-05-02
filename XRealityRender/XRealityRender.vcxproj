@@ -74,18 +74,24 @@
   <ItemGroup>
     <ClCompile Include="src\effect\EffectPhongLightingGS.cpp" />
     <ClCompile Include="src\effect\EffectTextureMapping.cpp" />
+    <ClCompile Include="src\effect\EffectTextureMappingInstanced.cpp" />
+    <ClCompile Include="src\geometry\AABBox.cpp" />
+    <ClCompile Include="src\geometry\HeightField.cpp" />
     <ClCompile Include="src\gl3w\gl3w.c" />
     <ClCompile Include="src\imgui\imgui.cpp" />
     <ClCompile Include="src\imgui\imgui_demo.cpp" />
     <ClCompile Include="src\imgui\imgui_draw.cpp" />
     <ClCompile Include="src\imgui\imgui_impl_glfw.cpp" />
     <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\mesh\MeshKDTree.cpp" />
     <ClCompile Include="src\object\BoxFluid.cpp" />
     <ClCompile Include="src\object\bunny.cpp" />
     <ClCompile Include="src\simulation\SPHfluid\MarchCube.cpp" />
     <ClCompile Include="src\simulation\SPHfluid\SpatialGrid.cpp" />
     <ClCompile Include="src\simulation\SPHfluid\SPHSimulator.cpp" />
+    <ClCompile Include="src\utils\XRBinaryIO.cpp" />
     <ClCompile Include="src\widget\XRSceneWindow.cpp" />
+    <ClCompile Include="src\widget\XRShaderInspector.cpp" />
     <ClCompile Include="src\XRBrush.cpp" />
     <ClCompile Include="src\XRMesh.cpp" />
     <ClCompile Include="src\object\Kitchen.cpp" />
@@ -107,6 +113,7 @@
     <ClCompile Include="src\XREntity.cpp" />
     <ClCompile Include="src\XRObject.cpp" />
     <ClCompile Include="src\XRScene.cpp" />
+    <ClCompile Include="src\XRShaderManager.cpp" />
     <ClCompile Include="src\XRSound.cpp" />
     <ClCompile Include="src\XRSoundManager.cpp" />
     <ClCompile Include="src\XRTexture.cpp" />
@@ -117,6 +124,9 @@
     <ClInclude Include="include\tinyobjloader\tiny_obj_loader.h" />
     <ClInclude Include="src\effect\EffectPhongLightingGS.h" />
     <ClInclude Include="src\effect\EffectTextureMapping.h" />
+    <ClInclude Include="src\effect\EffectTextureMappingInstanced.h" />
+    <ClInclude Include="src\geometry\AABBox.h" />
+    <ClInclude Include="src\geometry\HeightField.h" />
     <ClInclude Include="src\gl3w\gl3w.h" />
     <ClInclude Include="src\gl3w\glcorearb.h" />
     <ClInclude Include="src\imgui\imconfig.h" />
@@ -126,6 +136,7 @@
     <ClInclude Include="src\imgui\stb_rect_pack.h" />
     <ClInclude Include="src\imgui\stb_textedit.h" />
     <ClInclude Include="src\imgui\stb_truetype.h" />
+    <ClInclude Include="src\mesh\MeshKDTree.h" />
     <ClInclude Include="src\object\BoxFluid.h" />
     <ClInclude Include="src\object\bunny.h" />
     <ClInclude Include="src\object\Kitchen.h" />
@@ -139,6 +150,7 @@
     <ClInclude Include="src\simulation\SPHfluid\SPHMath.h" />
     <ClInclude Include="src\simulation\SPHfluid\SPHSimulator.h" />
     <ClInclude Include="src\utils\misc.h" />
+    <ClInclude Include="src\utils\XRBinaryIO.h" />
     <ClInclude Include="src\utils\XRObjLoader.h" />
     <ClInclude Include="src\utils\XRPointCloudUtils.h" />
     <ClInclude Include="src\utils\XRShaderUtils.h" />
@@ -146,6 +158,7 @@
     <ClInclude Include="src\widget\XRConsoleWindow.h" />
     <ClInclude Include="src\widget\XRDebugOutputWindow.h" />
     <ClInclude Include="src\widget\XRSceneWindow.h" />
+    <ClInclude Include="src\widget\XRShaderInspector.h" />
     <ClInclude Include="src\widget\XRStatusWindow.h" />
     <ClInclude Include="src\XRBrush.h" />
     <ClInclude Include="src\XRCamera.h" />
@@ -164,6 +177,8 @@
     <ClInclude Include="src\XRObject.h" />
     <ClInclude Include="src\XRScene.h" />
     <ClInclude Include="src\XRIMUI.h" />
+    <ClInclude Include="src\XRShaderDescriptor.h" />
+    <ClInclude Include="src\XRShaderManager.h" />
     <ClInclude Include="src\XRSound.h" />
     <ClInclude Include="src\XRSoundManager.h" />
     <ClInclude Include="src\XRTexture.h" />

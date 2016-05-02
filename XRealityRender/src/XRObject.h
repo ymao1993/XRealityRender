@@ -69,6 +69,10 @@ private:
 	/*components*/
 	std::map<XRComponentType, XRComponent*> components;
 
+public:
+	/*scene*/
+	XRScene* scene;
+
 
 };
 

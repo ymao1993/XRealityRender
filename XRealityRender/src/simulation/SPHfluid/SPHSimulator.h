@@ -2,6 +2,7 @@
 #define SPHSIMULATOR_H
 
 #include "SPHCommon.h"
+#include "../../XRObject.h"
 #include "SpatialGrid.h"
 #include "MarchCube.h"
 
@@ -80,6 +81,12 @@ namespace SPHSim
 		void update(float delta);
 
 		/**
+		 * collision handle
+		 */
+		void collisionHandle(XRObject* boxFluid, XRObject* kitchen);
+
+
+		/**
 		 * output function for debug
 		 */
 		void output(int i);
@@ -89,6 +96,14 @@ namespace SPHSim
 		 * get data for rendering
 		 */
 		void getData(float** position, float** normal, int& vertexNum);
+
+		/**
+		 *
+		 */
+		std::vector<SPHParticle>* getParticles()
+		{
+			return &particles;
+		}
 
 	private:
 		SPHConfig conf;

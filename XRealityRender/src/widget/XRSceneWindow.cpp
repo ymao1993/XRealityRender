@@ -16,7 +16,7 @@ bool XRSceneWindow::update(double time)
 	for (int i = 0; i < scene->objects.size(); i++)
 	{
 		XRObject* object = scene->objects[i];
-		if (ImGui::TreeNode((void*)(intptr_t)i, object->name.c_str()))
+		if (ImGui::TreeNode(object->name.c_str()))
 		{
 			std::map<XRComponentType, XRComponent*>::iterator iter;
 			int j;
@@ -26,7 +26,7 @@ bool XRSceneWindow::update(double time)
 				if (ImGui::TreeNode((void*)(intptr_t)j, XRComponentNameMap.find(type)->second.c_str()))
 				{
 					//further info
-					ImGui::Text(iter->second->getDescription().c_str());
+					ImGui::TextWrapped(iter->second->getDescription().c_str());
 					ImGui::TreePop();
 				}
 			}

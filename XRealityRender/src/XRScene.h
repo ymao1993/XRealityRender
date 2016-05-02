@@ -36,6 +36,7 @@ public:
 	void addObject(XRObject* object);
 	void deleteObject(XRObject* object);
 	void deleteAllObjects();
+	XRObject* getObject(std::string name);
 
 private:
 	friend XRSceneWindow;

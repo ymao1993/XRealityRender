@@ -3,6 +3,7 @@
 #include "../utils/XRShaderUtils.h"
 #include "../XRSound.h"
 #include "../effect/EffectTextureMapping.h"
+#include "../effect/EffectTextureMappingInstanced.h"
 
 
 bool Bunny::initObject()
@@ -23,7 +24,14 @@ bool Bunny::initObject()
 	this->addComponent(texture);
 
 	//set up effect
-	XREffect *effect = new EffectTextureMapping();
+	vector<vec3> positions;
+	for (int i = 0; i < 100; i++)
+	{
+		double randX = ((float) rand() / RAND_MAX - 0.5) * 20;
+		double randZ = ((float) rand() / RAND_MAX - 0.5) * 20;
+		positions.push_back(vec3(randX, 0, randZ));
+	}
+	XREffect *effect = new EffectTextureMappingInstanced(positions);
 	this->addComponent(effect);
 
 	return true;

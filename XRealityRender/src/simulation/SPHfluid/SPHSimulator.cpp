@@ -1,4 +1,6 @@
 #include "SPHSimulator.h"
+#include <glm/glm.hpp>
+#include "../../XRMesh.h"
 #include "SPHCommon.h"
 
 #include <fstream>
@@ -11,13 +13,13 @@ typedef std::chrono::high_resolution_clock Clock;
 
 #define SPH_TEST
 #ifdef SPH_TEST
-#define WIDTH		20
-#define HEIGHT		20
-#define DEPTH		20
+#define WIDTH		10
+#define HEIGHT		10
+#define DEPTH		10
 #define SCALE		1.0f
-#define STARTX		10.f
-#define STARTY		10.f
-#define STARTZ 		15.0f
+#define STARTX	    15.f
+#define STARTY		15.f
+#define STARTZ 		30.f
 #endif
 
 
@@ -142,11 +144,10 @@ namespace SPHSim
 			particleGrid.findNeighbors(p_i, particles);
 		}
 
-		auto t2_sm = Clock::now();
-		std::cout << "Delta particleGrid : "
-				  << std::chrono::duration_cast<std::chrono::milliseconds>(t2_sm-t1_sm).count()
-				  << " ms" << std::endl;
-
+		//auto t2_sm = Clock::now();
+		//std::cout << "Delta particleGrid : "
+		//		  << std::chrono::duration_cast<std::chrono::milliseconds>(t2_sm-t1_sm).count()
+		//		  << " ms" << std::endl;
 
 		//TODO: for all particles, compute density and pressure
 		auto t1_sph = Clock::now();
@@ -210,28 +211,66 @@ namespace SPHSim
 			particles[i].velocity += delta * accel;
 			particles[i].position += delta * particles[i].velocity;	
 
-			//handle boundary condition
-			vec3 min(0,0,0);
-			vec3 max(40,40,40);
-			box_clamp_and_reflect(particles[i].position, particles[i].velocity ,min, max, conf.boundarydamping);
-		}
-		auto t2_sph = Clock::now();
-		std::cout << "Delta SPH : "
-				  << std::chrono::duration_cast<std::chrono::milliseconds>(t2_sph-t1_sph).count()
-				  << " ms" << std::endl;
-		
-		// Marching Cube
-	  	auto t1_mc = Clock::now();
-		marchCube.reconstruct(particles, vertices, indices);
-		auto t2_mc = Clock::now();
-		std::cout << "Marching Cube Delta: "
-				  << std::chrono::duration_cast<std::chrono::milliseconds>(t2_mc-t1_mc).count()
-				  << " ms" << std::endl;
+			
 
-		std::cout << vertices.size()/3 << "vertices" << std::endl;
-		std::cout << indices.size()/3 << " triangles" << std::endl; 
+			//box_clamp_and_reflect(particles[i].position, particles[i].velocity ,min, max, conf.boundarydamping);
+		}
+		//auto t2_sph = Clock::now();
+		//std::cout << "Delta SPH : "
+		//		  << std::chrono::duration_cast<std::chrono::milliseconds>(t2_sph-t1_sph).count()
+		//		  << " ms" << std::endl;
+		
+		//// Marching Cube
+	 //    	auto t1_mc = Clock::now();
+		//marchCube.reconstruct(particles, vertices, indices);
+		//auto t2_mc = Clock::now();
+		//std::cout << "Marching Cube Delta: "
+		//		  << std::chrono::duration_cast<std::chrono::milliseconds>(t2_mc-t1_mc).count()
+		//		  << " ms" << std::endl;
+		//std::cout << vertices.size()/3 << "vertices" << std::endl;
+		//std::cout << indices.size()/3 << " triangles" << std::endl; 
 		//And we are done!
 	}
+
+	//handle boundary condition
+	void SPHSimulator::collisionHandle(XRObject* boxFluid, XRObject* kitchen)
+	{
+		XRMesh* mesh = (XRMesh*)kitchen->getComponent(XRComponentType::XR_COMPONENT_MESH);
+		mat4 inv_kitchenToWorld = glm::inverse(kitchen->model2World);
+		for (int i = 0; i < particles.size(); i++)
+		{
+			glm::vec3 pos = glm::vec3(particles[i].position.x, particles[i].position.z, particles[i].position.y); // flip y, z
+			glm::vec4 tmp;
+			glm::vec3 normal;
+			glm::vec3 nearestSurfPos;
+		
+			// box to world
+			tmp = boxFluid->model2World * glm::vec4(pos.x, pos.y, pos.z, 1);
+			tmp /= tmp.w;
+			pos = glm::vec3(tmp);
+			// world to kitchen
+			tmp = inv_kitchenToWorld * glm::vec4(pos.x, pos.y, pos.z, 1);
+			tmp /= tmp.w;
+			pos = glm::vec3(tmp);
+
+			if (mesh->heightField.collisionDetection(pos, normal, nearestSurfPos))
+			{
+				tmp = kitchen->model2World * glm::vec4(nearestSurfPos.x, nearestSurfPos.y, nearestSurfPos.z, 1);
+				tmp /= tmp.w;
+				nearestSurfPos = glm::vec3(glm::inverse(boxFluid->model2World) * tmp);
+				// reset position 
+				particles[i].position.z = nearestSurfPos.y;
+				
+				// update collision velocity
+				normal = normalize(normal);
+				glm::vec3 vXR = glm::vec3(particles[i].velocity.x, particles[i].velocity.z, particles[i].velocity.y);
+				vXR = glm::reflect(vXR, normal);
+				vXR = vXR - dot(normal, vXR) * normal * float(conf.boundarydamping);
+				vec3 new_v = vec3(vXR.x, vXR.z, vXR.y);
+				particles[i].velocity = new_v;
+			}
+		}
+	};
 
 	void SPHSimulator::output(int i)
 	{
@@ -274,20 +313,35 @@ namespace SPHSim
 		if(*normal != NULL)   
 			free(*normal);
 
-		//allocate new memory
-		*position = (float*)malloc(sizeof(float) * indices.size() * 3);
-		*normal   = (float*)malloc(sizeof(float) * indices.size() * 3);
-		vertexNum    = indices.size();
+		////allocate new memory
+		//*position = (float*)malloc(sizeof(float) * indices.size() * 3);
+		//*normal   = (float*)malloc(sizeof(float) * indices.size() * 3);
+		//vertexNum    = indices.size();
 
-		for(int i=0; i<vertexNum; i++)
+		//for(int i=0; i<vertexNum; i++)
+		//{
+		//	(*position)[3*i+0] = vertices[indices[i]].position.x;
+		//	(*position)[3*i+1] = vertices[indices[i]].position.z;
+		//	(*position)[3*i+2] = vertices[indices[i]].position.y;
+
+		//	(*normal)[3*i+0] = vertices[indices[i]].normal.x;
+		//	(*normal)[3*i+1] = vertices[indices[i]].normal.z;
+		//	(*normal)[3*i+2] = vertices[indices[i]].normal.y;
+		//}
+
+		// draw point
+		*position = (float*)malloc(sizeof(float) * particles.size() * 3);
+		*normal = (float*)malloc(sizeof(float)* particles.size() * 3);
+		vertexNum = particles.size();
+		for (int i = 0; i < particles.size(); i++)
 		{
-			(*position)[3*i+0] = vertices[indices[i]].position.x;
-			(*position)[3*i+1] = vertices[indices[i]].position.z;
-			(*position)[3*i+2] = vertices[indices[i]].position.y;
+			(*position)[3 * i + 0] = particles[i].position.x;
+			(*position)[3 * i + 1] = particles[i].position.y;
+			(*position)[3 * i + 2] = particles[i].position.z;
 
-			(*normal)[3*i+0] = vertices[indices[i]].normal.x;
-			(*normal)[3*i+1] = vertices[indices[i]].normal.z;
-			(*normal)[3*i+2] = vertices[indices[i]].normal.y;
+			(*normal)[3 * i + 0] = 1;
+			(*normal)[3 * i + 1] = 0;
+			(*normal)[3 * i + 2] = 0;
 		}
 		return;
 	}

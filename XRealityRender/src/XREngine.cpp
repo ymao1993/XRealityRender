@@ -4,6 +4,8 @@
 #include <time.h>
 #include <Windows.h>
 
+#include "XRShaderManager.h"
+
 
 XREngine* XREngine::engine = NULL;
 
@@ -32,6 +34,9 @@ bool XREngine::init(GLFWwindow* window)
 
 	//initialize device status
 	XRDevice::init(window);
+
+	//initialize shader manager
+	XRShaderManger::init(/*true*/);
 
 	//create application
 	scene = new ViewerScene();
@@ -70,6 +75,7 @@ void XREngine::handleKeyEvent()
 
 bool XREngine::destroy()
 {
+	XRShaderManger::free();
 	scene->destroy();
 	return true;
 }

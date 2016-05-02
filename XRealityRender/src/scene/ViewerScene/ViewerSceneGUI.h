@@ -7,6 +7,7 @@
 #include "../../widget/XRConsoleWindow.h"
 #include "../../widget/XRConfigWindow.h"
 #include "../../widget/XRSceneWindow.h"
+#include "../../widget/XRShaderInspector.h"
 
 class ViewerSceneGUI :public XRUserInterface
 {
@@ -21,6 +22,7 @@ private:
 	XRStatusWindow *statusWindow;
 	XRConsoleWindow *consoleWindow;
 	XRSceneWindow *sceneWindow;
+	XRShaderInspector *shaderInspector;
 
 };
 

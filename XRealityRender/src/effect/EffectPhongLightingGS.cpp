@@ -1,5 +1,6 @@
 #include "../XRCommon.h"
 #include "../utils/XRShaderUtils.h"
+#include "../XRShaderManager.h"
 #include "EffectPhongLightingGS.h"
 #include "../XREngine.h"
 #include "../XRObject.h"
@@ -13,7 +14,6 @@
 	this->NAME = NAME;
 
 #pragma region uniform block structs
-/*uniform block structs are packed according to std140 specification*/
 
 //layout(std140, binding = 1) uniform Material{
 //	vec3  ambient;
@@ -76,15 +76,7 @@ enum{ VPOS, VNORMAL };
 bool EffectPhongLightingGS::initEffect()
 {
 
-#pragma region build shaders
-	{
-		//load shaders
-		GLuint shaders[2];
-		shaders[0] = XRShaderUtils::loadShader("res/shader/PhongLighting(GS)/phongLighting(gs).vs.glsl", GL_VERTEX_SHADER);
-		shaders[1] = XRShaderUtils::loadShader("res/shader/PhongLighting(GS)/phongLighting(gs).fs.glsl", GL_FRAGMENT_SHADER);
-		//link program
-		program = XRShaderUtils::linkShaderProgram(shaders, 2, true);
-	}
+	program = XRShaderManger::getShaderProgram(XRShaderManger::XR_SHADER_PROGRAM_PHONGLIGHTING_GS);
 
 #pragma endregion
 
@@ -162,6 +154,19 @@ bool EffectPhongLightingGS::initEffect()
 	}
 #pragma endregion
 
+#pragma region set up index element array if needed
+	{
+		XRMesh* mesh = (XRMesh*)object->getComponent(XR_COMPONENT_MESH);
+		if (mesh->getType() == XRMESH_TRIANGLE_SOUP_INDEXED)
+		{
+			glGenBuffers(1, &vbo_idx);
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vbo_idx);
+			glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int)* mesh->faceNum * 3, mesh->indices, GL_STREAM_DRAW);
+		}
+	}
+
+#pragma endregion
+
 	//by now everything is recorded in the vao
 	//so we will unbind the buffer
 	//and unbind the vao
@@ -228,7 +233,15 @@ bool EffectPhongLightingGS::updateEffect(double time)
 
 	//draw
 	XRMesh* mesh = (XRMesh*)object->getComponent(XR_COMPONENT_MESH);
-	glDrawArrays(GL_TRIANGLES, 0, mesh->vertexNum);
+
+	if (mesh->getType() == XRMESH_TRIANGLE_SOUP)
+	{
+		glDrawArrays(GL_TRIANGLES, 0, mesh->vertexNum);
+	}
+	else // mesh->getType() == XRMESH_TRIANGLE_SOUP_INDEXED
+	{
+		glDrawElements(GL_TRIANGLES, mesh->faceNum * 3, GL_UNSIGNED_INT, 0);
+	}
 
 	//unbind vao/shader program
 	glBindVertexArray(0);
@@ -244,6 +257,7 @@ bool EffectPhongLightingGS::destroyEffect()
 	glDeleteBuffers(1, &uboMaterial);
 	glDeleteBuffers(1, &vbo_pos);
 	glDeleteBuffers(1, &vbo_normal);
+	glDeleteBuffers(1, &vbo_idx);
 
 	return true;
 }

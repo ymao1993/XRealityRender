@@ -70,14 +70,14 @@ static const uint64_t mcCubeTable[256] = {
 	143955266ULL, 2385ULL, 18433ULL, 0ULL,
 };
 
-static inline bool compareDistance(const SPHSim::vec3 &particlePosition, 
-					const SPHSim::vec3 &gridPosition, const double radius)
+static inline double computeDistance(const SPHSim::vec3 &particlePosition,
+	const SPHSim::vec3 &gridPosition)
 {
-	return (particlePosition - gridPosition).norm() < radius;
+	return (particlePosition - gridPosition).norm();
 }
 
-void MarchCube::computeNormal(int va_idx, int vb_idx, int vc_idx, 
-											std::vector<SPHSim::Vertex> &vertices)
+void MarchCube::computeNormal(int va_idx, int vb_idx, int vc_idx,
+	std::vector<SPHSim::Vertex> &vertices)
 {
 	SPHSim::Vertex &va = vertices[va_idx];
 	SPHSim::Vertex &vb = vertices[vb_idx];
@@ -93,26 +93,34 @@ void MarchCube::computeNormal(int va_idx, int vb_idx, int vc_idx,
 
 int MarchCube::computeCorner(SPHSim::UnitCube &unitCube, const int index)
 {
-	unitCube.vertexFlag[0] = grid[index 	 			  ].flag;
-	unitCube.vertexFlag[1] = grid[index+1 				  ].flag;
-	unitCube.vertexFlag[2] = grid[index+	dim_x 		  ].flag;
-	unitCube.vertexFlag[3] = grid[index+1+	dim_x 		  ].flag;
-	unitCube.vertexFlag[4] = grid[index+			dim_xy].flag;
-	unitCube.vertexFlag[5] = grid[index+1+	   	    dim_xy].flag;
-	unitCube.vertexFlag[6] = grid[index+    dim_x+  dim_xy].flag;
-	unitCube.vertexFlag[7] = grid[index+1+  dim_x+  dim_xy].flag;
+	unitCube.vertexFlag[0] = grid[index].flag;
+	unitCube.vertexFlag[1] = grid[index + 1].flag;
+	unitCube.vertexFlag[2] = grid[index + dim_x].flag;
+	unitCube.vertexFlag[3] = grid[index + 1 + dim_x].flag;
+	unitCube.vertexFlag[4] = grid[index + dim_xy].flag;
+	unitCube.vertexFlag[5] = grid[index + 1 + dim_xy].flag;
+	unitCube.vertexFlag[6] = grid[index + dim_x + dim_xy].flag;
+	unitCube.vertexFlag[7] = grid[index + 1 + dim_x + dim_xy].flag;
 
+	unitCube.vertexValue[0] = grid[index].value;
+	unitCube.vertexValue[1] = grid[index + 1].value;
+	unitCube.vertexValue[2] = grid[index + dim_x].value;
+	unitCube.vertexValue[3] = grid[index + 1 + dim_x].value;
+	unitCube.vertexValue[4] = grid[index + dim_xy].value;
+	unitCube.vertexValue[5] = grid[index + 1 + dim_xy].value;
+	unitCube.vertexValue[6] = grid[index + dim_x + dim_xy].value;
+	unitCube.vertexValue[7] = grid[index + 1 + dim_x + dim_xy].value;
 
 	const int config_n =
-			((unitCube.vertexFlag[0]) << 0) |
-			((unitCube.vertexFlag[1]) << 1) |
-			((unitCube.vertexFlag[2]) << 2) |
-			((unitCube.vertexFlag[3]) << 3) |
-			((unitCube.vertexFlag[4]) << 4) |
-			((unitCube.vertexFlag[5]) << 5) |
-			((unitCube.vertexFlag[6]) << 6) |
-			((unitCube.vertexFlag[7]) << 7);
-	
+		((unitCube.vertexFlag[0]) << 0) |
+		((unitCube.vertexFlag[1]) << 1) |
+		((unitCube.vertexFlag[2]) << 2) |
+		((unitCube.vertexFlag[3]) << 3) |
+		((unitCube.vertexFlag[4]) << 4) |
+		((unitCube.vertexFlag[5]) << 5) |
+		((unitCube.vertexFlag[6]) << 6) |
+		((unitCube.vertexFlag[7]) << 7);
+
 	return config_n;
 
 }
@@ -120,10 +128,10 @@ int MarchCube::computeCorner(SPHSim::UnitCube &unitCube, const int index)
 void MarchCube::computeGrid(const std::vector<SPHSim::SPHParticle> &particles, const int thisGridIndex)
 {
 	grid[thisGridIndex].position = SpatialGrid::indexToPosition(thisGridIndex);
-	grid[thisGridIndex].flag = false; 
+	grid[thisGridIndex].flag = false;
+	grid[thisGridIndex].value = 0;
 
-
-	int dh = int(ceil(radius / grid_h));
+	int dh = ceil(radius / grid_h);
 
 	for (int dz = -dh; dz <= dh; dz++)
 	{
@@ -134,27 +142,17 @@ void MarchCube::computeGrid(const std::vector<SPHSim::SPHParticle> &particles, c
 				const int neighborGridIndex = thisGridIndex + dx + dy * dim_x + dz * dim_xy;
 
 				if (neighborGridIndex >= arraySize || neighborGridIndex < 0) continue;
-				// printf("dx, dy, dz: %d, %d, %d\n", dx, dy, dz);
-				// printf("computing Gird: \t%d\n", thisGridIndex);
-				// std::cout << "thisGrid Position : \t" << SpatialGrid::indexToPosition(thisGridIndex) << std::endl;
-				// printf("neightborGridIndex: \t%d\n", neighborGridIndex);
-				// std::cout << "neighborhood position: \t" << SpatialGrid::indexToPosition(neighborGridIndex) << std::endl;
-
 				if (grid[neighborGridIndex].particleIndices.size() == 0) continue;
 
-				
 				for (int i : grid[neighborGridIndex].particleIndices)
 				{
-					if (compareDistance(particles[i].position, grid[thisGridIndex].position, radius))
+					const double distance = computeDistance(particles[i].position, grid[thisGridIndex].position);
+					if (distance < radius && distance != 0)
 					{
 						grid[thisGridIndex].flag = true;
-						// std::cout << "thisGrid Position : \t" << SpatialGrid::indexToPosition(thisGridIndex) << std::endl;
-						// std::cout << "particle Position : " << particles[i].position << std::endl; 
-
-						return;
+						grid[thisGridIndex].value += 1 / distance;
 					}
 				}
-
 			}
 		}
 	}
@@ -162,15 +160,15 @@ void MarchCube::computeGrid(const std::vector<SPHSim::SPHParticle> &particles, c
 
 
 void MarchCube::reconstruct(const std::vector<SPHSim::SPHParticle> &particles,
-		 		 std::vector<SPHSim::Vertex> &vertices, std::vector<int> &indices)
+	std::vector<SPHSim::Vertex> &vertices, std::vector<int> &indices)
 {
 	// reset marching cube
 	SpatialGrid::clearGrid();
 	vertices.clear();
 	indices.clear();
 
-	// add particles 
-	for (int i = 0; i < particles.size(); i++) 
+	// add particles
+	for (int i = 0; i < particles.size(); i++)
 	{
 		SpatialGrid::addParticle(particles[i], i);
 	}
@@ -181,71 +179,48 @@ void MarchCube::reconstruct(const std::vector<SPHSim::SPHParticle> &particles,
 		computeGrid(particles, i);
 	}
 
-	// int sum = 0;
-	// for (int i = 0; i < arraySize; i++){
-	// 	if (grid[i].particleIndices.size() > 0)
-	// 	{
-	// 		printf("Grid: %d\n", i);
-	// 		std::cout << "Grid position : " << grid[i].position << std::endl;
-	// 		for (int j : grid[i].particleIndices)
-	// 		{
-	// 			printf("%d ", j);
-	// 			std::cout << particles[j].position;
-	// 		}
-	// 		printf("\n");
-	// 		sum += grid[i].particleIndices.size();
-	// 	}
-	// }
-	// printf("sum of particle: %d\n", sum);
-	double middle = CUBE_H / 2;
-	for (int k = 0; k < dim_z-1;  k++)
+	for (int k = 0; k < dim_z - 1; k++)
 	{
-		for (int j = 0; j < dim_y-1; j++)
+		for (int j = 0; j < dim_y - 1; j++)
 		{
-			for (int i = 0; i < dim_x-1; i++)
+			for (int i = 0; i < dim_x - 1; i++)
 			{
 				const int index = i + j*dim_x + k*dim_xy;
-				// printf("reconstructing grid: %d\n", index);
 				SPHSim::UnitCube unitCube;
-				
 				unitCube.cubePos = grid[index].position;
-				// std::cout << "grid position: " << unitCube.cubePos << std::endl;
-
 				const int cubeConfig = computeCorner(unitCube, index);
-				if (cubeConfig == 0 || cubeConfig== 255) continue;
-					// printf("cube pos: %f, %f, %f\n", unitCube.cubePos.x, unitCube.cubePos.y, unitCube.cubePos.z);
-					// printf("cube flag: \n");
-					// std::cout << std::bitset<8>(cubeConfig) << std::endl;
+				if (cubeConfig == 0 || cubeConfig == 255) continue;
 				// add vertex on edge mid point
 				int cubeEdges[12];
 
 				// lambda doEdge
-				auto doEdge = [&](int edgeIdx, bool vertexFlag1, bool vertexFlag2, int axis, const SPHSim::vec3 &base) {
-				if (vertexFlag1 == vertexFlag2) return;
-				
-				SPHSim::vec3 v = base;
-				v[axis] += middle; // add vetex on the middle of edge
-				cubeEdges[edgeIdx] = vertices.size();
+				auto doEdge = [&](int edgeIdx, bool vertexFlag1, bool vertexFlag2,
+					double vertexValue1, double vertexValue2, int axis, const SPHSim::vec3 &base) {
 
-				SPHSim::Vertex vertex = {v, SPHSim::vec3(0,0,0)};
-				vertices.push_back(vertex);
+					if ((vertexFlag1) == (vertexFlag2)) return;
+
+					SPHSim::vec3 v = base;
+					v[axis] += ((vertexValue1 - radius) / (vertexValue1 - vertexValue2)) * grid_h; // add interpolated vetex on the edge 
+
+					cubeEdges[edgeIdx] = vertices.size();
+					SPHSim::Vertex vertex = { v, SPHSim::vec3(0, 0, 0) };
+					vertices.push_back(vertex);
 				};
 
+				doEdge(0, unitCube.vertexFlag[0], unitCube.vertexFlag[1], unitCube.vertexValue[0], unitCube.vertexValue[1], 0, unitCube.addOffset(0, 0, 0));
+				doEdge(1, unitCube.vertexFlag[2], unitCube.vertexFlag[3], unitCube.vertexValue[2], unitCube.vertexValue[3], 0, unitCube.addOffset(0, CUBE_H, 0));
+				doEdge(2, unitCube.vertexFlag[4], unitCube.vertexFlag[5], unitCube.vertexValue[4], unitCube.vertexValue[5], 0, unitCube.addOffset(0, 0, CUBE_H));
+				doEdge(3, unitCube.vertexFlag[6], unitCube.vertexFlag[7], unitCube.vertexValue[6], unitCube.vertexValue[7], 0, unitCube.addOffset(0, CUBE_H, CUBE_H));
 
-				doEdge(0,  unitCube.vertexFlag[0], unitCube.vertexFlag[1], 0, unitCube.addOffset(0, 0, 0));
-				doEdge(1,  unitCube.vertexFlag[2], unitCube.vertexFlag[3], 0, unitCube.addOffset(0, CUBE_H, 0));
-				doEdge(2,  unitCube.vertexFlag[4], unitCube.vertexFlag[5], 0, unitCube.addOffset(0, 0, CUBE_H));
-				doEdge(3,  unitCube.vertexFlag[6], unitCube.vertexFlag[7], 0, unitCube.addOffset(0, CUBE_H, CUBE_H));
+				doEdge(4, unitCube.vertexFlag[0], unitCube.vertexFlag[2], unitCube.vertexValue[0], unitCube.vertexValue[2], 1, unitCube.addOffset(0, 0, 0));
+				doEdge(5, unitCube.vertexFlag[1], unitCube.vertexFlag[3], unitCube.vertexValue[1], unitCube.vertexValue[3], 1, unitCube.addOffset(CUBE_H, 0, 0));
+				doEdge(6, unitCube.vertexFlag[4], unitCube.vertexFlag[6], unitCube.vertexValue[4], unitCube.vertexValue[6], 1, unitCube.addOffset(0, 0, CUBE_H));
+				doEdge(7, unitCube.vertexFlag[5], unitCube.vertexFlag[7], unitCube.vertexValue[5], unitCube.vertexValue[7], 1, unitCube.addOffset(CUBE_H, 0, CUBE_H));
 
-				doEdge(4,  unitCube.vertexFlag[0], unitCube.vertexFlag[2], 1, unitCube.addOffset(0, 0, 0));
-				doEdge(5,  unitCube.vertexFlag[1], unitCube.vertexFlag[3], 1, unitCube.addOffset(CUBE_H, 0, 0));
-				doEdge(6,  unitCube.vertexFlag[4], unitCube.vertexFlag[6], 1, unitCube.addOffset(0, 0, CUBE_H));
-				doEdge(7,  unitCube.vertexFlag[5], unitCube.vertexFlag[7], 1, unitCube.addOffset(CUBE_H, 0, CUBE_H));
-
-				doEdge(8,  unitCube.vertexFlag[0], unitCube.vertexFlag[4], 2, unitCube.addOffset(0, 0, 0));
-				doEdge(9,  unitCube.vertexFlag[1], unitCube.vertexFlag[5], 2, unitCube.addOffset(CUBE_H, 0, 0));
-				doEdge(10, unitCube.vertexFlag[2], unitCube.vertexFlag[6], 2, unitCube.addOffset(0, CUBE_H, 0));
-				doEdge(11, unitCube.vertexFlag[3], unitCube.vertexFlag[7], 2, unitCube.addOffset(CUBE_H, CUBE_H, 0));
+				doEdge(8, unitCube.vertexFlag[0], unitCube.vertexFlag[4], unitCube.vertexValue[0], unitCube.vertexValue[4], 2, unitCube.addOffset(0, 0, 0));
+				doEdge(9, unitCube.vertexFlag[1], unitCube.vertexFlag[5], unitCube.vertexValue[1], unitCube.vertexValue[5], 2, unitCube.addOffset(CUBE_H, 0, 0));
+				doEdge(10, unitCube.vertexFlag[2], unitCube.vertexFlag[6], unitCube.vertexValue[2], unitCube.vertexValue[6], 2, unitCube.addOffset(0, CUBE_H, 0));
+				doEdge(11, unitCube.vertexFlag[3], unitCube.vertexFlag[7], unitCube.vertexValue[3], unitCube.vertexValue[7], 2, unitCube.addOffset(CUBE_H, CUBE_H, 0));
 
 				// look up table to generate triangle
 				const uint64_t config = mcCubeTable[cubeConfig];
@@ -254,19 +229,19 @@ void MarchCube::reconstruct(const std::vector<SPHSim::SPHParticle> &particles,
 				const int baseIdx = indices.size();
 
 				int offset = 4;
-				for (int i = 0; i < numIndices; i++) 
+				for (int i = 0; i < numIndices; i++)
 				{
 					const int edgeIdx = (config >> offset) & 0xF;
-					indices.push_back(cubeEdges[edgeIdx]); 
+					indices.push_back(cubeEdges[edgeIdx]);
 					offset += 4;
 				}
 
-				for (int i = 0; i < numTriangles; i++) 
+				for (int i = 0; i < numTriangles; i++)
 				{
 					computeNormal(
-						indices[baseIdx + i*3 + 0],
-						indices[baseIdx + i*3 + 1],
-						indices[baseIdx + i*3 + 2],
+						indices[baseIdx + i * 3 + 0],
+						indices[baseIdx + i * 3 + 1],
+						indices[baseIdx + i * 3 + 2],
 						vertices);
 				}
 			}
@@ -278,4 +253,3 @@ void MarchCube::reconstruct(const std::vector<SPHSim::SPHParticle> &particles,
 		v.normal /= v.normal.norm();
 	}
 }
-

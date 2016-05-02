@@ -126,7 +126,7 @@ bool XRConsoleWindow::update(double time)
 		if (strstr(item, "[error]")) col = ImColor(255, 100, 100);
 		else if (strncmp(item, "# ", 2) == 0) col = ImColor(255, 200, 150);
 		ImGui::PushStyleColor(ImGuiCol_Text, col);
-		ImGui::TextUnformatted(item);
+		ImGui::TextWrapped(item);
 		ImGui::PopStyleColor();
 	}
 

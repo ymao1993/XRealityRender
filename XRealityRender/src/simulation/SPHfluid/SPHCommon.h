@@ -9,12 +9,12 @@
 #define RESET_DENSITY   (1.2f) 
 #define G 				(9.8f)
 #define MIU				(0.1f)
-#define BOUNDARYDAMPING (0.6)
-#define DAMPING 		(0.1f)
+#define BOUNDARYDAMPING (0.8f)
+#define DAMPING 		(0.01f)
 #define TENSION_COEF	(1.f)
 
-#define RADIUS 			(1.f)
-#define CUBE_H  		(0.5f)
+#define RADIUS 			(0.5f)
+#define CUBE_H  		(0.2f)
 #define BOX_WIDTH		(40)
 #define BOX_HEIGHT		(40)
 #define BOX_DEPTH 		(40)
@@ -25,27 +25,29 @@
 namespace SPHSim
 {
 	/*
-	 * SPH Particle struct
-	 **/
+	* SPH Particle struct
+	**/
 
 	struct SPHParticle
 	{
 		float mass;
 		float pressure;
 		float density;
-		vec3 velocity; 
+		vec3 velocity;
 		vec3 position;
 		vec3 f; //total forces
 		std::vector<int> neighbors;
-		SPHParticle(float mass, vec3 position):mass(mass),position(position){}
+		SPHParticle(float mass, vec3 position) :mass(mass), position(position){}
 	};
 
 	struct UnitCube
 	{
 		bool vertexFlag[8];
+		double vertexValue[8];
+
 		SPHSim::vec3 cubePos;
 
-		inline SPHSim::vec3 addOffset(double dx, double dy, double dz) 
+		inline SPHSim::vec3 addOffset(double dx, double dy, double dz)
 		{
 			return cubePos + SPHSim::vec3(dx, dy, dz);
 		}
@@ -54,14 +56,15 @@ namespace SPHSim
 	struct Grid
 	{
 		bool flag;
+		double value;
 		SPHSim::vec3 position;
 		std::vector<int> particleIndices;
 	};
 
-	struct Vertex 
+	struct Vertex
 	{
-	SPHSim::vec3 position;
-	SPHSim::vec3 normal;
+		SPHSim::vec3 position;
+		SPHSim::vec3 normal;
 	};
 }
 #endif

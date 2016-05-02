@@ -32,6 +32,7 @@ using glm::value_ptr;
 #include <stdlib.h>
 #include <stdio.h>
 #include <vector>
+#include <string>
 
 using std::cout;
 using std::cin;
@@ -39,5 +40,9 @@ using std::endl;
 using std::max;
 using std::min;
 using std::vector;
+using std::string;
+
+/* constant*/
+#define INF_D 1e100
 
 #endif

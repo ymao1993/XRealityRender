@@ -140,6 +140,7 @@ namespace XRShaderUtils
 	GLuint linkShaderProgram(const GLuint * shaders,
 		int shader_count,
 		bool delete_shaders,
+		bool binary,
 		bool check_errors)
 	{
 		int i;
@@ -152,6 +153,9 @@ namespace XRShaderUtils
 		{
 			glAttachShader(program, shaders[i]);
 		}
+
+		if (binary) 
+			glProgramParameteri(program, GL_PROGRAM_BINARY_RETRIEVABLE_HINT, GL_TRUE);
 
 		glLinkProgram(program);
 

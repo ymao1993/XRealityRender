@@ -63,6 +63,7 @@ void XRScene::addObject(XRObject* object)
 {
 	if (object)
 	{
+		object->scene = this;
 		objects.push_back(object);
 	}
 }
@@ -85,4 +86,16 @@ void XRScene::deleteAllObjects()
 		delete *iter;
 	}
 	objects.clear();
+}
+
+XRObject* XRScene::getObject(std::string name)
+{
+	for (std::vector<XRObject*>::iterator iter = objects.begin(); iter != objects.end(); iter++)
+	{
+		if ((*iter)->name == name)
+		{
+			return *iter;
+		}
+	}
+	return NULL;
 }

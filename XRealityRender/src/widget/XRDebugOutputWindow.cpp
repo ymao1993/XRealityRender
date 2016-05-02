@@ -11,7 +11,7 @@ bool XRDebugOutputWindow::update(double time)
 {
 	//Update Debugging Window
 	ImGui::Begin("Log");
-	ImGui::Text(XRDebug::logs2Str().c_str());
+	ImGui::TextWrapped(XRDebug::logs2Str().c_str());
 	ImGui::End();
 
 	return true;

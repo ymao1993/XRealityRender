@@ -3,6 +3,7 @@
 #include "../utils/XRShaderUtils.h"
 #include "../XRSound.h"
 #include "../effect/EffectPhongLightingGS.h"
+#include "../XRScene.h"
 
 
 bool Kitchen::initObject()
@@ -11,11 +12,11 @@ bool Kitchen::initObject()
 	this->transform.position = glm::vec3(0, 0, 0);
 
 	//set up model2world transformation
-	model2World = glm::translate(glm::vec3(0,-1.65,0)) * glm::rotate(30.f, glm::vec3(1,0,0));
+	model2World = glm::translate(glm::vec3(1.5, -1, 1.5)) * /*glm::rotate(0.f, glm::vec3(1,0,0)) * */glm::scale(glm::vec3(0.01, 0.01, 0.01));
 
 	//set up mesh
-	XRMesh *mesh = new XRMesh();
-	mesh->loadMesh("res/model/kitchen.obj");
+	XRMesh *mesh = new XRMesh(XRMESH_TRIANGLE_SOUP);
+	mesh->loadMesh("res/model/studio bagno.obj");
 	this->addComponent(mesh);
 
 	//set up material
@@ -34,6 +35,11 @@ bool Kitchen::initObject()
 	XRSound *sound = new XRSound();
 	sound->loadSound("frying", "res/sound/frying.mp3");
 	this->addComponent(sound);
+
+	//compute height map
+	mesh->computeBbox();
+	mesh->computeHeightField();
+
 	return true;
 }
 

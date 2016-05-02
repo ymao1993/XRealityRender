@@ -4,13 +4,13 @@
 #include <vector>
 #include "SPHCommon.h"
 
-/* 
- * SpatialGrid discretizes the space into equally-spaced grids
- * each grid stores the indeices of the particle in order to
- * speed up the neighborhood particle finding. 
- *
- * Che-Yuan Liang Apr. 2016 
- */
+/*
+* SpatialGrid discretizes the space into equally-spaced grids
+* each grid stores the indeices of the particle in order to
+* speed up the neighborhood particle finding.
+*
+* Che-Yuan Liang Apr. 2016
+*/
 
 
 class SpatialGrid
@@ -41,14 +41,14 @@ protected:
 		const double py = p.position.y;
 		const double pz = p.position.z;
 
-		return (int)(floor((px-base_x)/grid_h) + floor((py-base_y)/grid_h) * dim_x + floor((pz-base_z)/grid_h) * dim_x * dim_y);
+		return floor((px - base_x) / grid_h) + floor((py - base_y) / grid_h) * dim_x + floor((pz - base_z) / grid_h) * dim_x * dim_y;
 	}
 
 public:
 	SpatialGrid(double base_x, double base_y, double base_z,
-				double length_x, double length_y, double length_z, double h, double r);
+		double length_x, double length_y, double length_z, double h, double r);
 	~SpatialGrid();
-	
+
 	void addParticle(const SPHSim::SPHParticle &p, int i);
 	void clearGrid();
 	void findNeighbors(SPHSim::SPHParticle &p_i, const std::vector<SPHSim::SPHParticle> &particles);

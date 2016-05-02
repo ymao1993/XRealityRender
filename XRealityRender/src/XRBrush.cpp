@@ -1,6 +1,7 @@
 #include "XRBrush.h"
 #include "XRScene.h"
 #include "utils\XRShaderUtils.h"
+#include "XRShaderManager.h"
 
 
 /*vertex attribute*/
@@ -22,11 +23,7 @@ enum
 
 XRBrush::XRBrush(XRScene * scene):scene(scene)
 {
-	//build shader program
-	GLuint shaders[2];
-	shaders[0] = XRShaderUtils::loadShader("res/shader/SingleColor/SingleColor.vs.glsl", GL_VERTEX_SHADER);
-	shaders[1] = XRShaderUtils::loadShader("res/shader/SingleColor/SingleColor.fs.glsl", GL_FRAGMENT_SHADER);
-	program = XRShaderUtils::linkShaderProgram(shaders, 2, true);
+	program = XRShaderManger::getShaderProgram(XRShaderManger::XR_SHADER_PROGRAM_SINGLE_COLOR);
 
 	//set default color
 	color = vec4(1,0,0,1);
@@ -44,6 +41,7 @@ void XRBrush::render(vec4 color)
 	if (color == vec4(0, 0, 0, 0)) color = this->color;
 
 	//draw all points
+	glPointSize(5);
 	if (IPoints.size())
 	{
 		GLuint vao, vbo;
@@ -61,6 +59,7 @@ void XRBrush::render(vec4 color)
 		glDrawArrays(GL_POINTS, 0, DPoints.size());
 		cleanup(vao, vbo);
 	}
+	glPointSize(1);
 
 	//draw all lines
 	if (ILines.size())

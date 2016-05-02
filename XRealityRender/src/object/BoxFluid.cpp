@@ -1,6 +1,7 @@
 #include "../XRCommon.h"
 #include "BoxFluid.h"
 #include "../utils/XRShaderUtils.h"
+#include "../XRScene.h"
 
 #include "../XRSound.h"
 #include "../effect/EffectPhongLightingGS.h"
@@ -12,7 +13,7 @@ bool BoxFluid::initObject()
 	this->transform.position = glm::vec3(0, 0, 0);
 
 	//set up model2world transformation
-	model2World = glm::translate(glm::vec3(-2,-2.5,0)) *glm::scale(glm::vec3(0.1, 0.1, 0.1));
+	model2World = glm::translate(glm::vec3(-2, -2.5, 0)) *glm::scale(glm::vec3(0.1, 0.1, 0.1));
 
 	//set up mesh
 	XRMesh *mesh = new XRMesh();
@@ -27,8 +28,8 @@ bool BoxFluid::initObject()
 	this->addComponent(material);
 
 	//set up effect
-	XREffect *effect = new EffectPhongLightingGS();
-	this->addComponent(effect);
+	//XREffect *effect = new EffectPhongLightingGS();
+	//this->addComponent(effect);
 
 	//set up simulator
 	{
@@ -58,6 +59,7 @@ bool BoxFluid::initObject()
 	{
 		XRMesh * mesh = (XRMesh*) this->getComponent(XRComponentType::XR_COMPONENT_MESH);
 		simulator->getData(&mesh->positions, &mesh->normals, mesh->vertexNum);
+
 	}
 
 	return true;
@@ -73,12 +75,27 @@ bool BoxFluid::updateObject(double time)
 		simulator->setup();
 	}
 	//update simulator
-	simulator->update(1.f/60.f);
+	simulator->update(1.f / 60.f);
+
+	// handle collision
+	{
+		XRMesh* boundMesh = (XRMesh*) this->scene->getObject("Kitchen")->getComponent(XRComponentType::XR_COMPONENT_MESH);
+		simulator->collisionHandle(this, this->scene->getObject("Kitchen"));
+	}
+
 	//update mesh
 	{
-		XRMesh * mesh = (XRMesh*) this->getComponent(XRComponentType::XR_COMPONENT_MESH);
+		XRMesh* mesh = (XRMesh*) this->getComponent(XRComponentType::XR_COMPONENT_MESH);
 		simulator->getData(&mesh->positions, &mesh->normals, mesh->vertexNum);
+		for (int i = 0; i < mesh->vertexNum; i++)
+		{
+			vec4 worldPoint = model2World * vec4(mesh->positions[3 * i], mesh->positions[3 * i + 2], mesh->positions[3 * i + 1], 1);
+			worldPoint /= worldPoint.w;
+			this->scene->brush.drawPoint(vec3(worldPoint), true);
+		}
 	}
+
+
 	return true;
 }
 

@@ -87,6 +87,10 @@
     <ClCompile Include="src\mesh\MeshKDTree.cpp" />
     <ClCompile Include="src\object\BoxFluid.cpp" />
     <ClCompile Include="src\object\bunny.cpp" />
+    <ClCompile Include="src\scene\ForestScene\ForestScene.cpp" />
+    <ClCompile Include="src\scene\ForestScene\ForestSceneGUI.cpp" />
+    <ClCompile Include="src\scene\KitchenScene\KitchenScene.cpp" />
+    <ClCompile Include="src\scene\KitchenScene\KitchenSceneGUI.cpp" />
     <ClCompile Include="src\simulation\SPHfluid\MarchCube.cpp" />
     <ClCompile Include="src\simulation\SPHfluid\SpatialGrid.cpp" />
     <ClCompile Include="src\simulation\SPHfluid\SPHSimulator.cpp" />
@@ -97,8 +101,6 @@
     <ClCompile Include="src\XRMesh.cpp" />
     <ClCompile Include="src\object\Kitchen.cpp" />
     <ClCompile Include="src\object\PointCloud.cpp" />
-    <ClCompile Include="src\scene\ViewerScene\ViewerScene.cpp" />
-    <ClCompile Include="src\scene\ViewerScene\ViewerSceneGUI.cpp" />
     <ClCompile Include="src\utils\XRObjLoader.cpp" />
     <ClCompile Include="src\utils\XRPointCloudUtils.cpp" />
     <ClCompile Include="src\utils\XRShaderUtils.cpp" />
@@ -142,8 +144,10 @@
     <ClInclude Include="src\object\bunny.h" />
     <ClInclude Include="src\object\Kitchen.h" />
     <ClInclude Include="src\object\PointCloud.h" />
-    <ClInclude Include="src\scene\ViewerScene\ViewerScene.h" />
-    <ClInclude Include="src\scene\ViewerScene\ViewerSceneGUI.h" />
+    <ClInclude Include="src\scene\ForestScene\ForestScene.h" />
+    <ClInclude Include="src\scene\ForestScene\ForestSceneGUI.h" />
+    <ClInclude Include="src\scene\KitchenScene\KitchenScene.h" />
+    <ClInclude Include="src\scene\KitchenScene\KitchenSceneGUI.h" />
     <ClInclude Include="src\shader\PhongLightingGS.h" />
     <ClInclude Include="src\simulation\SPHfluid\MarchCube.h" />
     <ClInclude Include="src\simulation\SPHfluid\SpatialGrid.h" />

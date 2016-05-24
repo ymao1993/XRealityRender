@@ -13,12 +13,6 @@
     <ClCompile Include="src\imgui\imgui_impl_glfw.cpp">
       <Filter>imgui</Filter>
     </ClCompile>
-    <ClCompile Include="src\scene\ViewerScene\ViewerSceneGUI.cpp">
-      <Filter>scene\ViewerScene</Filter>
-    </ClCompile>
-    <ClCompile Include="src\scene\ViewerScene\ViewerScene.cpp">
-      <Filter>scene\ViewerScene</Filter>
-    </ClCompile>
     <ClCompile Include="src\XRCamera.cpp" />
     <ClCompile Include="src\XRObject.cpp" />
     <ClCompile Include="src\XRDeivice.cpp" />
@@ -108,6 +102,18 @@
     <ClCompile Include="src\mesh\MeshKDTree.cpp">
       <Filter>mesh</Filter>
     </ClCompile>
+    <ClCompile Include="src\scene\ForestScene\ForestScene.cpp">
+      <Filter>scene\ForestScene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\scene\ForestScene\ForestSceneGUI.cpp">
+      <Filter>scene\ForestScene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\scene\KitchenScene\KitchenSceneGUI.cpp">
+      <Filter>scene\KitchenScene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\scene\KitchenScene\KitchenScene.cpp">
+      <Filter>scene\KitchenScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\XREngine.h" />
@@ -132,12 +138,6 @@
     </ClInclude>
     <ClInclude Include="src\imgui\imgui_impl_glfw.h">
       <Filter>imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="src\scene\ViewerScene\ViewerScene.h">
-      <Filter>scene\ViewerScene</Filter>
-    </ClInclude>
-    <ClInclude Include="src\scene\ViewerScene\ViewerSceneGUI.h">
-      <Filter>scene\ViewerScene</Filter>
     </ClInclude>
     <ClInclude Include="src\XRCamera.h" />
     <ClInclude Include="src\XRObject.h" />
@@ -252,6 +252,18 @@
     <ClInclude Include="src\mesh\MeshKDTree.h">
       <Filter>mesh</Filter>
     </ClInclude>
+    <ClInclude Include="src\scene\ForestScene\ForestScene.h">
+      <Filter>scene\ForestScene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\scene\ForestScene\ForestSceneGUI.h">
+      <Filter>scene\ForestScene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\scene\KitchenScene\KitchenSceneGUI.h">
+      <Filter>scene\KitchenScene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\scene\KitchenScene\KitchenScene.h">
+      <Filter>scene\KitchenScene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="imgui">
@@ -259,9 +271,6 @@
     </Filter>
     <Filter Include="scene">
       <UniqueIdentifier>{94824fcf-9fe1-4c26-8428-a94355a8f04c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="scene\ViewerScene">
-      <UniqueIdentifier>{bccf866f-7597-4615-b7f4-abb949f19b0d}</UniqueIdentifier>
     </Filter>
     <Filter Include="object">
       <UniqueIdentifier>{cd7c82b7-da9b-4dd1-a31e-06f1f16977ff}</UniqueIdentifier>
@@ -295,6 +304,12 @@
     </Filter>
     <Filter Include="mesh">
       <UniqueIdentifier>{6fdbbeaf-5be2-4996-a560-1f5b6c30dd12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="scene\ForestScene">
+      <UniqueIdentifier>{dd2465b1-f3d4-4890-85cd-0ec2d3466792}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="scene\KitchenScene">
+      <UniqueIdentifier>{bccf866f-7597-4615-b7f4-abb949f19b0d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -1,7 +1,6 @@
 #include "../XRCommon.h"
 #include "XRConsoleWindow.h"
 #include "../XREngine.h"
-#include "../scene/ViewerScene/ViewerScene.h"
 #include <cstring>
 
 bool XRConsoleWindow::init()
@@ -11,7 +10,6 @@ bool XRConsoleWindow::init()
 
 	return true;
 }
-
 
 void XRConsoleWindow::clearLog()
 {

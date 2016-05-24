@@ -1,10 +1,9 @@
 #include "XREngine.h"
 #include <stddef.h>
-#include ".\scene\ViewerScene\ViewerScene.h"
 #include <time.h>
 #include <Windows.h>
-
 #include "XRShaderManager.h"
+#include ".\scene\ForestScene\ForestScene.h"
 
 
 XREngine* XREngine::engine = NULL;
@@ -39,7 +38,7 @@ bool XREngine::init(GLFWwindow* window)
 	XRShaderManger::init(/*true*/);
 
 	//create application
-	scene = new ViewerScene();
+	scene = new ForestScene();
 	scene->init();
 
 	return true;

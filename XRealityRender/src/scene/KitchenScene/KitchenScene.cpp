@@ -22,12 +22,10 @@ bool KitchenScene::initScene()
 	//init game object
 	{
 		XRObject* testObj = new Kitchen();
-		testObj->setCamera(camera);
 		addObject(testObj);
 	}
 	{
 		XRObject* testObj = new BoxFluid();
-		testObj->setCamera(camera);
 		addObject(testObj);
 	}
 

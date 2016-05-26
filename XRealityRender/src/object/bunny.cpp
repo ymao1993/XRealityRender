@@ -20,7 +20,7 @@ bool Bunny::initObject()
 	this->addComponent(mesh);
 
 	//set up texture
-	XRTexture *texture = new XRTexture("res/model/bunny/bunny.jpg");
+	XRTexture *texture = new XRTexture(XRTextureManger::XR_TEXTURE_BUNNY);
 	this->addComponent(texture);
 
 	//set up effect

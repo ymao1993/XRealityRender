@@ -19,6 +19,10 @@ bool ForestScene::initScene()
 	light->position = glm::vec3(0, 100, 0);
 
 	//init game object
+	{
+		XRObject* obj = new Bunny();
+		this->addObject(obj);
+	}
 
 	return true;
 }

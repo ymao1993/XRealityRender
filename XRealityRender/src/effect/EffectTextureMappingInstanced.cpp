@@ -127,7 +127,7 @@ bool EffectTextureMappingInstanced::updateEffect(double time)
 
 	//update uniforms
 	glUniformMatrix4fv(UNIFORM_M2W, 1, GL_FALSE, glm::value_ptr(object->model2World));
-	glUniformMatrix4fv(UNIFORM_W2C, 1, GL_FALSE, glm::value_ptr(object->camera->getPersProj() * object->camera->getWorld2View()));
+	glUniformMatrix4fv(UNIFORM_W2C, 1, GL_FALSE, glm::value_ptr(object->scene->camera->getPersProj() * object->scene->camera->getWorld2View()));
 
 	//draw
 	XRMesh* mesh = (XRMesh*)object->getComponent(XR_COMPONENT_MESH);

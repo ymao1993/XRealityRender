@@ -99,7 +99,7 @@ bool EffectTextureMapping::updateEffect(double time)
 	glBindTexture(GL_TEXTURE_2D, texture->texture);
 
 	//update uniforms
-	glUniformMatrix4fv(UNIFORM_TRANSFORMATION, 1, GL_FALSE, glm::value_ptr(object->camera->getPersProj() * object->camera->getWorld2View() * object->model2World));
+	glUniformMatrix4fv(UNIFORM_TRANSFORMATION, 1, GL_FALSE, glm::value_ptr(object->scene->camera->getPersProj() * object->scene->camera->getWorld2View() * object->model2World));
 
 	//draw
 	XRMesh* mesh = (XRMesh*)object->getComponent(XR_COMPONENT_MESH);

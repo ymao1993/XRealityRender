@@ -3,6 +3,7 @@
 #include <time.h>
 #include <Windows.h>
 #include "XRShaderManager.h"
+#include "XRTextureManager.h"
 #include ".\scene\ForestScene\ForestScene.h"
 
 
@@ -36,6 +37,9 @@ bool XREngine::init(GLFWwindow* window)
 
 	//initialize shader manager
 	XRShaderManger::init(/*true*/);
+
+	//initialize texture manager
+	XRTextureManger::init();
 
 	//create application
 	scene = new ForestScene();
@@ -75,6 +79,7 @@ void XREngine::handleKeyEvent()
 bool XREngine::destroy()
 {
 	XRShaderManger::free();
+	XRTextureManger::free();
 	scene->destroy();
 	return true;
 }

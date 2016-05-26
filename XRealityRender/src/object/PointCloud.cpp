@@ -3,6 +3,7 @@
 #include "../utils/XRShaderUtils.h"
 #include "../utils/XRPointCloudUtils.h"
 #include "../XRCommon.h"
+#include "../XRScene.h"
 
 
 bool PointCloud::initObject()
@@ -130,7 +131,7 @@ bool PointCloud::render()
 	glBindVertexArray(vao);
 	/*do not transpose here, because glm has gracefully handled it.*/
 
-	camera->getWorld2View();
+	scene->camera->getWorld2View();
 
 	//add some rotation for fun
 	rotation = glm::rotate(glm::radians(270.f), glm::vec3(1, 0, 0));
@@ -139,8 +140,8 @@ bool PointCloud::render()
 	glBindBufferBase(GL_UNIFORM_BUFFER, 0, uboMaterial);
 	glBindBufferBase(GL_UNIFORM_BUFFER, 1, uboLight);
 	glUniformMatrix4fv(0, 1, GL_FALSE, glm::value_ptr(rotation));
-	glUniformMatrix4fv(1, 1, GL_FALSE, glm::value_ptr(camera->getWorld2View()));
-	glUniformMatrix4fv(2, 1, GL_FALSE, glm::value_ptr(camera->getPersProj()));
+	glUniformMatrix4fv(1, 1, GL_FALSE, glm::value_ptr(scene->camera->getWorld2View()));
+	glUniformMatrix4fv(2, 1, GL_FALSE, glm::value_ptr(scene->camera->getPersProj()));
 	
 	glPointSize(5);
 	glDrawArrays(GL_POINTS, 0, pointNum);

@@ -45,14 +45,9 @@ public:
 	virtual bool updateObject(double time) = 0;
 	virtual bool destroyObject() = 0;
 
-	inline void setCamera(XRCamera *camera){ this->camera = camera; }
-
 	glm::mat4 model2World;
 
 public:
-
-	/*camera*/
-	XRCamera *camera;
 
 	/*transform info*/
 	XRTransform transform;

@@ -120,6 +120,7 @@
     <ClCompile Include="src\XRSound.cpp" />
     <ClCompile Include="src\XRSoundManager.cpp" />
     <ClCompile Include="src\XRTexture.cpp" />
+    <ClCompile Include="src\XRTextureManager.cpp" />
     <ClCompile Include="src\XRUserInterface.cpp" />
     <ClCompile Include="src\XRWidget.cpp" />
   </ItemGroup>
@@ -187,6 +188,7 @@
     <ClInclude Include="src\XRSound.h" />
     <ClInclude Include="src\XRSoundManager.h" />
     <ClInclude Include="src\XRTexture.h" />
+    <ClInclude Include="src\XRTextureManager.h" />
     <ClInclude Include="src\XRTransform.h" />
     <ClInclude Include="src\XRUserInterface.h" />
     <ClInclude Include="src\XRWidget.h" />

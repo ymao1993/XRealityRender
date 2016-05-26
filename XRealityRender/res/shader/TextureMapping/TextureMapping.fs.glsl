@@ -1,6 +1,6 @@
 #version 430 core
 
-layout(location = 1, binding = 0) uniform sampler2D sampler;
+layout(binding = 0) uniform sampler2D sampler;
 
 in VS_OUT
 {

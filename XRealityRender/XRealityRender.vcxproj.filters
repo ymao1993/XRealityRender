@@ -114,6 +114,7 @@
     <ClCompile Include="src\scene\KitchenScene\KitchenScene.cpp">
       <Filter>scene\KitchenScene</Filter>
     </ClCompile>
+    <ClCompile Include="src\XRTextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\XREngine.h" />
@@ -264,6 +265,7 @@
     <ClInclude Include="src\scene\KitchenScene\KitchenScene.h">
       <Filter>scene\KitchenScene</Filter>
     </ClInclude>
+    <ClInclude Include="src\XRTextureManager.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="imgui">

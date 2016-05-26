@@ -228,8 +228,8 @@ bool EffectPhongLightingGS::updateEffect(double time)
 	glBindBufferBase(GL_UNIFORM_BUFFER, 0, uboMaterial);
 	glBindBufferBase(GL_UNIFORM_BUFFER, 1, uboLight);
 	glUniformMatrix4fv(0, 1, GL_FALSE, glm::value_ptr(object->model2World));
-	glUniformMatrix4fv(1, 1, GL_FALSE, glm::value_ptr(object->camera->getWorld2View()));
-	glUniformMatrix4fv(2, 1, GL_FALSE, glm::value_ptr(object->camera->getPersProj()));
+	glUniformMatrix4fv(1, 1, GL_FALSE, glm::value_ptr(object->scene->camera->getWorld2View()));
+	glUniformMatrix4fv(2, 1, GL_FALSE, glm::value_ptr(object->scene->camera->getPersProj()));
 
 	//draw
 	XRMesh* mesh = (XRMesh*)object->getComponent(XR_COMPONENT_MESH);

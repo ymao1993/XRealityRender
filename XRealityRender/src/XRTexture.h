@@ -10,13 +10,15 @@
 #include "XRComponent.h"
 #include "XRComponentType.h"
 
+#include "XRTextureManager.h"
+
 class XRTexture : public XRComponent
 {
 public:
 
-	XRTexture(const char* filePath) :XRComponent(XR_COMPONENT_TEXTURE)
+	XRTexture(XRTextureManger::XR_TEXTURE_TOKEN token) :XRComponent(XR_COMPONENT_TEXTURE)
 	{
-		loadTexture(filePath);
+		loadTexture(token);
 		initSampler();
 	}
 
@@ -27,7 +29,7 @@ private:
 	virtual bool init(){ return true; };
 	virtual bool update(double time){ return true; }
 	virtual bool destroy();
-	bool loadTexture(const char* filePath);
+	bool loadTexture(XRTextureManger::XR_TEXTURE_TOKEN token);
 	void initSampler();
 };
 

@@ -124,6 +124,7 @@ bool EffectTextureMappingInstanced::updateEffect(double time)
 	//bind texture to texture2D binding target
 	XRTexture* texture = (XRTexture*)object->getComponent(XR_COMPONENT_TEXTURE);
 	glBindTexture(GL_TEXTURE_2D, texture->texture);
+	glBindSampler(0, texture->sampler);
 
 	//update uniforms
 	glUniformMatrix4fv(UNIFORM_M2W, 1, GL_FALSE, glm::value_ptr(object->model2World));

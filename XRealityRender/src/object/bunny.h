@@ -15,8 +15,6 @@ public:
 	virtual bool updateObject(double time);
 	virtual bool destroyObject();
 
-private:
-	int pointNum;
 };
 
 

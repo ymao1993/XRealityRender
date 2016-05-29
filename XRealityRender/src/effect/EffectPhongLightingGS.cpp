@@ -183,47 +183,6 @@ bool EffectPhongLightingGS::updateEffect(double time)
 	glBindVertexArray(vao);
 	/*do not transpose here, because glm has gracefully handled it.*/
 
-	//map vertex buffer object
-	//for the moment we just allocate a new buffer
-	//create and initialize position vbo_pos
-	glDeleteBuffers(1, &vbo_pos);
-	glDeleteBuffers(1, &vbo_normal);
-#pragma region setup position attribute
-	{
-		//create and initialize position vbo_pos
-		glGenBuffers(1, &vbo_pos);
-		glBindBuffer(GL_ARRAY_BUFFER, vbo_pos);
-		XRMesh* mesh = (XRMesh*)object->getComponent(XR_COMPONENT_MESH);
-		glBufferStorage(GL_ARRAY_BUFFER, sizeof(GLfloat)* 3 * mesh->vertexNum, mesh->positions, GL_MAP_WRITE_BIT);
-
-		//binding vertex attribute with vertex buffer object
-		glVertexAttribBinding(VPOS, 0);
-		glBindVertexBuffer(0, vbo_pos, 0, sizeof(GLfloat)* 3);
-		glVertexAttribFormat(VPOS, 3, GL_FLOAT, GL_FALSE, 0);
-		glEnableVertexAttribArray(VPOS);
-	}
-
-#pragma endregion
-
-#pragma region setup normal attribute
-	{
-		//create and initialize normals vbo
-		glGenBuffers(1, &vbo_normal);
-		glBindBuffer(GL_ARRAY_BUFFER, vbo_normal);
-		XRMesh* mesh = (XRMesh*)object->getComponent(XR_COMPONENT_MESH);
-		glBufferStorage(GL_ARRAY_BUFFER, sizeof(GLfloat)* 3 * mesh->vertexNum, mesh->normals, GL_MAP_WRITE_BIT);
-
-		//binding vertex attribute with vertex buffer object
-		glVertexAttribBinding(VNORMAL, 1);
-		glBindVertexBuffer(1, vbo_normal, 0, sizeof(GLfloat)* 3);
-		glVertexAttribFormat(VNORMAL, 3, GL_FLOAT, GL_FALSE, 0);
-		glEnableVertexAttribArray(VNORMAL);
-	}
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-#pragma endregion
-
-
 	//update uniforms
 	glBindBufferBase(GL_UNIFORM_BUFFER, 0, uboMaterial);
 	glBindBufferBase(GL_UNIFORM_BUFFER, 1, uboLight);

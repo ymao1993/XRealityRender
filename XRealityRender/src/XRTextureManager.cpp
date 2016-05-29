@@ -10,6 +10,8 @@ namespace XRTextureManger {
 	static const std::map<XR_TEXTURE_TOKEN, string> textureNames =
 	{
 		{XR_TEXTURE_BUNNY, "bunny.jpg"},
+		{XR_TEXTURE_TERRAIN01_DISP, "terrain01_disp.jpg"},
+		{XR_TEXTURE_TERRAIN01_COLOR, "terrain01_color.jpg"}
 	};
 
 	static std::map<XR_TEXTURE_TOKEN, GLuint> textures;
@@ -22,7 +24,7 @@ namespace XRTextureManger {
 	{
 		for (auto iter = textureNames.begin(); iter != textureNames.end(); iter++)
 		{
-			string filePath = "./res/texture/bunny.jpg";
+			string filePath = TEXTURE_FOLDER_PATH + iter->second;
 			GLuint texture = loadTexture(filePath.c_str());
 			textures[iter->first] = texture;
 		}

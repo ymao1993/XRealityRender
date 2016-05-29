@@ -7,6 +7,7 @@
 #include "../../object/Kitchen.h"
 #include "../../object/BoxFluid.h"
 #include "../../object/bunny.h"
+#include "../../object/Terrain.h"
 
 
 bool ForestScene::initScene()
@@ -20,7 +21,7 @@ bool ForestScene::initScene()
 
 	//init game object
 	{
-		XRObject* obj = new Bunny();
+		XRObject* obj = new Terrain(vec3(0.f,-0.5f,0.f),vec2(1000,1000),0.01f);
 		this->addObject(obj);
 	}
 

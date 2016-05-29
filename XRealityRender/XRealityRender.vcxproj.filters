@@ -115,6 +115,13 @@
       <Filter>scene\KitchenScene</Filter>
     </ClCompile>
     <ClCompile Include="src\XRTextureManager.cpp" />
+    <ClCompile Include="src\XRMeshGenerator.cpp" />
+    <ClCompile Include="src\object\Terrain.cpp">
+      <Filter>object</Filter>
+    </ClCompile>
+    <ClCompile Include="src\effect\EffectTerrainRendering.cpp">
+      <Filter>effect</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\XREngine.h" />
@@ -266,6 +273,13 @@
       <Filter>scene\KitchenScene</Filter>
     </ClInclude>
     <ClInclude Include="src\XRTextureManager.h" />
+    <ClInclude Include="src\XRMeshGenerator.h" />
+    <ClInclude Include="src\object\Terrain.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="src\effect\EffectTerrainRendering.h">
+      <Filter>effect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="imgui">

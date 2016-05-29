@@ -17,6 +17,8 @@ namespace XRShaderManger{
 		{ XR_SHADER_PROGRAM_TEXTURE_MAPPING,  { "TextureMapping", "TextureMapping performs texture mapping on the mesh." } },
 		{ XR_SHADER_PROGRAM_PHONGLIGHTING_GS, { "PhongLighting(GS)", "PhongLighting(GS) performs phong lighting and gouraud shading." } },
 		{ XR_SHADER_PROGRAM_TEXTURE_MAPPING_INSTANCED, { "TextureMappingInstanced", "Texture Mapping shader that supports instance rendering." } },
+		{ XR_SHADER_PROGRAM_TERRAIN_RENDERING,{ "TerrainRendering", "Rendering Terrain using displacement mapping." } },
+
 	};
 
 	//forward declarations

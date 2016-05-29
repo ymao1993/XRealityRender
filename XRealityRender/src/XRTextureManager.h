@@ -9,6 +9,8 @@ namespace XRTextureManger {
 	enum XR_TEXTURE_TOKEN
 	{
 		XR_TEXTURE_BUNNY,
+		XR_TEXTURE_TERRAIN01_DISP,
+		XR_TEXTURE_TERRAIN01_COLOR
 	};
 
 	//init all textures

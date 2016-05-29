@@ -23,11 +23,22 @@ class XREffect :public XRComponent
 {
 public:
 
-	XREffect() :XRComponent(XR_COMPONENT_EFFECT){}
+	XREffect() :
+	XRComponent(XR_COMPONENT_EFFECT),
+	skeletonMode(false)
+	{}
 
 	virtual bool initEffect() = 0;
 	virtual bool updateEffect(double time) = 0;
 	virtual bool destroyEffect() = 0;
+
+// enabling skeleton mode will enforce OpenGL to set 
+// GL_POLYGON_MODE to GL_LINE while rendering
+private:
+	bool skeletonMode;
+public:
+	bool inline getSkeletonMode() { return skeletonMode; }
+	void inline setSkeletonMode(bool val) { skeletonMode = val; }
 
 private:
 	virtual bool init();

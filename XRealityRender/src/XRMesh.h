@@ -25,10 +25,26 @@ class XRMesh: public XRComponent
 {
 public:
 
-	XRMesh(XRMESH_TYPE type = XRMESH_TRIANGLE_SOUP_INDEXED) : kdtree(this), heightField(0.5f), XRComponent(XR_COMPONENT_MESH), type(type){}
+	XRMesh(XRMESH_TYPE type = XRMESH_TRIANGLE_SOUP_INDEXED) : 
+		kdtree(this),
+		heightField(0.5f),
+		XRComponent(XR_COMPONENT_MESH),
+		type(type),
+		positions(0),
+		normals(0),
+		txcoords(0),
+		indices(0),
+		vertexNum(0),
+		faceNum(0){}
+
 	XRMesh(float* positions, float* normals, float* txcoords, int vertexNum) :
-		kdtree(this), heightField(0.5f),
-		positions(positions), normals(normals), txcoords(txcoords), vertexNum(vertexNum), XRComponent(XR_COMPONENT_MESH){}
+		kdtree(this), 
+		heightField(0.5f),
+		positions(positions), 
+		normals(normals), 
+		txcoords(txcoords), 
+		vertexNum(vertexNum), 
+		XRComponent(XR_COMPONENT_MESH){}
 
 	bool loadMesh(const char* filePath);
 

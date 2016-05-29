@@ -17,7 +17,6 @@ public:
 	virtual bool destroyObject();
 
 private:
-	int pointNum;
 	PointLight light;
 	GLuint uboLight;
 

@@ -74,6 +74,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\effect\EffectPhongLightingGS.cpp" />
+    <ClCompile Include="src\effect\EffectTerrainRendering.cpp" />
     <ClCompile Include="src\effect\EffectTextureMapping.cpp" />
     <ClCompile Include="src\effect\EffectTextureMappingInstanced.cpp" />
     <ClCompile Include="src\geometry\AABBox.cpp" />
@@ -87,6 +88,7 @@
     <ClCompile Include="src\mesh\MeshKDTree.cpp" />
     <ClCompile Include="src\object\BoxFluid.cpp" />
     <ClCompile Include="src\object\bunny.cpp" />
+    <ClCompile Include="src\object\Terrain.cpp" />
     <ClCompile Include="src\scene\ForestScene\ForestScene.cpp" />
     <ClCompile Include="src\scene\ForestScene\ForestSceneGUI.cpp" />
     <ClCompile Include="src\scene\KitchenScene\KitchenScene.cpp" />
@@ -114,6 +116,7 @@
     <ClCompile Include="src\XREffect.cpp" />
     <ClCompile Include="src\XREngine.cpp" />
     <ClCompile Include="src\XREntity.cpp" />
+    <ClCompile Include="src\XRMeshGenerator.cpp" />
     <ClCompile Include="src\XRObject.cpp" />
     <ClCompile Include="src\XRScene.cpp" />
     <ClCompile Include="src\XRShaderManager.cpp" />
@@ -127,6 +130,7 @@
   <ItemGroup>
     <ClInclude Include="include\tinyobjloader\tiny_obj_loader.h" />
     <ClInclude Include="src\effect\EffectPhongLightingGS.h" />
+    <ClInclude Include="src\effect\EffectTerrainRendering.h" />
     <ClInclude Include="src\effect\EffectTextureMapping.h" />
     <ClInclude Include="src\effect\EffectTextureMappingInstanced.h" />
     <ClInclude Include="src\geometry\AABBox.h" />
@@ -145,6 +149,7 @@
     <ClInclude Include="src\object\bunny.h" />
     <ClInclude Include="src\object\Kitchen.h" />
     <ClInclude Include="src\object\PointCloud.h" />
+    <ClInclude Include="src\object\Terrain.h" />
     <ClInclude Include="src\scene\ForestScene\ForestScene.h" />
     <ClInclude Include="src\scene\ForestScene\ForestSceneGUI.h" />
     <ClInclude Include="src\scene\KitchenScene\KitchenScene.h" />
@@ -180,6 +185,7 @@
     <ClInclude Include="src\XRLight.h" />
     <ClInclude Include="src\XRMaterial.h" />
     <ClInclude Include="src\XRMesh.h" />
+    <ClInclude Include="src\XRMeshGenerator.h" />
     <ClInclude Include="src\XRObject.h" />
     <ClInclude Include="src\XRScene.h" />
     <ClInclude Include="src\XRIMUI.h" />

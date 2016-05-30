@@ -163,7 +163,7 @@ bool TerrainRendering::updateEffect(double time)
 
 	if (mesh->getType() == XRMESH_TRIANGLE_SOUP_INDEXED)
 	{
-		glDrawElements(GL_TRIANGLES, mesh->idxNum, GL_UNSIGNED_INT, 0);
+		glDrawElements(GL_PATCHES, mesh->idxNum, GL_UNSIGNED_INT, 0);
 	}
 	else if (mesh->getType() == XRMESH_TRIANGLE_STRIP_INDEXED)
 	{

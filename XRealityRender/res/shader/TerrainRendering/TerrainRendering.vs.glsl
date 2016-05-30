@@ -4,27 +4,18 @@
 layout(location = 0) in vec3 pos;
 layout(location = 1) in vec2 texcoord;
 
-//transformation matrices
-layout (location = 0) uniform mat4 m2c_matrix;
-
-layout (binding = 0) uniform sampler2D disp_sampler;
-layout (binding = 1) uniform sampler2D color_sampler;
-
-//output to fragment shader
+//output to tessellation control shader
 out VS_OUT
 {
-	vec3 color;
+	vec2 txc;
 }vs_out;
 
 void main(void)                             
 {
-	//apply displacement mapping
-	vec3 pos_real = pos;
-	pos_real.y = texture2D(disp_sampler, texcoord).x;
-
 	//sample color
-	vs_out.color = texture2D(color_sampler, texcoord).xyz;
+	vs_out.txc = texcoord;
 	
-	//transform the position from view space to clip space
-	gl_Position = m2c_matrix * vec4(pos_real, 1);
+	//pass the position along the pipeline. 
+	//The coordinates transformation is handled by tessellation evaluation shader
+	gl_Position = vec4(pos,1);
 }

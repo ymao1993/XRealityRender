@@ -244,6 +244,16 @@ namespace XRShaderManger{
 					files.push_back(folder + "/" + filename);
 					stages.push_back(GL_FRAGMENT_SHADER);
 				}
+				else if (filename.find(".tcs.") != string::npos)
+				{
+					files.push_back(folder + "/" + filename);
+					stages.push_back(GL_TESS_CONTROL_SHADER);
+				}
+				else if (filename.find(".tes.") != string::npos)
+				{
+					files.push_back(folder + "/" + filename);
+					stages.push_back(GL_TESS_EVALUATION_SHADER);
+				}
 			}
 		} while (FindNextFile(fileHandle, &file));
 	}

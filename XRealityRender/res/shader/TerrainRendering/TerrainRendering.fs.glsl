@@ -1,15 +1,18 @@
-#version 420 core
+#version 430 core
+
+layout (binding = 1) uniform sampler2D color_sampler;
 
 out vec3 color;
 
 //use interface block to group data
-in VS_OUT
+
+in TES_OUT
 {
-	vec3 color;
+	vec2 txc;
 }fs_in;
 
 
 void main(void)
 {
-	color = fs_in.color;
+	color = texture2D(color_sampler, fs_in.txc).xyz;
 }

@@ -1,8 +1,8 @@
 #include "XRMeshGenerator.h"
 
 
-//#define HORINZONTALPLANE_SOUP
-#define HORINZONTALPLANE_STRIP
+#define HORINZONTALPLANE_SOUP
+//#define HORINZONTALPLANE_STRIP
 
 namespace XRMeshGenerator
 {

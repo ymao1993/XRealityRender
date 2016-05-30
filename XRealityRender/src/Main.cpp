@@ -71,7 +71,7 @@ int main(void)
 		XREngine::instance()->setWindowWH(width, height);
 
 		//clear buffer
-		GLfloat defaultBufferColor[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
+		GLfloat defaultBufferColor[4] = { 0.5f, 0.5f, 0.5f, 1.0f };
 		glClearBufferfv(GL_COLOR, 0, defaultBufferColor);
 		glClear(GL_DEPTH_BUFFER_BIT);
 

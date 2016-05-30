@@ -1,6 +1,6 @@
 #version 430 core
 
-layout(triangles) in;
+layout(triangles, fractional_even_spacing) in;
 
 in TCS_OUT
 {

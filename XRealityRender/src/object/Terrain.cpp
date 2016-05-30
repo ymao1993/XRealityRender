@@ -34,7 +34,7 @@ bool Terrain::initObject()
 
 	//set up effect
 	XREffect *effect = new TerrainRendering();
-	effect->setSkeletonMode(true);
+	effect->setSkeletonMode(false);
 	this->addComponent(effect);
 
 	return true;
@@ -42,6 +42,16 @@ bool Terrain::initObject()
 
 bool Terrain::updateObject(double time)
 {
+	XREffect *effect = (XREffect*) this->getComponent(XR_COMPONENT_EFFECT);
+	if (XRDevice::isKeyPressed(GLFW_KEY_SPACE))
+	{
+		effect->setSkeletonMode(true);
+	}
+	else
+	{
+		effect->setSkeletonMode(false);
+	}
+
 	return true;
 }
 

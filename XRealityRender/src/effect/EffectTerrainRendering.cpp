@@ -75,7 +75,6 @@ enum { VPOS, VTEXCOORD };
 
 bool TerrainRendering::initEffect()
 {
-
 	program = XRShaderManger::getShaderProgram(XRShaderManger::XR_SHADER_PROGRAM_TERRAIN_RENDERING);
 
 #pragma endregion

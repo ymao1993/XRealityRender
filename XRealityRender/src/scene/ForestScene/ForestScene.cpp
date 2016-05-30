@@ -21,7 +21,7 @@ bool ForestScene::initScene()
 
 	//init game object
 	{
-		XRObject* obj = new Terrain(vec3(0.f,-0.5f,0.f),vec2(100,100),0.1f);
+		XRObject* obj = new Terrain(vec3(0.f,-0.5f,0.f),vec2(10,10),1.f);
 		this->addObject(obj);
 	}
 

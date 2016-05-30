@@ -90,11 +90,12 @@ bool EffectTextureMappingInstanced::initEffect()
 #pragma region setup indices element array
 	{
 		XRMesh* mesh = (XRMesh*)object->getComponent(XR_COMPONENT_MESH);
-		if (mesh->getType() == XRMESH_TRIANGLE_SOUP_INDEXED)
+		if (mesh->getType() == XRMESH_TRIANGLE_SOUP_INDEXED || 
+			mesh->getType() == XRMESH_TRIANGLE_STRIP_INDEXED)
 		{
 			glGenBuffers(1, &vbo_idx);
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vbo_idx);
-			glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int)* mesh->faceNum * 3, mesh->indices, GL_STREAM_DRAW);
+			glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int)* mesh->idxNum, mesh->indices, GL_STREAM_DRAW);
 		}
 	}
 
@@ -137,9 +138,13 @@ bool EffectTextureMappingInstanced::updateEffect(double time)
 	{
 		glDrawArraysInstanced(GL_TRIANGLES, 0, mesh->vertexNum, instanced_positions.size());
 	}
-	else // mesh->getType() == XRMESH_TRIANGLE_SOUP_INDEXED
+	else if(mesh->getType() == XRMESH_TRIANGLE_SOUP_INDEXED)
 	{
-		glDrawElementsInstanced(GL_TRIANGLES, mesh->faceNum * 3, GL_UNSIGNED_INT, 0, instanced_positions.size());
+		glDrawElementsInstanced(GL_TRIANGLES, mesh->idxNum, GL_UNSIGNED_INT, 0, instanced_positions.size());
+	}
+	else
+	{
+		XRDebug::logE("Mesh type not supported by program 'TextureMappingInstanced'");
 	}
 
 	//unbind vao/shader program

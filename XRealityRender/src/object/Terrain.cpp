@@ -34,7 +34,7 @@ bool Terrain::initObject()
 
 	//set up effect
 	XREffect *effect = new TerrainRendering();
-	effect->setSkeletonMode(false);
+	effect->setSkeletonMode(true);
 	this->addComponent(effect);
 
 	return true;

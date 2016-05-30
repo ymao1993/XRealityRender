@@ -6,7 +6,7 @@
 
 namespace XRObjLoader
 {
-	bool loadObj(const char* filePath, int &vnum, int &fnum, float** vp, float** vn, float** txc, int** indices)
+	bool loadObj(const char* filePath, int &vnum, int &fnum, int &inum, float** vp, float** vn, float** txc, int** indices)
 	{
 		std::vector<tinyobj::shape_t> shapes;
 		std::vector<tinyobj::material_t> materials;
@@ -66,6 +66,7 @@ namespace XRObjLoader
 				vnum += shapes[i].mesh.positions.size() / 3;
 				fnum += shapes[i].mesh.indices.size() / 3;
 			}
+			inum = fnum * 3;
 
 			bool containNormal = shapes[0].mesh.normals.size() != 0;
 			bool containTxc = shapes[0].mesh.texcoords.size() != 0;

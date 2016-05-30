@@ -157,11 +157,12 @@ bool EffectPhongLightingGS::initEffect()
 #pragma region set up index element array if needed
 	{
 		XRMesh* mesh = (XRMesh*)object->getComponent(XR_COMPONENT_MESH);
-		if (mesh->getType() == XRMESH_TRIANGLE_SOUP_INDEXED)
+		if (mesh->getType() == XRMESH_TRIANGLE_SOUP_INDEXED||
+			mesh->getType() == XRMESH_TRIANGLE_STRIP_INDEXED)
 		{
 			glGenBuffers(1, &vbo_idx);
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vbo_idx);
-			glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int)* mesh->faceNum * 3, mesh->indices, GL_STREAM_DRAW);
+			glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int)* mesh->idxNum, mesh->indices, GL_STREAM_DRAW);
 		}
 	}
 
@@ -197,9 +198,13 @@ bool EffectPhongLightingGS::updateEffect(double time)
 	{
 		glDrawArrays(GL_TRIANGLES, 0, mesh->vertexNum);
 	}
-	else // mesh->getType() == XRMESH_TRIANGLE_SOUP_INDEXED
+	else if(mesh->getType() == XRMESH_TRIANGLE_SOUP_INDEXED)
 	{
-		glDrawElements(GL_TRIANGLES, mesh->faceNum * 3, GL_UNSIGNED_INT, 0);
+		glDrawElements(GL_TRIANGLES, mesh->idxNum, GL_UNSIGNED_INT, 0);
+	}
+	else
+	{
+		XRDebug::logE("Mesh type not supported by program 'PhongLightingGS'");
 	}
 
 	//unbind vao/shader program

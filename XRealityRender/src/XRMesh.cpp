@@ -8,15 +8,20 @@ bool XRMesh::loadMesh(const char* filePath)
 {
 	vertexNum = 0;
 	faceNum = 0;
+	idxNum = 0;
 	XRDebug::log("start loading mesh...");
 	bool result;
 	if (type == XRMESH_TRIANGLE_SOUP)
 	{
-		result = XRObjLoader::loadObj(filePath, vertexNum, faceNum, &positions, &normals, &txcoords);
+		result = XRObjLoader::loadObj(filePath, vertexNum, faceNum, idxNum, &positions, &normals, &txcoords);
 	}
-	else //type == XRMESH_TRIANGLE_SOUP_INDEXED
+	else if(type == XRMESH_TRIANGLE_SOUP_INDEXED)
 	{
-		result = XRObjLoader::loadObj(filePath, vertexNum, faceNum, &positions, &normals, &txcoords, &indices);
+		result = XRObjLoader::loadObj(filePath, vertexNum, faceNum, idxNum, &positions, &normals, &txcoords, &indices);
+	}
+	else
+	{
+		XRDebug::logE("mesh type not supported by the loader.");
 	}
 	if (result)
 	{

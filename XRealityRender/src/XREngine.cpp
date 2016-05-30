@@ -5,6 +5,7 @@
 #include "XRShaderManager.h"
 #include "XRTextureManager.h"
 #include ".\scene\ForestScene\ForestScene.h"
+#include ".\scene\KitchenScene\KitchenScene.h"
 
 
 XREngine* XREngine::engine = NULL;
@@ -23,8 +24,8 @@ XREngine* XREngine::instance()
 }
 
 XREngine::XREngine():
-deltaTime(1./60),
-secondsPerFrame(1./60)
+deltaTime(1./30),
+secondsPerFrame(1./30)
 {}
 
 bool XREngine::init(GLFWwindow* window)

@@ -19,6 +19,7 @@ enum XRMESH_TYPE
 {
 	XRMESH_TRIANGLE_SOUP,
 	XRMESH_TRIANGLE_SOUP_INDEXED,
+	XRMESH_TRIANGLE_STRIP_INDEXED,
 };
 
 class XRMesh: public XRComponent
@@ -35,7 +36,8 @@ public:
 		txcoords(0),
 		indices(0),
 		vertexNum(0),
-		faceNum(0){}
+		faceNum(0),
+		idxNum(0){}
 
 	XRMesh(float* positions, float* normals, float* txcoords, int vertexNum) :
 		kdtree(this), 
@@ -55,6 +57,7 @@ public:
 
 	int vertexNum;
 	int faceNum;
+	int idxNum;
 
 	BBox bbox;
 	HeightField heightField;

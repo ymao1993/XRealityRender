@@ -45,4 +45,7 @@ using std::string;
 /* constant*/
 #define INF_D 1e100
 
+#define WINDOW_HEIGHT 800
+#define WINDOW_WIDTH 1500
+
 #endif

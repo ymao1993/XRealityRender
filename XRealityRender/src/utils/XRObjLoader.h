@@ -8,7 +8,7 @@ namespace XRObjLoader
 	 * when indices is NULL, this will return non-indexed vertex attributes
 	 * else this will return indexed vertex attributes
 	 */
-	bool loadObj(const char* filePath, int &vnum, int &fnum, float** vp, float** vn, float** txc, int** indices = NULL);
+	bool loadObj(const char* filePath, int &vnum, int &fnum, int &inum, float** vp, float** vn, float** txc, int** indices= NULL);
 }
 
 #endif

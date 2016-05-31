@@ -51,7 +51,6 @@ bool Terrain::updateObject(double time)
 	{
 		effect->setSkeletonMode(false);
 	}
-
 	return true;
 }
 

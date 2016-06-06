@@ -65,16 +65,24 @@ void XRScene::addObject(XRObject* object)
 	{
 		object->scene = this;
 		objects.push_back(object);
+		if (object->name == "Skybox") //TODO: FIX it with a better design
+			skybox = (XRSkybox*)object;
 	}
 }
 
 void XRScene::deleteObject(XRObject* object)
 {
-	if (object && std::find(objects.begin(), objects.end(), object) != objects.end())
+	if (object)
 	{
-		object->destroy();
-		delete object;
-		objects.push_back(object);
+		auto iter = std::find(objects.begin(), objects.end(), object);
+		if (iter != objects.end())
+		{
+			if ((*iter)->name == "Skybox") skybox == NULL;
+
+			object->destroy();
+			delete object;
+			objects.erase(iter, iter + 1);
+		}
 	}
 }
 
@@ -86,6 +94,7 @@ void XRScene::deleteAllObjects()
 		delete *iter;
 	}
 	objects.clear();
+	skybox = NULL;
 }
 
 XRObject* XRScene::getObject(std::string name)

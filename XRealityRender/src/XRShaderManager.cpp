@@ -18,7 +18,8 @@ namespace XRShaderManger{
 		{ XR_SHADER_PROGRAM_PHONGLIGHTING_GS, { "PhongLighting(GS)", "PhongLighting(GS) performs phong lighting and gouraud shading." } },
 		{ XR_SHADER_PROGRAM_TEXTURE_MAPPING_INSTANCED, { "TextureMappingInstanced", "Texture Mapping shader that supports instance rendering." } },
 		{ XR_SHADER_PROGRAM_TERRAIN_RENDERING,{ "TerrainRendering", "Rendering Terrain using displacement mapping." } },
-
+		{ XR_SHADER_PROGRAM_ENVIRONMENT_MAPPING, { "EnvironmentMapping", "Skybox Shader"} },
+		{ XR_SHADER_PROGRAM_ENV_MAPPING_REFLECT_REFRACT,{ "EnvMappingReflectRefract", "Reflection and Refraction based on environment mapping." } }
 	};
 
 	//forward declarations

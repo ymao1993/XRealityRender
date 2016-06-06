@@ -6,6 +6,7 @@
 #include "XRLight.h"
 #include "XRObject.h"
 #include "XRBrush.h"
+#include "XRSkybox.h"
 
 #include <list>
 
@@ -49,6 +50,8 @@ public:
 public:
 	XRBrush brush;
 
+public:
+	XRSkybox* skybox;
 
 protected:
 	XRUserInterface* gui;

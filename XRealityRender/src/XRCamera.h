@@ -34,7 +34,7 @@ private:
 	virtual void updateOrientation();
 	virtual void updatePosition();
 
-private: 
+public: 
 	//attributes
 	glm::vec3 position;
 	glm::vec3 front;

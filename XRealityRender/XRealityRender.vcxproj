@@ -73,7 +73,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\effect\EffectEnvMappingReflectRefract.cpp" />
     <ClCompile Include="src\effect\EffectPhongLightingGS.cpp" />
+    <ClCompile Include="src\effect\EffectSkybox.cpp" />
     <ClCompile Include="src\effect\EffectTerrainRendering.cpp" />
     <ClCompile Include="src\effect\EffectTextureMapping.cpp" />
     <ClCompile Include="src\effect\EffectTextureMappingInstanced.cpp" />
@@ -88,11 +90,14 @@
     <ClCompile Include="src\mesh\MeshKDTree.cpp" />
     <ClCompile Include="src\object\BoxFluid.cpp" />
     <ClCompile Include="src\object\bunny.cpp" />
+    <ClCompile Include="src\object\Dragon.cpp" />
     <ClCompile Include="src\object\Terrain.cpp" />
-    <ClCompile Include="src\scene\ForestScene\ForestScene.cpp" />
-    <ClCompile Include="src\scene\ForestScene\ForestSceneGUI.cpp" />
+    <ClCompile Include="src\scene\EnvironmentScene\EnvironmentScene.cpp" />
+    <ClCompile Include="src\scene\EnvironmentScene\EnvironmentSceneGUI.cpp" />
     <ClCompile Include="src\scene\KitchenScene\KitchenScene.cpp" />
     <ClCompile Include="src\scene\KitchenScene\KitchenSceneGUI.cpp" />
+    <ClCompile Include="src\scene\TerrainScene\TerrainScene.cpp" />
+    <ClCompile Include="src\scene\TerrainScene\TerrainSceneGUI.cpp" />
     <ClCompile Include="src\simulation\SPHfluid\MarchCube.cpp" />
     <ClCompile Include="src\simulation\SPHfluid\SpatialGrid.cpp" />
     <ClCompile Include="src\simulation\SPHfluid\SPHSimulator.cpp" />
@@ -120,6 +125,7 @@
     <ClCompile Include="src\XRObject.cpp" />
     <ClCompile Include="src\XRScene.cpp" />
     <ClCompile Include="src\XRShaderManager.cpp" />
+    <ClCompile Include="src\XRSkybox.cpp" />
     <ClCompile Include="src\XRSound.cpp" />
     <ClCompile Include="src\XRSoundManager.cpp" />
     <ClCompile Include="src\XRTexture.cpp" />
@@ -129,7 +135,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\tinyobjloader\tiny_obj_loader.h" />
+    <ClInclude Include="src\effect\EffectEnvMappingReflectRefract.h" />
     <ClInclude Include="src\effect\EffectPhongLightingGS.h" />
+    <ClInclude Include="src\effect\EffectSkybox.h" />
     <ClInclude Include="src\effect\EffectTerrainRendering.h" />
     <ClInclude Include="src\effect\EffectTextureMapping.h" />
     <ClInclude Include="src\effect\EffectTextureMappingInstanced.h" />
@@ -147,13 +155,16 @@
     <ClInclude Include="src\mesh\MeshKDTree.h" />
     <ClInclude Include="src\object\BoxFluid.h" />
     <ClInclude Include="src\object\bunny.h" />
+    <ClInclude Include="src\object\Dragon.h" />
     <ClInclude Include="src\object\Kitchen.h" />
     <ClInclude Include="src\object\PointCloud.h" />
     <ClInclude Include="src\object\Terrain.h" />
-    <ClInclude Include="src\scene\ForestScene\ForestScene.h" />
-    <ClInclude Include="src\scene\ForestScene\ForestSceneGUI.h" />
+    <ClInclude Include="src\scene\EnvironmentScene\EnvironmentScene.h" />
+    <ClInclude Include="src\scene\EnvironmentScene\EnvironmentSceneGUI.h" />
     <ClInclude Include="src\scene\KitchenScene\KitchenScene.h" />
     <ClInclude Include="src\scene\KitchenScene\KitchenSceneGUI.h" />
+    <ClInclude Include="src\scene\TerrainScene\TerrainScene.h" />
+    <ClInclude Include="src\scene\TerrainScene\TerrainSceneGUI.h" />
     <ClInclude Include="src\shader\PhongLightingGS.h" />
     <ClInclude Include="src\simulation\SPHfluid\MarchCube.h" />
     <ClInclude Include="src\simulation\SPHfluid\SpatialGrid.h" />
@@ -191,12 +202,12 @@
     <ClInclude Include="src\XRIMUI.h" />
     <ClInclude Include="src\XRShaderDescriptor.h" />
     <ClInclude Include="src\XRShaderManager.h" />
+    <ClInclude Include="src\XRSkybox.h" />
     <ClInclude Include="src\XRSound.h" />
     <ClInclude Include="src\XRSoundManager.h" />
     <ClInclude Include="src\XRTexture.h" />
     <ClInclude Include="src\XRTextureManager.h" />
     <ClInclude Include="src\XRTransform.h" />
-    <ClInclude Include="src\XRUserInterface.h" />
     <ClInclude Include="src\XRWidget.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

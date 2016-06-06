@@ -48,4 +48,16 @@ using std::string;
 #define WINDOW_HEIGHT 800
 #define WINDOW_WIDTH 1500
 
+
+/*GL Check Error*/
+
+#define CHECK_GL_ERROR \
+{ \
+	GLenum err = glGetError(); \
+	if (err != GL_NO_ERROR) \
+	{ \
+		std::cout << "OpenGL Error: " << err << std::endl; \
+	} \
+}
+
 #endif

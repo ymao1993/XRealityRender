@@ -33,12 +33,14 @@ protected:
 		initSampler();
 	}
 
+protected:
+	virtual bool loadTexture(XRTextureManger::XR_TEXTURE_TOKEN token);
+	virtual void initSampler();
+
 private:
 	virtual bool init(){ return true; };
 	virtual bool update(double time){ return true; }
 	virtual bool destroy();
-	bool loadTexture(XRTextureManger::XR_TEXTURE_TOKEN token);
-	void initSampler();
 };
 
 class XRTextureDisp : public XRTexture
@@ -51,6 +53,15 @@ class XRTextureColor : public XRTexture
 {
 public:
 	XRTextureColor(XRTextureManger::XR_TEXTURE_TOKEN token) :XRTexture(token, XR_COMPONENT_TEXTURE_COLOR) {}
+};
+
+class XRTextureCube : public XRTexture
+{
+public:
+	XRTextureCube(XRTextureManger::XR_TEXTURE_TOKEN token) :XRTexture(token, XR_COMPONENT_TEXTURE_CUBE) {}
+
+public:
+	GLuint faces[6];
 };
 
 

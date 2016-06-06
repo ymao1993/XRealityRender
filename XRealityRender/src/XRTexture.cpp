@@ -5,7 +5,6 @@
 bool XRTexture::loadTexture(XRTextureManger::XR_TEXTURE_TOKEN token)
 {
 	texture = XRTextureManger::getTexture(token);
-	glBindTexture(GL_TEXTURE_2D, texture);
 
 	return true;
 }
@@ -16,6 +15,9 @@ void XRTexture::initSampler()
 	glGenSamplers(1, &sampler);
 	glSamplerParameteri(sampler, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glSamplerParameteri(sampler, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glSamplerParameteri(sampler, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+	glSamplerParameteri(sampler, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glSamplerParameteri(sampler, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 	return;
 }
 

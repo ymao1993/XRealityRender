@@ -102,12 +102,6 @@
     <ClCompile Include="src\mesh\MeshKDTree.cpp">
       <Filter>mesh</Filter>
     </ClCompile>
-    <ClCompile Include="src\scene\ForestScene\ForestScene.cpp">
-      <Filter>scene\ForestScene</Filter>
-    </ClCompile>
-    <ClCompile Include="src\scene\ForestScene\ForestSceneGUI.cpp">
-      <Filter>scene\ForestScene</Filter>
-    </ClCompile>
     <ClCompile Include="src\scene\KitchenScene\KitchenSceneGUI.cpp">
       <Filter>scene\KitchenScene</Filter>
     </ClCompile>
@@ -121,6 +115,28 @@
     </ClCompile>
     <ClCompile Include="src\effect\EffectTerrainRendering.cpp">
       <Filter>effect</Filter>
+    </ClCompile>
+    <ClCompile Include="src\scene\TerrainScene\TerrainSceneGUI.cpp">
+      <Filter>scene\TerrainScene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\scene\TerrainScene\TerrainScene.cpp">
+      <Filter>scene\TerrainScene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\scene\EnvironmentScene\EnvironmentScene.cpp">
+      <Filter>scene\EnvrionmentScene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\scene\EnvironmentScene\EnvironmentSceneGUI.cpp">
+      <Filter>scene\EnvrionmentScene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XRSkybox.cpp" />
+    <ClCompile Include="src\effect\EffectSkybox.cpp">
+      <Filter>effect</Filter>
+    </ClCompile>
+    <ClCompile Include="src\effect\EffectEnvMappingReflectRefract.cpp">
+      <Filter>effect</Filter>
+    </ClCompile>
+    <ClCompile Include="src\object\Dragon.cpp">
+      <Filter>object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -152,7 +168,6 @@
     <ClInclude Include="src\XRCommon.h" />
     <ClInclude Include="src\XRDevice.h" />
     <ClInclude Include="src\XRDebug.h" />
-    <ClInclude Include="src\XRUserInterface.h" />
     <ClInclude Include="src\XRGLFW.h" />
     <ClInclude Include="src\XRIMUI.h" />
     <ClInclude Include="src\XRWidget.h" />
@@ -260,12 +275,6 @@
     <ClInclude Include="src\mesh\MeshKDTree.h">
       <Filter>mesh</Filter>
     </ClInclude>
-    <ClInclude Include="src\scene\ForestScene\ForestScene.h">
-      <Filter>scene\ForestScene</Filter>
-    </ClInclude>
-    <ClInclude Include="src\scene\ForestScene\ForestSceneGUI.h">
-      <Filter>scene\ForestScene</Filter>
-    </ClInclude>
     <ClInclude Include="src\scene\KitchenScene\KitchenSceneGUI.h">
       <Filter>scene\KitchenScene</Filter>
     </ClInclude>
@@ -279,6 +288,28 @@
     </ClInclude>
     <ClInclude Include="src\effect\EffectTerrainRendering.h">
       <Filter>effect</Filter>
+    </ClInclude>
+    <ClInclude Include="src\scene\TerrainScene\TerrainSceneGUI.h">
+      <Filter>scene\TerrainScene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\scene\TerrainScene\TerrainScene.h">
+      <Filter>scene\TerrainScene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\scene\EnvironmentScene\EnvironmentScene.h">
+      <Filter>scene\EnvrionmentScene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\scene\EnvironmentScene\EnvironmentSceneGUI.h">
+      <Filter>scene\EnvrionmentScene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XRSkybox.h" />
+    <ClInclude Include="src\effect\EffectSkybox.h">
+      <Filter>effect</Filter>
+    </ClInclude>
+    <ClInclude Include="src\effect\EffectEnvMappingReflectRefract.h">
+      <Filter>effect</Filter>
+    </ClInclude>
+    <ClInclude Include="src\object\Dragon.h">
+      <Filter>object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -321,11 +352,14 @@
     <Filter Include="mesh">
       <UniqueIdentifier>{6fdbbeaf-5be2-4996-a560-1f5b6c30dd12}</UniqueIdentifier>
     </Filter>
-    <Filter Include="scene\ForestScene">
-      <UniqueIdentifier>{dd2465b1-f3d4-4890-85cd-0ec2d3466792}</UniqueIdentifier>
-    </Filter>
     <Filter Include="scene\KitchenScene">
       <UniqueIdentifier>{bccf866f-7597-4615-b7f4-abb949f19b0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="scene\TerrainScene">
+      <UniqueIdentifier>{dd2465b1-f3d4-4890-85cd-0ec2d3466792}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="scene\EnvrionmentScene">
+      <UniqueIdentifier>{2138a761-aca5-435c-9a58-8ef5ff47ce20}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

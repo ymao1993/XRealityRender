@@ -12,7 +12,7 @@ bool XRCamera::init()
 	zFar = 100.f;
 	fovy = 45.f;
 	speed = 0.06f;
-	rotateMaxSpeed = 0.02f;
+	rotateMaxSpeed = 0.05f;
 
 	//initialize position& orientation of the camera
 	position = glm::vec3(0, 0, 10);

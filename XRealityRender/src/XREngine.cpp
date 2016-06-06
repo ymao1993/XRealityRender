@@ -4,8 +4,9 @@
 #include <Windows.h>
 #include "XRShaderManager.h"
 #include "XRTextureManager.h"
-#include ".\scene\ForestScene\ForestScene.h"
+#include ".\scene\TerrainScene\TerrainScene.h"
 #include ".\scene\KitchenScene\KitchenScene.h"
+#include ".\scene\EnvironmentScene\EnvironmentScene.h"
 
 
 XREngine* XREngine::engine = NULL;
@@ -43,7 +44,7 @@ bool XREngine::init(GLFWwindow* window)
 	XRTextureManger::init();
 
 	//create application
-	scene = new ForestScene();
+	scene = new EnvironmentScene();
 	scene->init();
 
 	return true;

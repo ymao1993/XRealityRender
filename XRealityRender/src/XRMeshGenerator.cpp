@@ -100,4 +100,76 @@ namespace XRMeshGenerator
 #endif
 
 	}
+
+
+	void generateCube(XRMesh& mesh, vec3 center, float xSpan, float ySpan, float zSpan)
+	{
+		mesh.faceNum = 12;
+		mesh.vertexNum = 8;
+		mesh.idxNum = 36;
+		mesh.setType(XRMESH_TRIANGLE_SOUP_INDEXED);
+		mesh.normals = NULL;
+
+		xSpan /= 2;	ySpan /= 2;	zSpan /= 2;
+
+		mesh.positions = (float*)malloc(sizeof(float) * mesh.vertexNum * 3);
+		mesh.positions[3 * 0 + 0] = center.x + xSpan;
+		mesh.positions[3 * 0 + 1] = center.y + ySpan;
+		mesh.positions[3 * 0 + 2] = center.z + zSpan;
+
+		mesh.positions[3 * 1 + 0] = center.x - xSpan;
+		mesh.positions[3 * 1 + 1] = center.y + ySpan;
+		mesh.positions[3 * 1 + 2] = center.z + zSpan;
+
+		mesh.positions[3 * 2 + 0] = center.x + xSpan;
+		mesh.positions[3 * 2 + 1] = center.y - ySpan;
+		mesh.positions[3 * 2 + 2] = center.z + zSpan;
+
+		mesh.positions[3 * 3 + 0] = center.x + xSpan;
+		mesh.positions[3 * 3 + 1] = center.y + ySpan;
+		mesh.positions[3 * 3 + 2] = center.z - zSpan;
+
+		mesh.positions[3 * 4 + 0] = center.x - xSpan;
+		mesh.positions[3 * 4 + 1] = center.y - ySpan;
+		mesh.positions[3 * 4 + 2] = center.z + zSpan;
+
+		mesh.positions[3 * 5 + 0] = center.x - xSpan;
+		mesh.positions[3 * 5 + 1] = center.y + ySpan;
+		mesh.positions[3 * 5 + 2] = center.z - zSpan;
+
+		mesh.positions[3 * 6 + 0] = center.x + xSpan;
+		mesh.positions[3 * 6 + 1] = center.y - ySpan;
+		mesh.positions[3 * 6 + 2] = center.z - zSpan;
+
+		mesh.positions[3 * 7 + 0] = center.x - xSpan;
+		mesh.positions[3 * 7 + 1] = center.y - ySpan;
+		mesh.positions[3 * 7 + 2] = center.z - zSpan;
+
+		mesh.indices = (int*)malloc(sizeof(int) * mesh.idxNum);
+		
+		//up
+		mesh.indices[0] = 0;	mesh.indices[1] = 1;	mesh.indices[2] = 5;
+		mesh.indices[3] = 0;	mesh.indices[4] = 5;	mesh.indices[5] = 3;
+		
+		//down
+		mesh.indices[6] = 2;	mesh.indices[7] = 4;	mesh.indices[8] = 7;
+		mesh.indices[9] = 2;	mesh.indices[10] = 7;	mesh.indices[11] = 6;
+
+		//front
+		mesh.indices[12] = 2;	mesh.indices[13] = 4;	mesh.indices[14] = 1;
+		mesh.indices[15] = 2;	mesh.indices[16] = 1;	mesh.indices[17] = 0;
+
+		//back
+		mesh.indices[18] = 6;	mesh.indices[19] = 7;	mesh.indices[20] = 5;
+		mesh.indices[21] = 6;	mesh.indices[22] = 5;	mesh.indices[23] = 3;
+
+		//left
+		mesh.indices[24] = 7;	mesh.indices[25] = 4;	mesh.indices[26] = 1;
+		mesh.indices[27] = 7;	mesh.indices[28] = 1;	mesh.indices[29] = 5;
+
+		//right
+		mesh.indices[30] = 6;	mesh.indices[31] = 2;	mesh.indices[32] = 0;
+		mesh.indices[33] = 6;	mesh.indices[34] = 0;	mesh.indices[35] = 3;
+
+	}
 }

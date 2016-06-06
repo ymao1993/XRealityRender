@@ -11,6 +11,11 @@ namespace XRMeshGenerator
 	 */
 	void generateHorizontalPlane(XRMesh& mesh,
 		vec3 center, int numCellX, int numCellZ, float cellSize);
+
+	/**
+	 * Generate a cube mesh
+	 */
+	void generateCube(XRMesh& mesh, vec3 center, float xSpan, float ySpan, float zSpan);
 }
 
 #endif
